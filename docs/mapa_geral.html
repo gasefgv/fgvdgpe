@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa por DRE — Gestão para a Aprendizagem</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-escuro: #0b5fa5;
+            --azul-medio: #1e90ff;
+            --azul-claro: #4da6ff;
+            --azul-pastel: #f1f9ff;
+            --cinza-texto: #666666;
+            --branco: #FFFFFF;
+            --sombra-suave: 0 4px 15px rgba(11, 95, 165, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--azul-pastel);
+            color: var(--cinza-texto);
+        }
+
+        .app-container { display: flex; flex-direction: column; height: 100vh; }
+
+        .header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            padding: 0.75rem 1.5rem;
+            box-shadow: var(--sombra-suave);
+            z-index: 1000;
+        }
+
+        .header-content { display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 1rem; }
+
+        .btn-voltar {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            color: var(--branco); text-decoration: none; font-size: 0.9rem;
+            padding: 0.5rem 1rem; border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1); transition: background 0.3s;
+        }
+        .btn-voltar:hover { background: rgba(255, 255, 255, 0.2); color: var(--branco); }
+
+        .logo { height: 45px; }
+        .header-center { text-align: center; flex: 1; }
+        .header-title { color: var(--branco); font-size: 1.35rem; font-weight: 700; margin: 0; }
+        .header-subtitle { color: rgba(255, 255, 255, 0.8); font-size: 0.85rem; }
+        .header-right { display: flex; gap: 0.75rem; }
+
+        .btn-export {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--branco); color: var(--azul-escuro);
+            padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600;
+            font-size: 0.85rem; text-decoration: none; border: none;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .btn-export:hover { transform: scale(1.03); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+        .content-area { display: flex; flex: 1; overflow: hidden; }
+
+        .sidebar {
+            width: 320px; background: var(--branco);
+            border-right: 1px solid rgba(11, 95, 165, 0.1);
+            padding: 1.25rem; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 1.25rem;
+        }
+
+        .filter-section { background: var(--azul-pastel); border-radius: 12px; padding: 1rem; }
+        .filter-title {
+            color: var(--azul-escuro); font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .filter-icon { width: 18px; height: 18px; opacity: 0.8; }
+        .filter-select {
+            width: 100%; padding: 0.65rem 0.85rem; border: 2px solid #e0e0e0;
+            border-radius: 8px; font-size: 0.9rem; background: var(--branco);
+            cursor: pointer; transition: border-color 0.3s;
+        }
+        .filter-select:focus { border-color: var(--azul-medio); outline: none; }
+        .search-input {
+            width: 100%; padding: 0.65rem 0.85rem; border: 2px solid #e0e0e0;
+            border-radius: 8px; font-size: 0.9rem; transition: border-color 0.3s;
+        }
+        .search-input:focus { border-color: var(--azul-medio); outline: none; }
+
+        .summary-panel {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            border-radius: 12px; padding: 1rem; color: var(--branco);
+        }
+        .summary-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 0.75rem; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .summary-item { text-align: center; }
+        .summary-value { font-size: 1.5rem; font-weight: 700; }
+        .summary-label { font-size: 0.75rem; opacity: 0.85; }
+
+        .map-container { flex: 1; position: relative; }
+        #map { width: 100%; height: 100%; }
+
+        .legend {
+            position: absolute; bottom: 30px; right: 20px;
+            background: var(--branco); padding: 1rem; border-radius: 10px;
+            box-shadow: var(--sombra-suave); z-index: 1000; min-width: 180px;
+        }
+        .legend-title { font-size: 0.8rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .legend-scale { display: flex; flex-direction: column; gap: 0.25rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+        .legend-color { width: 24px; height: 16px; border-radius: 3px; }
+
+        .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: var(--sombra-suave); }
+        .leaflet-popup-content { margin: 0; min-width: 280px; }
+        .popup-header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            color: var(--branco); padding: 0.75rem 1rem;
+            border-radius: 12px 12px 0 0; margin: -1px -1px 0 -1px;
+        }
+        .popup-title { font-size: 1rem; font-weight: 700; margin: 0; }
+        .popup-subtitle { font-size: 0.8rem; opacity: 0.85; }
+        .popup-body { padding: 1rem; }
+        .popup-table { width: 100%; font-size: 0.85rem; border-collapse: collapse; }
+        .popup-table th { text-align: left; color: var(--cinza-texto); font-weight: 400; padding: 0.4rem 0; border-bottom: 1px solid #eee; }
+        .popup-table td { text-align: right; font-weight: 600; color: var(--azul-escuro); padding: 0.4rem 0; border-bottom: 1px solid #eee; }
+        .popup-actions { margin-top: 0.75rem; display: flex; gap: 0.5rem; }
+        .popup-btn { flex: 1; padding: 0.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; transition: all 0.3s; }
+        .popup-btn-primary { background: var(--azul-escuro); color: var(--branco); border: none; }
+        .popup-btn-primary:hover { background: var(--azul-medio); }
+
+        .current-indicator { background: var(--branco); border: 2px solid var(--azul-claro); border-radius: 12px; padding: 1rem; text-align: center; }
+        .current-indicator-label { font-size: 0.75rem; color: var(--cinza-texto); text-transform: uppercase; letter-spacing: 0.5px; }
+        .current-indicator-value { font-size: 1.1rem; font-weight: 700; color: var(--azul-escuro); margin-top: 0.25rem; }
+
+        .loading-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(241, 249, 255, 0.9); display: flex;
+            flex-direction: column; align-items: center; justify-content: center; z-index: 2000;
+        }
+        .loading-spinner { width: 50px; height: 50px; border: 4px solid var(--azul-pastel); border-top-color: var(--azul-escuro); border-radius: 50%; animation: spin 1s linear infinite; }
+        .loading-text { margin-top: 1rem; color: var(--azul-escuro); font-weight: 600; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            .content-area { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; max-height: 35vh; flex-direction: row; flex-wrap: wrap; overflow-x: auto; }
+            .filter-section { min-width: 200px; flex: 1; }
+            .summary-panel { width: 100%; }
+            .header-center { display: none; }
+            .legend { bottom: 10px; right: 10px; padding: 0.75rem; min-width: 150px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" class="btn-voltar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        Voltar
+                    </a>
+                    <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+                </div>
+                <div class="header-center">
+                    <h1 class="header-title">Mapa por Diretoria Regional</h1>
+                    <p class="header-subtitle">Indicadores educacionais georreferenciados</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn-export" onclick="exportMap()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        Exportar PNG
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>
+                        Indicador
+                    </h3>
+                    <select id="indicatorSelect" class="filter-select" onchange="updateMap()"></select>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        Diretoria Regional
+                    </h3>
+                    <select id="dreSelect" class="filter-select" onchange="filterByDRE()">
+                        <option value="">Todas as DREs</option>
+                    </select>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">
+                        <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                        Buscar DRE
+                    </h3>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Digite o nome da DRE..." oninput="searchDRE()">
+                </div>
+
+                <div class="current-indicator">
+                    <div class="current-indicator-label">Indicador Ativo</div>
+                    <div class="current-indicator-value" id="currentIndicatorName">Carregando...</div>
+                </div>
+
+                <div class="summary-panel">
+                    <h3 class="summary-title">Resumo Geral</h3>
+                    <div class="summary-grid">
+                        <div class="summary-item"><div class="summary-value" id="totalEscolas">--</div><div class="summary-label">Escolas</div></div>
+                        <div class="summary-item"><div class="summary-value" id="totalDREs">10</div><div class="summary-label">DREs</div></div>
+                        <div class="summary-item"><div class="summary-value" id="mediaIndicador">--</div><div class="summary-label">Média Geral</div></div>
+                        <div class="summary-item"><div class="summary-value" id="totalAlunos">--</div><div class="summary-label">Alunos</div></div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="legend" id="legend">
+                    <div class="legend-title">Legenda</div>
+                    <div class="legend-scale" id="legendScale"></div>
+                </div>
+                <div class="loading-overlay" id="loading">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Carregando dados...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // ========================================
+        // CONFIGURAÇÃO DOS INDICADORES
+        // ========================================
+        const INDICADORES = [
+            { id: 'SAEB 23 Taxa Participação', nome: 'SAEB 23 - Taxa de Participação', tipo: 'percentual', agregacao: 'media' },
+            { id: 'SAEB 23 Nota Média PT', nome: 'SAEB 23 - Nota Média Port.', tipo: 'numero', agregacao: 'media' },
+            { id: 'SAEB 23 Nota Média Mat', nome: 'SAEB 23 - Nota Média Mat.', tipo: 'numero', agregacao: 'media' },
+            { id: 'SAESE 24 Proficiência PT', nome: 'SAESE 24 - Proficiência Port.', tipo: 'numero', agregacao: 'media' },
+            { id: 'SAESE 24 Proficiência MAT', nome: 'SAESE 24 - Proficiência Mat.', tipo: 'numero', agregacao: 'media' },
+            { id: 'Participação Avaliação Diagnóstica', nome: 'Avaliação Diagnóstica - Participação', tipo: 'percentual', agregacao: 'media' },
+            { id: 'Rendimento Médio Língua Portuguesa Avaliação Diagnóstica', nome: 'Avaliação Diagnóstica - Rend. Port.', tipo: 'percentual', agregacao: 'media' },
+            { id: 'Rendimento Médio Matemática Avaliação Diagnóstica', nome: 'Avaliação Diagnóstica - Rend. Mat.', tipo: 'percentual', agregacao: 'media' },
+            { id: 'Número de Alunos', nome: 'Número de Alunos', tipo: 'numero', agregacao: 'soma' },
+            { id: 'Participação Avaliação Formativa', nome: 'Avaliação Formativa - Participação', tipo: 'percentual', agregacao: 'media' },
+            { id: 'Rendimento LP Avaliação Formativa', nome: 'Avaliação Formativa - Rend. Port.', tipo: 'percentual', agregacao: 'media' },
+            { id: 'Rendimento MAT Avaliação Formativa', nome: 'Avaliação Formativa - Rend. Mat.', tipo: 'percentual', agregacao: 'media' }
+        ];
+
+        const CORES_CHOROPLETH = ['#f7fbff', '#c6dbef', '#6baed6', '#2171b5', '#084594'];
+
+        let map, geoJsonLayer, dadosCSV = [], geoJsonData = null, dadosAgregados = {};
+        let indicadorAtual = INDICADORES[0].id, dresFiltradas = [];
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        async function init() {
+            try {
+                preencherDropdownIndicadores();
+                await carregarDados();
+                inicializarMapa();
+                verificarParametroURL();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                console.error('Erro ao inicializar:', error);
+                document.getElementById('loading').innerHTML = `
+                    <div style="color: #c0392b; text-align: center;">
+                        <p><strong>Erro ao carregar dados</strong></p>
+                        <p style="font-size: 0.9rem;">${error.message}</p>
+                        <p style="font-size: 0.8rem; margin-top: 1rem;">
+                            Verifique se os arquivos estão em:<br>
+                            <code>data/base_tabelar.csv</code><br>
+                            <code>data/geojs-28-reg.json</code>
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
+        async function carregarDados() {
+            // CAMINHO CORRIGIDO: data/ (dentro de docs/)
+            const csvResponse = await fetch('data/base_tabelar.csv');
+            if (!csvResponse.ok) throw new Error('Arquivo CSV não encontrado');
+            const csvText = await csvResponse.text();
+            dadosCSV = d3.csvParse(csvText);
+            
+            const geoResponse = await fetch('data/geojs-28-reg.json');
+            if (!geoResponse.ok) throw new Error('Arquivo GeoJSON não encontrado');
+            geoJsonData = await geoResponse.json();
+            
+            agregarDadosPorDRE();
+            preencherDropdownDREs();
+            atualizarResumo();
+        }
+
+        function agregarDadosPorDRE() {
+            dadosAgregados = {};
+            const mapearDRE = (dre) => dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' ');
+            
+            dadosCSV.forEach(escola => {
+                const dreOriginal = escola.DRE;
+                const dreMapeada = mapearDRE(dreOriginal);
+                
+                if (!dadosAgregados[dreMapeada]) {
+                    dadosAgregados[dreMapeada] = { dreOriginal, escolas: [], totalAlunos: 0 };
+                }
+                
+                dadosAgregados[dreMapeada].escolas.push(escola);
+                dadosAgregados[dreMapeada].totalAlunos += parseFloat(escola['Número de Alunos']) || 0;
+            });
+            
+            Object.keys(dadosAgregados).forEach(dre => {
+                const escolas = dadosAgregados[dre].escolas;
+                INDICADORES.forEach(ind => {
+                    const valores = escolas.map(e => parseFloat(e[ind.id])).filter(v => !isNaN(v));
+                    if (valores.length > 0) {
+                        dadosAgregados[dre][ind.id] = ind.agregacao === 'soma' 
+                            ? valores.reduce((a, b) => a + b, 0)
+                            : valores.reduce((a, b) => a + b, 0) / valores.length;
+                    } else {
+                        dadosAgregados[dre][ind.id] = null;
+                    }
+                });
+            });
+        }
+
+        function preencherDropdownIndicadores() {
+            const select = document.getElementById('indicatorSelect');
+            INDICADORES.forEach(ind => {
+                const option = document.createElement('option');
+                option.value = ind.id;
+                option.textContent = ind.nome;
+                select.appendChild(option);
+            });
+        }
+
+        function preencherDropdownDREs() {
+            const select = document.getElementById('dreSelect');
+            const dres = Object.keys(dadosAgregados).sort();
+            dres.forEach(dre => {
+                const option = document.createElement('option');
+                option.value = dre;
+                option.textContent = dre;
+                select.appendChild(option);
+            });
+            dresFiltradas = dres;
+        }
+
+        function inicializarMapa() {
+            map = L.map('map', { zoomControl: true, attributionControl: true }).setView([-10.5, -37.4], 8);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+            }).addTo(map);
+            atualizarCamadaGeoJSON();
+        }
+
+        function atualizarCamadaGeoJSON() {
+            if (geoJsonLayer) map.removeLayer(geoJsonLayer);
+            
+            const valores = Object.keys(dadosAgregados)
+                .filter(dre => dresFiltradas.length === 0 || dresFiltradas.includes(dre))
+                .map(dre => dadosAgregados[dre][indicadorAtual])
+                .filter(v => v !== null && !isNaN(v));
+            
+            const minVal = Math.min(...valores), maxVal = Math.max(...valores);
+            
+            const obterCor = (valor) => {
+                if (valor === null || isNaN(valor)) return '#e0e0e0';
+                const normalizado = (valor - minVal) / (maxVal - minVal || 1);
+                const indice = Math.min(Math.floor(normalizado * CORES_CHOROPLETH.length), CORES_CHOROPLETH.length - 1);
+                return CORES_CHOROPLETH[indice];
+            };
+            
+            geoJsonLayer = L.geoJSON(geoJsonData, {
+                style: (feature) => {
+                    const dre = feature.properties.region;
+                    const valor = dadosAgregados[dre] ? dadosAgregados[dre][indicadorAtual] : null;
+                    const visivel = dresFiltradas.length === 0 || dresFiltradas.includes(dre);
+                    return {
+                        fillColor: visivel ? obterCor(valor) : '#f0f0f0',
+                        weight: 2, opacity: 1,
+                        color: visivel ? '#0b5fa5' : '#ccc',
+                        fillOpacity: visivel ? 0.75 : 0.3
+                    };
+                },
+                onEachFeature: (feature, layer) => {
+                    const dre = feature.properties.region;
+                    const dados = dadosAgregados[dre];
+                    layer.bindPopup(criarPopupContent(dre, dados), { maxWidth: 350 });
+                    layer.on({
+                        mouseover: (e) => { e.target.setStyle({ weight: 3, color: '#0b5fa5', fillOpacity: 0.9 }); e.target.bringToFront(); },
+                        mouseout: (e) => { geoJsonLayer.resetStyle(e.target); }
+                    });
+                }
+            }).addTo(map);
+            
+            atualizarLegenda(minVal, maxVal);
+            const indicador = INDICADORES.find(i => i.id === indicadorAtual);
+            document.getElementById('currentIndicatorName').textContent = indicador ? indicador.nome : indicadorAtual;
+        }
+
+        function criarPopupContent(dre, dados) {
+            if (!dados) return `<div class="popup-header"><h4 class="popup-title">${dre}</h4></div><div class="popup-body"><p>Sem dados</p></div>`;
+            
+            const formatarValor = (valor, tipo) => {
+                if (valor === null || isNaN(valor)) return '-';
+                return tipo === 'percentual' ? (valor * 100).toFixed(1) + '%' : valor.toFixed(2);
+            };
+            
+            let tabelaHTML = '';
+            INDICADORES.slice(0, 6).forEach(ind => {
+                tabelaHTML += `<tr><th>${ind.nome}</th><td>${formatarValor(dados[ind.id], ind.tipo)}</td></tr>`;
+            });
+            
+            return `
+                <div class="popup-header">
+                    <h4 class="popup-title">${dre}</h4>
+                    <span class="popup-subtitle">${dados.escolas.length} escolas | ${dados.totalAlunos.toLocaleString('pt-BR')} alunos</span>
+                </div>
+                <div class="popup-body">
+                    <table class="popup-table">${tabelaHTML}</table>
+                    <div class="popup-actions">
+                        <button class="popup-btn popup-btn-primary" onclick="baixarCSVDRE('${dre}')">Baixar CSV desta DRE</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function atualizarLegenda(minVal, maxVal) {
+            const legendScale = document.getElementById('legendScale');
+            const indicador = INDICADORES.find(i => i.id === indicadorAtual);
+            const tipo = indicador ? indicador.tipo : 'numero';
+            const formatarValor = (valor) => tipo === 'percentual' ? (valor * 100).toFixed(0) + '%' : valor.toFixed(1);
+            const intervalo = (maxVal - minVal) / CORES_CHOROPLETH.length;
+            
+            let html = '';
+            for (let i = CORES_CHOROPLETH.length - 1; i >= 0; i--) {
+                const valorInicio = minVal + (i * intervalo);
+                const valorFim = minVal + ((i + 1) * intervalo);
+                html += `<div class="legend-item"><div class="legend-color" style="background: ${CORES_CHOROPLETH[i]}"></div><span>${formatarValor(valorInicio)} - ${formatarValor(valorFim)}</span></div>`;
+            }
+            html += `<div class="legend-item"><div class="legend-color" style="background: #e0e0e0"></div><span>Sem dados</span></div>`;
+            legendScale.innerHTML = html;
+        }
+
+        function atualizarResumo() {
+            document.getElementById('totalEscolas').textContent = dadosCSV.length;
+            const totalAlunos = dadosCSV.reduce((acc, e) => acc + (parseFloat(e['Número de Alunos']) || 0), 0);
+            document.getElementById('totalAlunos').textContent = totalAlunos.toLocaleString('pt-BR');
+            
+            const valores = Object.values(dadosAgregados).map(d => d[indicadorAtual]).filter(v => v !== null && !isNaN(v));
+            if (valores.length > 0) {
+                const media = valores.reduce((a, b) => a + b, 0) / valores.length;
+                const indicador = INDICADORES.find(i => i.id === indicadorAtual);
+                document.getElementById('mediaIndicador').textContent = indicador && indicador.tipo === 'percentual' ? (media * 100).toFixed(1) + '%' : media.toFixed(2);
+            } else {
+                document.getElementById('mediaIndicador').textContent = '-';
+            }
+        }
+
+        function updateMap() {
+            indicadorAtual = document.getElementById('indicatorSelect').value;
+            atualizarCamadaGeoJSON();
+            atualizarResumo();
+        }
+
+        function filterByDRE() {
+            const dreSelecionada = document.getElementById('dreSelect').value;
+            if (dreSelecionada) {
+                dresFiltradas = [dreSelecionada];
+                geoJsonLayer.eachLayer(layer => {
+                    if (layer.feature.properties.region === dreSelecionada) {
+                        map.fitBounds(layer.getBounds(), { padding: [50, 50] });
+                    }
+                });
+            } else {
+                dresFiltradas = Object.keys(dadosAgregados);
+                map.setView([-10.5, -37.4], 8);
+            }
+            atualizarCamadaGeoJSON();
+        }
+
+        function searchDRE() {
+            const termo = document.getElementById('searchInput').value.toLowerCase();
+            dresFiltradas = termo.length === 0 ? Object.keys(dadosAgregados) : Object.keys(dadosAgregados).filter(dre => dre.toLowerCase().includes(termo));
+            atualizarCamadaGeoJSON();
+        }
+
+        function verificarParametroURL() {
+            const params = new URLSearchParams(window.location.search);
+            const dreParam = params.get('dre');
+            if (dreParam) {
+                let dreMapeada = dreParam === 'DEA' ? 'DEA' : dreParam.replace(/(\d+)/, ' $1').replace('  ', ' ');
+                document.getElementById('dreSelect').value = dreMapeada;
+                filterByDRE();
+            }
+        }
+
+        function exportMap() {
+            html2canvas(document.querySelector('.map-container'), { useCORS: true, allowTaint: true, scale: 2 })
+                .then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `mapa_dre_${indicadorAtual.replace(/\s/g, '_')}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                })
+                .catch(err => alert('Para melhor resultado, use: Ctrl+P → Salvar como PDF'));
+        }
+
+        function baixarCSVDRE(dre) {
+            const dados = dadosAgregados[dre];
+            if (!dados || !dados.escolas) return;
+            const headers = Object.keys(dados.escolas[0]);
+            let csv = headers.join(';') + '\n';
+            dados.escolas.forEach(escola => {
+                csv += headers.map(h => {
+                    let valor = escola[h] || '';
+                    if (typeof valor === 'string' && (valor.includes(';') || valor.includes('"'))) valor = '"' + valor.replace(/"/g, '""') + '"';
+                    return valor;
+                }).join(';') + '\n';
+            });
+            const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `escolas_${dre.replace(/\s/g, '_')}.csv`;
+            link.click();
+        }
+    </script>
+</body>
+</html>
