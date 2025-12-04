@@ -80,6 +80,8 @@
         .metric-value.good { color: var(--verde); }
         .metric-value.warning { color: var(--laranja); }
         .metric-value.bad { color: var(--vermelho); }
+        
+        /* GRÁFICO GRANDE MELHORADO */
         .big-chart-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
         .big-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
         .big-chart-title { color: var(--azul-escuro); font-size: 1.05rem; font-weight: 600; }
@@ -87,30 +89,58 @@
         .chart-tab { padding: 0.4rem 0.8rem; border: 2px solid var(--azul-claro); border-radius: 5px; background: var(--branco); color: var(--azul-escuro); font-weight: 600; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; }
         .chart-tab.active, .chart-tab:hover { background: var(--azul-escuro); color: white; border-color: var(--azul-escuro); }
         .big-chart-container { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .chart-area { flex: 2; min-width: 400px; background: linear-gradient(180deg, var(--azul-pastel) 0%, #e8f4fc 100%); border-radius: 10px; padding: 1rem; min-height: 280px; }
-        .chart-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 220px; gap: 0.5rem; padding: 0 0.5rem; }
-        .chart-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 80px; }
-        .chart-bar-wrapper { display: flex; gap: 3px; align-items: flex-end; height: 180px; }
-        .chart-bar { width: 16px; border-radius: 4px 4px 0 0; transition: height 0.5s ease; cursor: pointer; position: relative; }
-        .chart-bar:hover { opacity: 0.8; }
+        
+        /* ÁREA DO GRÁFICO COM EIXOS */
+        .chart-area { flex: 2; min-width: 500px; background: var(--branco); border-radius: 10px; padding: 1rem; border: 1px solid #e0e0e0; }
+        .chart-wrapper { position: relative; padding-left: 50px; padding-bottom: 80px; }
+        .chart-y-axis { position: absolute; left: 0; top: 0; bottom: 80px; width: 45px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding-right: 8px; font-size: 0.7rem; color: var(--cinza-texto); }
+        .chart-y-label { text-align: right; }
+        .chart-grid { position: absolute; left: 50px; right: 0; top: 0; bottom: 80px; }
+        .chart-grid-line { position: absolute; left: 0; right: 0; height: 1px; background: #e8e8e8; }
+        .chart-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 250px; gap: 8px; padding: 0 10px; background: linear-gradient(180deg, var(--azul-pastel) 0%, #f8fbfe 100%); border-radius: 8px; border: 1px solid #e8f4fc; }
+        .chart-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 100px; min-width: 60px; }
+        .chart-bar-wrapper { display: flex; gap: 3px; align-items: flex-end; height: 200px; }
+        .chart-bar { width: 18px; border-radius: 4px 4px 0 0; transition: height 0.5s ease; cursor: pointer; position: relative; }
+        .chart-bar:hover { opacity: 0.8; transform: scaleY(1.02); }
         .chart-bar.saeb { background: linear-gradient(180deg, #084594 0%, #0b5fa5 100%); }
         .chart-bar.diag { background: linear-gradient(180deg, #2171b5 0%, #4292c6 100%); }
         .chart-bar.form { background: linear-gradient(180deg, #6baed6 0%, #9ecae1 100%); }
         .chart-bar.saese { background: linear-gradient(180deg, #4da6ff 0%, #7ec8ff 100%); }
-        .chart-bar-label { font-size: 0.65rem; color: var(--cinza-texto); text-align: center; margin-top: 0.35rem; max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .chart-sidebar { flex: 1; min-width: 250px; }
-        .chart-legend-big { background: var(--branco); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
+        
+        /* RÓTULOS DAS ESCOLAS - ROTACIONADOS */
+        .chart-x-labels { display: flex; justify-content: space-around; padding: 0 10px; margin-top: 10px; }
+        .chart-bar-label { 
+            font-size: 0.68rem; 
+            color: var(--azul-escuro); 
+            font-weight: 500;
+            text-align: left;
+            transform: rotate(-45deg);
+            transform-origin: top left;
+            white-space: nowrap;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 60px;
+            line-height: 1.2;
+        }
+        .chart-x-axis-title { text-align: center; font-size: 0.75rem; color: var(--cinza-texto); margin-top: 5px; font-weight: 600; }
+        
+        .chart-sidebar { flex: 1; min-width: 280px; }
+        .chart-legend-big { background: var(--azul-pastel); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
         .chart-legend-big-title { font-size: 0.72rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; text-transform: uppercase; }
-        .legend-row { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0; }
-        .legend-color-big { width: 14px; height: 14px; border-radius: 3px; }
-        .legend-text { font-size: 0.75rem; color: var(--cinza-texto); }
-        .top-schools-list { background: var(--branco); border-radius: 8px; padding: 0.75rem; max-height: 200px; overflow-y: auto; }
+        .legend-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0; }
+        .legend-color-big { width: 16px; height: 16px; border-radius: 3px; }
+        .legend-text { font-size: 0.78rem; color: var(--cinza-texto); }
+        
+        /* RANKING COM NOMES COMPLETOS */
+        .top-schools-list { background: var(--branco); border-radius: 8px; padding: 0.75rem; max-height: 280px; overflow-y: auto; border: 1px solid #e0e0e0; }
         .top-schools-title { font-size: 0.72rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; text-transform: uppercase; }
-        .school-row { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid #eee; font-size: 0.75rem; }
+        .school-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #eee; font-size: 0.78rem; }
         .school-row:last-child { border-bottom: none; }
-        .school-rank { width: 20px; height: 20px; background: var(--azul-escuro); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; margin-right: 0.4rem; }
-        .school-name { flex: 1; color: var(--cinza-texto); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .school-value { font-weight: 700; color: var(--azul-escuro); }
+        .school-rank { width: 24px; height: 24px; background: var(--azul-escuro); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; margin-right: 0.5rem; flex-shrink: 0; }
+        .school-name { flex: 1; color: var(--cinza-texto); line-height: 1.3; word-break: break-word; }
+        .school-value { font-weight: 700; color: var(--azul-escuro); margin-left: 0.5rem; white-space: nowrap; }
+        
         .dre-ranking-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
         .dre-ranking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
         .dre-ranking-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; }
@@ -120,22 +150,26 @@
         .dre-bar-track { flex: 1; height: 22px; background: #e8f4fc; border-radius: 4px; overflow: hidden; }
         .dre-bar-fill { height: 100%; background: linear-gradient(90deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; transition: width 0.6s ease; }
         .dre-bar-value { font-size: 0.68rem; font-weight: 700; color: white; }
+        
+        /* TABELA COM NOMES COMPLETOS */
         .data-table-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
         .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
         .table-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; }
-        .full-table-scroll { max-height: 350px; overflow: auto; border: 1px solid #ddd; border-radius: 6px; }
-        .full-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; white-space: nowrap; }
-        .full-table th { background: var(--azul-escuro); color: white; padding: 0.5rem 0.4rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
-        .full-table td { padding: 0.4rem; border-bottom: 1px solid #eee; }
+        .full-table-scroll { max-height: 400px; overflow: auto; border: 1px solid #ddd; border-radius: 6px; }
+        .full-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .full-table th { background: var(--azul-escuro); color: white; padding: 0.6rem 0.5rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; white-space: nowrap; }
+        .full-table td { padding: 0.5rem; border-bottom: 1px solid #eee; }
+        .full-table td:first-child { max-width: 280px; word-break: break-word; line-height: 1.3; } /* Nome da escola completo */
         .full-table tr:nth-child(even) { background: var(--azul-pastel); }
         .full-table tr:hover { background: #d0e8ff; }
-        .full-table .num { text-align: right; }
+        .full-table .num { text-align: right; white-space: nowrap; }
+        
         .loading-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(241,249,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2000; }
         .loading-spinner { width: 40px; height: 40px; border: 4px solid var(--azul-pastel); border-top-color: var(--azul-escuro); border-radius: 50%; animation: spin 1s linear infinite; }
         .loading-text { margin-top: 0.6rem; color: var(--azul-escuro); font-weight: 600; font-size: 0.85rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        @media (max-width: 992px) { .content-area { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.5rem; } .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 160px; } .header-center { position: relative; left: auto; transform: none; } .header-content { flex-wrap: wrap; justify-content: center; gap: 0.5rem; } }
-        @media (max-width: 768px) { .legend { bottom: 5px; right: 5px; } .chart-area { min-width: 100%; } .detail-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 992px) { .content-area { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.5rem; } .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 160px; } .header-center { position: relative; left: auto; transform: none; } .header-content { flex-wrap: wrap; justify-content: center; gap: 0.5rem; } .chart-area { min-width: 100%; } }
+        @media (max-width: 768px) { .legend { bottom: 5px; right: 5px; } .detail-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -166,7 +200,7 @@
             <div class="main-area">
                 <div class="map-container"><div id="map"></div><div class="legend" id="legend"><div class="legend-title">Legenda</div><div class="legend-scale" id="legendScale"></div></div><div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text">Carregando dados...</div></div></div>
                 <div class="dre-detail-panel" id="dreDetailPanel"><div class="detail-header"><div class="detail-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span id="detailDREName">DRE</span><span class="detail-badge" id="detailEscolasCount">0 escolas</span></div><button class="btn-close-detail" onclick="fecharPainelDRE()">✕ Fechar</button></div><div class="detail-grid" id="detailContent"></div></div>
-                <div class="big-chart-section"><div class="big-chart-header"><div class="big-chart-title" id="bigChartTitle">Top 10 Escolas — Taxa de Participação</div><div class="chart-tabs"><button class="chart-tab active" onclick="trocarGraficoGrande('participacao', this)">Participação</button><button class="chart-tab" onclick="trocarGraficoGrande('proficiencia', this)">Proficiência</button></div></div><div class="big-chart-container"><div class="chart-area"><div class="chart-bars" id="bigChartBars"></div></div><div class="chart-sidebar"><div class="chart-legend-big"><div class="chart-legend-big-title">Legenda</div><div id="bigChartLegend"></div></div><div class="top-schools-list"><div class="top-schools-title">Ranking Completo</div><div id="topSchoolsList"></div></div></div></div></div>
+                <div class="big-chart-section"><div class="big-chart-header"><div class="big-chart-title" id="bigChartTitle">Top 10 Escolas — Taxa de Participação</div><div class="chart-tabs"><button class="chart-tab active" onclick="trocarGraficoGrande('participacao', this)">Participação</button><button class="chart-tab" onclick="trocarGraficoGrande('proficiencia', this)">Proficiência</button></div></div><div class="big-chart-container"><div class="chart-area"><div class="chart-wrapper"><div class="chart-y-axis" id="chartYAxis"></div><div class="chart-bars" id="bigChartBars"></div><div class="chart-x-labels" id="chartXLabels"></div></div></div><div class="chart-sidebar"><div class="chart-legend-big"><div class="chart-legend-big-title">Legenda</div><div id="bigChartLegend"></div></div><div class="top-schools-list"><div class="top-schools-title">Ranking Completo</div><div id="topSchoolsList"></div></div></div></div></div>
                 <div class="dre-ranking-section"><div class="dre-ranking-header"><div class="dre-ranking-title" id="dreRankingTitle">Ranking das DREs</div></div><div class="dre-bars-container" id="dreRankingBars"></div></div>
                 <div class="data-table-section"><div class="table-header"><div class="table-title" id="dataTableTitle">Base de Dados Completa</div><button class="btn-export" onclick="baixarCSVFiltrado()"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar Tabela</button></div><div class="full-table-scroll"><table class="full-table" id="fullDataTable"><thead><tr id="fullTableHead"></tr></thead><tbody id="fullTableBody"></tbody></table></div></div>
             </div>
@@ -200,10 +234,126 @@
         function fecharPainelDRE(){document.getElementById('dreDetailPanel').classList.remove('active');}
         function trocarGraficoGrande(tipo,btn){graficoGrandeAtual=tipo;document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');atualizarGraficoGrande();}
         function atualizarGraficoGrande(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;const titulo=dreSelecionada?'Top 10 Escolas — '+dreSelecionada:'Top 10 Escolas — Todas as DREs';if(graficoGrandeAtual==='participacao'){document.getElementById('bigChartTitle').textContent=titulo+' — Taxa de Participação';renderizarGraficoParticipacao(escolas);}else{document.getElementById('bigChartTitle').textContent=titulo+' — Proficiência';renderizarGraficoProficiencia(escolas);}}
-        function renderizarGraficoParticipacao(escolas){const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Taxa Participação'])||0)-(parseFloat(a['SAEB 23 Taxa Participação'])||0));const top10=sorted.slice(0,10);let barsHtml='';top10.forEach(e=>{const saeb=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;const diag=(parseFloat(e['Participação Avaliação Diagnóstica'])||0)*100;const form=(parseFloat(e['Participação Avaliação Formativa'])||0)*100;const nome=(e.Escola||'').substring(0,12);barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saeb*1.8)+'px" title="SAEB: '+saeb.toFixed(1)+'%"></div><div class="chart-bar diag" style="height:'+(diag*1.8)+'px" title="Diagnóstica: '+diag.toFixed(1)+'%"></div><div class="chart-bar form" style="height:'+(form*1.8)+'px" title="Formativa: '+form.toFixed(1)+'%"></div></div><div class="chart-bar-label" title="'+e.Escola+'">'+nome+'</div></div>';});document.getElementById('bigChartBars').innerHTML=barsHtml;document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB 23</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">Av. Diagnóstica</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">Av. Formativa</span></div>';let listHtml='';sorted.slice(0,15).forEach((e,i)=>{const val=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+e.Escola+'">'+(e.Escola||'').substring(0,25)+'</span><span class="school-value">'+val.toFixed(1)+'%</span></div>';});document.getElementById('topSchoolsList').innerHTML=listHtml;}
-        function renderizarGraficoProficiencia(escolas){const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Nota Média PT'])||0)-(parseFloat(a['SAEB 23 Nota Média PT'])||0));const top10=sorted.slice(0,10);const maxProf=300;let barsHtml='';top10.forEach(e=>{const saebPT=parseFloat(e['SAEB 23 Nota Média PT'])||0;const saebMat=parseFloat(e['SAEB 23 Nota Média Mat'])||0;const saesePT=parseFloat(e['SAESE 24 Proficiência PT'])||0;const saeseMat=parseFloat(e['SAESE 24 Proficiência MAT'])||0;const nome=(e.Escola||'').substring(0,12);barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saebPT/maxProf*180)+'px" title="SAEB PT: '+saebPT.toFixed(1)+'"></div><div class="chart-bar diag" style="height:'+(saebMat/maxProf*180)+'px" title="SAEB Mat: '+saebMat.toFixed(1)+'"></div><div class="chart-bar saese" style="height:'+(saesePT/maxProf*180)+'px" title="SAESE PT: '+saesePT.toFixed(1)+'"></div><div class="chart-bar form" style="height:'+(saeseMat/maxProf*180)+'px" title="SAESE Mat: '+saeseMat.toFixed(1)+'"></div></div><div class="chart-bar-label" title="'+e.Escola+'">'+nome+'</div></div>';});document.getElementById('bigChartBars').innerHTML=barsHtml;document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">SAEB Mat.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #4da6ff, #7ec8ff)"></div><span class="legend-text">SAESE Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">SAESE Mat.</span></div>';let listHtml='';sorted.slice(0,15).forEach((e,i)=>{const val=parseFloat(e['SAEB 23 Nota Média PT'])||0;listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+e.Escola+'">'+(e.Escola||'').substring(0,25)+'</span><span class="school-value">'+val.toFixed(1)+'</span></div>';});document.getElementById('topSchoolsList').innerHTML=listHtml;}
+        
+        function renderizarGraficoParticipacao(escolas){
+            const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Taxa Participação'])||0)-(parseFloat(a['SAEB 23 Taxa Participação'])||0));
+            const top10=sorted.slice(0,10);
+            
+            // Eixo Y
+            let yAxisHtml='';
+            for(let i=100;i>=0;i-=20){yAxisHtml+='<div class="chart-y-label">'+i+'%</div>';}
+            document.getElementById('chartYAxis').innerHTML=yAxisHtml;
+            
+            // Barras
+            let barsHtml='';
+            top10.forEach(e=>{
+                const saeb=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;
+                const diag=(parseFloat(e['Participação Avaliação Diagnóstica'])||0)*100;
+                const form=(parseFloat(e['Participação Avaliação Formativa'])||0)*100;
+                barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saeb*2)+'px" title="SAEB 23: '+saeb.toFixed(1)+'%"></div><div class="chart-bar diag" style="height:'+(diag*2)+'px" title="Av. Diagnóstica: '+diag.toFixed(1)+'%"></div><div class="chart-bar form" style="height:'+(form*2)+'px" title="Av. Formativa: '+form.toFixed(1)+'%"></div></div></div>';
+            });
+            document.getElementById('bigChartBars').innerHTML=barsHtml;
+            
+            // Rótulos X (nomes das escolas)
+            let labelsHtml='';
+            top10.forEach(e=>{
+                const nomeCompleto=e.Escola||'';
+                const nomeExibido=nomeCompleto.length>35?nomeCompleto.substring(0,35)+'...':nomeCompleto;
+                labelsHtml+='<div class="chart-bar-label" title="'+nomeCompleto+'">'+nomeExibido+'</div>';
+            });
+            document.getElementById('chartXLabels').innerHTML=labelsHtml;
+            
+            // Legenda
+            document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB 23</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">Av. Diagnóstica</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">Av. Formativa</span></div>';
+            
+            // Lista ranking
+            let listHtml='';
+            sorted.slice(0,15).forEach((e,i)=>{
+                const val=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;
+                const nomeCompleto=e.Escola||'';
+                listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+nomeCompleto+'">'+nomeCompleto+'</span><span class="school-value">'+val.toFixed(1)+'%</span></div>';
+            });
+            document.getElementById('topSchoolsList').innerHTML=listHtml;
+        }
+        
+        function renderizarGraficoProficiencia(escolas){
+            const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Nota Média PT'])||0)-(parseFloat(a['SAEB 23 Nota Média PT'])||0));
+            const top10=sorted.slice(0,10);
+            const maxProf=320;
+            
+            // Eixo Y
+            let yAxisHtml='';
+            for(let i=320;i>=0;i-=64){yAxisHtml+='<div class="chart-y-label">'+i+'</div>';}
+            document.getElementById('chartYAxis').innerHTML=yAxisHtml;
+            
+            // Barras
+            let barsHtml='';
+            top10.forEach(e=>{
+                const saebPT=parseFloat(e['SAEB 23 Nota Média PT'])||0;
+                const saebMat=parseFloat(e['SAEB 23 Nota Média Mat'])||0;
+                const saesePT=parseFloat(e['SAESE 24 Proficiência PT'])||0;
+                const saeseMat=parseFloat(e['SAESE 24 Proficiência MAT'])||0;
+                barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saebPT/maxProf*200)+'px" title="SAEB Port.: '+saebPT.toFixed(1)+'"></div><div class="chart-bar diag" style="height:'+(saebMat/maxProf*200)+'px" title="SAEB Mat.: '+saebMat.toFixed(1)+'"></div><div class="chart-bar saese" style="height:'+(saesePT/maxProf*200)+'px" title="SAESE Port.: '+saesePT.toFixed(1)+'"></div><div class="chart-bar form" style="height:'+(saeseMat/maxProf*200)+'px" title="SAESE Mat.: '+saeseMat.toFixed(1)+'"></div></div></div>';
+            });
+            document.getElementById('bigChartBars').innerHTML=barsHtml;
+            
+            // Rótulos X
+            let labelsHtml='';
+            top10.forEach(e=>{
+                const nomeCompleto=e.Escola||'';
+                const nomeExibido=nomeCompleto.length>35?nomeCompleto.substring(0,35)+'...':nomeCompleto;
+                labelsHtml+='<div class="chart-bar-label" title="'+nomeCompleto+'">'+nomeExibido+'</div>';
+            });
+            document.getElementById('chartXLabels').innerHTML=labelsHtml;
+            
+            // Legenda
+            document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">SAEB Mat.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #4da6ff, #7ec8ff)"></div><span class="legend-text">SAESE Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">SAESE Mat.</span></div>';
+            
+            // Lista ranking
+            let listHtml='';
+            sorted.slice(0,15).forEach((e,i)=>{
+                const val=parseFloat(e['SAEB 23 Nota Média PT'])||0;
+                const nomeCompleto=e.Escola||'';
+                listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+nomeCompleto+'">'+nomeCompleto+'</span><span class="school-value">'+val.toFixed(1)+'</span></div>';
+            });
+            document.getElementById('topSchoolsList').innerHTML=listHtml;
+        }
+        
         function atualizarDRERanking(){const ind=INDICADORES.find(i=>i.id===indicadorAtual);document.getElementById('dreRankingTitle').textContent='Ranking das DREs — '+(ind?.nome||indicadorAtual);const dreValores=Object.keys(dadosAgregados).map(dre=>({dre,valor:dadosAgregados[dre][indicadorAtual]})).filter(d=>d.valor!==null&&!isNaN(d.valor)).sort((a,b)=>b.valor-a.valor);const maxVal=dreValores.length>0?Math.max(...dreValores.map(d=>d.valor)):1;let html='';dreValores.forEach(d=>{const pct=(d.valor/maxVal)*100;const valorFmt=ind?.tipo==='percentual'?(d.valor*100).toFixed(1)+'%':d.valor.toFixed(2);html+='<div class="dre-bar-row"><div class="dre-bar-label">'+d.dre+'</div><div class="dre-bar-track"><div class="dre-bar-fill" style="width:'+pct+'%"><span class="dre-bar-value">'+valorFmt+'</span></div></div></div>';});document.getElementById('dreRankingBars').innerHTML=html;}
-        function atualizarTabelaCompleta(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;document.getElementById('dataTableTitle').textContent=dreSelecionada?'Base de Dados — '+dreSelecionada+' ('+escolas.length+' escolas)':'Base de Dados Completa — '+escolas.length+' escolas';const colunas=['Escola','DRE','Número de Alunos','SAEB 23 Taxa Participação','SAEB 23 Nota Média PT','SAEB 23 Nota Média Mat','SAESE 24 Proficiência PT','SAESE 24 Proficiência MAT'];const colunasDisplay=['Escola','DRE','Alunos','SAEB Part.','SAEB PT','SAEB Mat','SAESE PT','SAESE Mat'];let headHtml='';colunasDisplay.forEach(c=>{headHtml+='<th>'+c+'</th>';});document.getElementById('fullTableHead').innerHTML=headHtml;let bodyHtml='';escolas.forEach(e=>{bodyHtml+='<tr>';colunas.forEach((col,i)=>{let val=e[col]||'-';if(col==='Escola')val=(val+'').substring(0,35);else if(col.includes('Taxa')||col.includes('Participação')){const num=parseFloat(val);val=isNaN(num)?'-':(num*100).toFixed(1)+'%';}else if(col.includes('Nota')||col.includes('Proficiência')){const num=parseFloat(val);val=isNaN(num)?'-':num.toFixed(1);}else if(col==='Número de Alunos'){const num=parseFloat(val);val=isNaN(num)?'-':num.toLocaleString('pt-BR');}bodyHtml+='<td class="'+(i>1?'num':'')+'">'+ val+'</td>';});bodyHtml+='</tr>';});document.getElementById('fullTableBody').innerHTML=bodyHtml;}
+        
+        function atualizarTabelaCompleta(){
+            const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;
+            document.getElementById('dataTableTitle').textContent=dreSelecionada?'Base de Dados — '+dreSelecionada+' ('+escolas.length+' escolas)':'Base de Dados Completa — '+escolas.length+' escolas';
+            const colunas=['Escola','DRE','Número de Alunos','SAEB 23 Taxa Participação','SAEB 23 Nota Média PT','SAEB 23 Nota Média Mat','SAESE 24 Proficiência PT','SAESE 24 Proficiência MAT'];
+            const colunasDisplay=['Escola','DRE','Alunos','SAEB Part.','SAEB PT','SAEB Mat','SAESE PT','SAESE Mat'];
+            let headHtml='';
+            colunasDisplay.forEach(c=>{headHtml+='<th>'+c+'</th>';});
+            document.getElementById('fullTableHead').innerHTML=headHtml;
+            let bodyHtml='';
+            escolas.forEach(e=>{
+                bodyHtml+='<tr>';
+                colunas.forEach((col,i)=>{
+                    let val=e[col]||'-';
+                    if(col==='Escola'){
+                        // Nome completo da escola
+                        val='<span title="'+val+'">'+val+'</span>';
+                    }else if(col.includes('Taxa')||col.includes('Participação')){
+                        const num=parseFloat(val);
+                        val=isNaN(num)?'-':(num*100).toFixed(1)+'%';
+                    }else if(col.includes('Nota')||col.includes('Proficiência')){
+                        const num=parseFloat(val);
+                        val=isNaN(num)?'-':num.toFixed(1);
+                    }else if(col==='Número de Alunos'){
+                        const num=parseFloat(val);
+                        val=isNaN(num)?'-':num.toLocaleString('pt-BR');
+                    }
+                    bodyHtml+='<td class="'+(i>1?'num':'')+'">'+val+'</td>';
+                });
+                bodyHtml+='</tr>';
+            });
+            document.getElementById('fullTableBody').innerHTML=bodyHtml;
+        }
+        
         function exportMap(){html2canvas(document.querySelector('.map-container'),{useCORS:true,scale:2}).then(canvas=>{const link=document.createElement('a');link.download='mapa_'+indicadorAtual.replace(/\s/g,'_')+'.png';link.href=canvas.toDataURL();link.click();}).catch(()=>alert('Use Ctrl+P → Salvar como PDF'));}
         function baixarCSVDRE(dre){const dados=dadosAgregados[dre];if(!dados?.escolas)return;gerarCSV(dados.escolas,'escolas_'+dre.replace(/\s/g,'_')+'.csv');}
         function baixarCSVCompleto(){gerarCSV(dadosCSV,'dados_completos_sergipe.csv');}
