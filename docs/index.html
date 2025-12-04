@@ -96,14 +96,9 @@
         .card-thumbnail { background: linear-gradient(135deg, var(--azul-pastel) 0%, #e3f2fd 100%); height: 100px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(11, 95, 165, 0.08); }
         .card-thumbnail.destaque { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
         .card-icon { width: 50px; height: 50px; opacity: 0.9; }
-        .card-body { padding: 1.25rem; }
+        .card-body { padding: 1.25rem; text-align: center; }
         .card-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
-        .card-description { color: var(--cinza-texto); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1rem; }
-        
-        .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-        .tag { background-color: var(--azul-pastel); color: var(--azul-escuro); font-size: 0.72rem; font-weight: 500; padding: 0.22rem 0.55rem; border-radius: 12px; }
-        .tag.em-breve { background-color: #fff3cd; color: #856404; }
-        .tag.novo { background-color: #d4edda; color: #155724; }
+        .card-description { color: var(--cinza-texto); font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem; }
 
         .btn-open { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.55rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; border: none; cursor: pointer; }
         .btn-open:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(11, 95, 165, 0.3); color: var(--branco); }
@@ -163,13 +158,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Proficiência e Frequência SAEB, SAESE e Plurall</h3>
                             <p class="card-description">Mapa por DREs e visões sobre dados de Proficiência e Frequência SAEB (2023), SAESE (2024) e Avaliações Plurall (2025).</p>
-                            <div class="card-tags">
-                                <span class="tag">Choropleth</span>
-                                <span class="tag">12 Indicadores</span>
-                                <span class="tag">Gráficos</span>
-                                <span class="tag">Tabelas</span>
-                                <span class="tag">Por Escola</span>
-                            </div>
                             <a href="mapa_geral.html" class="btn-open">
                                 <span>Abrir Visão</span>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
@@ -177,7 +165,7 @@
                         </div>
                     </article>
 
-                    <!-- Card IDEB - NOVO -->
+                    <!-- Card IDEB -->
                     <article class="view-card">
                         <div class="card-thumbnail destaque">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
@@ -187,12 +175,6 @@
                         <div class="card-body">
                             <h3 class="card-title">IDEB — Ensino Médio Estadual</h3>
                             <p class="card-description">Evolução histórica do IDEB de Sergipe (2005-2023) com comparativos regionais e nacionais. Análise de tendências e ranking dos estados.</p>
-                            <div class="card-tags">
-                                <span class="tag novo">Novo</span>
-                                <span class="tag">Série Histórica</span>
-                                <span class="tag">27 Estados</span>
-                                <span class="tag">Comparativo Nordeste</span>
-                            </div>
                             <a href="ideb.html" class="btn-open">
                                 <span>Abrir Visão</span>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
@@ -216,7 +198,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Matrículas por Etapa</h3>
                             <p class="card-description">Quantidade de alunos matriculados por série e etapa de ensino.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
                             <span class="btn-open disabled">Em Breve</span>
                         </div>
                     </article>
@@ -228,7 +209,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Turmas</h3>
                             <p class="card-description">Número de turmas por etapa e média de alunos por turma.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
                             <span class="btn-open disabled">Em Breve</span>
                         </div>
                     </article>
@@ -240,7 +220,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Distorção Idade-Série</h3>
                             <p class="card-description">Percentual de alunos com idade acima da esperada para a série.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
                             <span class="btn-open disabled">Em Breve</span>
                         </div>
                     </article>
@@ -252,7 +231,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Aprovação e Reprovação</h3>
                             <p class="card-description">Taxas de aprovação e reprovação por DRE e escola.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
                             <span class="btn-open disabled">Em Breve</span>
                         </div>
                     </article>
@@ -264,7 +242,6 @@
                         <div class="card-body">
                             <h3 class="card-title">Abandono e Evasão</h3>
                             <p class="card-description">Taxas de abandono e evasão escolar por DRE e escola.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
                             <span class="btn-open disabled">Em Breve</span>
                         </div>
                     </article>

@@ -41,26 +41,30 @@
         /* MAIN */
         .main-content { flex: 1; padding: 1.5rem; max-width: 1600px; margin: 0 auto; width: 100%; }
         
-        /* CARDS DESTAQUE SERGIPE */
+        /* CARDS DESTAQUE */
         .highlight-section { margin-bottom: 1.5rem; }
         .highlight-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+        .highlight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
         .highlight-card { background: var(--branco); border-radius: 12px; padding: 1.25rem; box-shadow: var(--sombra-suave); text-align: center; border-left: 4px solid var(--azul-escuro); }
         .highlight-card.destaque { border-left-color: var(--verde); background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%); }
-        .highlight-card.alerta { border-left-color: var(--laranja); }
-        .highlight-value { font-size: 2.2rem; font-weight: 700; color: var(--azul-escuro); }
+        .highlight-value { font-size: 2rem; font-weight: 700; color: var(--azul-escuro); }
         .highlight-card.destaque .highlight-value { color: var(--verde); }
         .highlight-label { font-size: 0.8rem; color: var(--cinza-texto); margin-top: 0.25rem; }
         .highlight-sublabel { font-size: 0.7rem; color: #999; }
         
         /* SEÇÕES */
         .section { background: var(--branco); border-radius: 12px; box-shadow: var(--sombra-suave); margin-bottom: 1.5rem; overflow: hidden; }
-        .section-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
-        .section-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+        .section-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.8rem 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+        .section-title { font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
         .section-body { padding: 1.25rem; }
         
-        /* GRÁFICO DE LINHA - EVOLUÇÃO */
-        .chart-evolucao { position: relative; height: 320px; }
+        /* FILTRO DE ANO */
+        .year-filter { display: flex; align-items: center; gap: 0.5rem; }
+        .year-filter label { font-size: 0.75rem; opacity: 0.9; }
+        .year-select { padding: 0.3rem 0.6rem; border-radius: 5px; border: none; font-size: 0.8rem; font-weight: 600; background: white; color: var(--azul-escuro); cursor: pointer; }
+        
+        /* GRÁFICO DE LINHA */
+        .chart-evolucao { position: relative; height: 300px; }
         .chart-svg { width: 100%; height: 100%; }
         .chart-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
         .chart-line.sergipe { stroke: var(--verde); stroke-width: 4; }
@@ -69,7 +73,7 @@
         .chart-dot { cursor: pointer; transition: r 0.2s; }
         .chart-dot:hover { r: 8; }
         .chart-label { font-size: 0.7rem; fill: var(--cinza-texto); }
-        .chart-value-label { font-size: 0.75rem; font-weight: 600; }
+        .chart-value-label { font-size: 0.72rem; font-weight: 600; }
         .chart-legend { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
         .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; }
         .legend-line { width: 24px; height: 3px; border-radius: 2px; }
@@ -77,27 +81,27 @@
         .legend-line.nordeste { background: var(--laranja); background: repeating-linear-gradient(90deg, var(--laranja), var(--laranja) 4px, transparent 4px, transparent 8px); }
         .legend-line.brasil { background: var(--azul-medio); background: repeating-linear-gradient(90deg, var(--azul-medio), var(--azul-medio) 2px, transparent 2px, transparent 4px); }
         
-        /* GRÁFICO DE BARRAS - RANKING */
-        .ranking-container { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        .ranking-chart { flex: 2; min-width: 300px; }
-        .ranking-list { flex: 1; min-width: 250px; }
-        .bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
-        .bar-label { width: 100px; font-size: 0.8rem; font-weight: 500; text-align: right; color: var(--azul-escuro); }
+        /* GRÁFICO DE BARRAS */
+        .bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; }
+        .bar-label { width: 95px; font-size: 0.78rem; font-weight: 500; text-align: right; color: var(--azul-escuro); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .bar-label.sergipe { font-weight: 700; color: var(--verde); }
-        .bar-track { flex: 1; height: 28px; background: #e8f4fc; border-radius: 4px; overflow: hidden; position: relative; }
+        .bar-track { flex: 1; height: 26px; background: #e8f4fc; border-radius: 4px; overflow: hidden; position: relative; }
         .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: width 0.6s ease; }
         .bar-fill.sergipe { background: linear-gradient(90deg, var(--verde) 0%, #2ecc71 100%); }
         .bar-fill.outros { background: linear-gradient(90deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); }
-        .bar-value { font-size: 0.75rem; font-weight: 700; color: white; }
-        .bar-position { width: 28px; height: 28px; background: var(--azul-escuro); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; }
+        .bar-fill.mat { background: linear-gradient(90deg, #8e44ad 0%, #9b59b6 100%); }
+        .bar-fill.port { background: linear-gradient(90deg, #e67e22 0%, #f39c12 100%); }
+        .bar-fill.aprov { background: linear-gradient(90deg, #16a085 0%, #1abc9c 100%); }
+        .bar-value { font-size: 0.72rem; font-weight: 700; color: white; }
+        .bar-position { width: 26px; height: 26px; background: var(--azul-escuro); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; flex-shrink: 0; }
         .bar-position.top3 { background: #f39c12; }
         .bar-position.sergipe { background: var(--verde); }
         
         /* TABELAS */
         .table-scroll { max-height: 400px; overflow: auto; }
-        .data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .data-table th { background: var(--azul-escuro); color: white; padding: 0.7rem 0.5rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
-        .data-table td { padding: 0.6rem 0.5rem; border-bottom: 1px solid #eee; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+        .data-table th { background: var(--azul-escuro); color: white; padding: 0.65rem 0.5rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
+        .data-table td { padding: 0.55rem 0.5rem; border-bottom: 1px solid #eee; }
         .data-table tr:nth-child(even) { background: var(--azul-pastel); }
         .data-table tr:hover { background: #d0e8ff; }
         .data-table tr.sergipe { background: #d4edda !important; font-weight: 600; }
@@ -107,22 +111,29 @@
         
         /* TABS */
         .tabs { display: flex; gap: 0.25rem; }
-        .tab-btn { padding: 0.4rem 0.8rem; border: none; background: rgba(255,255,255,0.2); color: white; border-radius: 5px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.3s; }
+        .tab-btn { padding: 0.35rem 0.7rem; border: none; background: rgba(255,255,255,0.2); color: white; border-radius: 5px; font-size: 0.72rem; font-weight: 500; cursor: pointer; transition: all 0.3s; }
         .tab-btn.active, .tab-btn:hover { background: white; color: var(--azul-escuro); }
         
-        /* GRID 2 COLUNAS */
-        .two-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+        /* GRIDS */
+        .two-columns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .three-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        
+        /* FONTE DE DADOS */
+        .fonte-dados { background: #f8f9fa; border-top: 1px solid #e9ecef; padding: 0.75rem 1.25rem; font-size: 0.75rem; color: #6c757d; display: flex; align-items: center; gap: 0.5rem; }
+        .fonte-dados svg { opacity: 0.6; }
         
         /* RESPONSIVO */
+        @media (max-width: 1200px) {
+            .three-columns { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 992px) {
             .header-center { position: relative; left: auto; transform: none; }
             .header-content { flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-            .two-columns { grid-template-columns: 1fr; }
+            .two-columns, .three-columns { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             .main-content { padding: 1rem; }
             .highlight-grid { grid-template-columns: repeat(2, 1fr); }
-            .ranking-container { flex-direction: column; }
         }
     </style>
 </head>
@@ -169,7 +180,7 @@
                         <div class="highlight-sublabel">2005 → 2023</div>
                     </div>
                     <div class="highlight-card">
-                        <div class="highlight-value" id="posicaoNordeste">6º</div>
+                        <div class="highlight-value" id="posicaoNordeste">5º</div>
                         <div class="highlight-label">Posição Nordeste</div>
                         <div class="highlight-sublabel">entre 9 estados</div>
                     </div>
@@ -181,6 +192,11 @@
                     <div class="highlight-card">
                         <div class="highlight-value" id="aprovacao">88.4%</div>
                         <div class="highlight-label">Taxa Aprovação</div>
+                        <div class="highlight-sublabel">2023</div>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-value" id="saebMat">257</div>
+                        <div class="highlight-label">SAEB Mat</div>
                         <div class="highlight-sublabel">2023</div>
                     </div>
                 </div>
@@ -202,32 +218,154 @@
                         <div class="legend-item"><div class="legend-line brasil"></div><span>Média Brasil</span></div>
                     </div>
                 </div>
+                <div class="fonte-dados">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    Fonte: MEC/Inep.
+                </div>
             </section>
 
+            <!-- RANKINGS IDEB -->
             <div class="two-columns">
-                <!-- RANKING NORDESTE -->
                 <section class="section">
                     <div class="section-header">
                         <div class="section-title">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z"/></svg>
-                            Ranking Nordeste — IDEB 2023
+                            Ranking Nordeste — IDEB
+                        </div>
+                        <div class="year-filter">
+                            <label>Ano:</label>
+                            <select class="year-select" id="anoNordeste" onchange="renderizarRankingNordeste()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2021">2021</option>
+                                <option value="2019">2019</option>
+                                <option value="2017">2017</option>
+                                <option value="2015">2015</option>
+                                <option value="2013">2013</option>
+                                <option value="2011">2011</option>
+                                <option value="2009">2009</option>
+                                <option value="2007">2007</option>
+                                <option value="2005">2005</option>
+                            </select>
                         </div>
                     </div>
                     <div class="section-body">
                         <div id="rankingNordeste"></div>
                     </div>
+                    <div class="fonte-dados">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Fonte: MEC/Inep.
+                    </div>
                 </section>
 
-                <!-- RANKING BRASIL TOP 10 -->
                 <section class="section">
                     <div class="section-header">
                         <div class="section-title">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                            Top 10 Brasil — IDEB 2023
+                            Top 10 Brasil — IDEB
+                        </div>
+                        <div class="year-filter">
+                            <label>Ano:</label>
+                            <select class="year-select" id="anoBrasil" onchange="renderizarRankingBrasil()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2021">2021</option>
+                                <option value="2019">2019</option>
+                                <option value="2017">2017</option>
+                                <option value="2015">2015</option>
+                                <option value="2013">2013</option>
+                                <option value="2011">2011</option>
+                                <option value="2009">2009</option>
+                                <option value="2007">2007</option>
+                                <option value="2005">2005</option>
+                            </select>
                         </div>
                     </div>
                     <div class="section-body">
                         <div id="rankingBrasil"></div>
+                    </div>
+                    <div class="fonte-dados">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Fonte: MEC/Inep.
+                    </div>
+                </section>
+            </div>
+
+            <!-- PROFICIÊNCIA E APROVAÇÃO -->
+            <div class="three-columns">
+                <section class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 2h2v6h-2V5zm-4 0h2v4H8V5zm8 0h2v3h-2V5zM8 11h2v2H8v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z"/></svg>
+                            SAEB Matemática
+                        </div>
+                        <div class="year-filter">
+                            <label>Ano:</label>
+                            <select class="year-select" id="anoMat" onchange="renderizarRankingMatematica()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2021">2021</option>
+                                <option value="2019">2019</option>
+                                <option value="2017">2017</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div id="rankingMatematica"></div>
+                    </div>
+                    <div class="fonte-dados">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Fonte: MEC/Inep.
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1z"/></svg>
+                            SAEB Português
+                        </div>
+                        <div class="year-filter">
+                            <label>Ano:</label>
+                            <select class="year-select" id="anoPort" onchange="renderizarRankingPortugues()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2021">2021</option>
+                                <option value="2019">2019</option>
+                                <option value="2017">2017</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div id="rankingPortugues"></div>
+                    </div>
+                    <div class="fonte-dados">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Fonte: MEC/Inep.
+                    </div>
+                </section>
+
+                <section class="section">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            Taxa de Aprovação
+                        </div>
+                        <div class="year-filter">
+                            <label>Ano:</label>
+                            <select class="year-select" id="anoAprov" onchange="renderizarRankingAprovacao()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2021">2021</option>
+                                <option value="2019">2019</option>
+                                <option value="2017">2017</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="section-body">
+                        <div id="rankingAprovacao"></div>
+                    </div>
+                    <div class="fonte-dados">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        Fonte: MEC/Inep.
                     </div>
                 </section>
             </div>
@@ -252,41 +390,126 @@
                         </table>
                     </div>
                 </div>
+                <div class="fonte-dados">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                    Fonte: MEC/Inep.
+                </div>
             </section>
         </main>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-        // DADOS DO IDEB
+        // DADOS COMPLETOS DO IDEB
         const DADOS_IDEB = [
-            {UF:'Sergipe',Sigla:'SE',Regiao:'Nordeste',2005:2.8,2007:2.6,2009:2.9,2011:2.9,2013:2.8,2015:2.6,2017:3.1,2019:3.3,2021:3.9,2023:3.7,Aprovacao2023:88.4},
-            {UF:'Pernambuco',Sigla:'PE',Regiao:'Nordeste',2005:2.7,2007:2.7,2009:3.0,2011:3.1,2013:3.6,2015:3.9,2017:4.0,2019:4.4,2021:4.4,2023:4.5,Aprovacao2023:95.1},
-            {UF:'Ceará',Sigla:'CE',Regiao:'Nordeste',2005:3.0,2007:3.1,2009:3.4,2011:3.4,2013:3.3,2015:3.4,2017:3.8,2019:4.2,2021:4.4,2023:4.4,Aprovacao2023:97.1},
-            {UF:'Piauí',Sigla:'PI',Regiao:'Nordeste',2005:2.3,2007:2.5,2009:2.7,2011:2.9,2013:3.0,2015:3.2,2017:3.3,2019:3.7,2021:4.0,2023:4.3,Aprovacao2023:96.7},
-            {UF:'Alagoas',Sigla:'AL',Regiao:'Nordeste',2005:2.8,2007:2.6,2009:2.8,2011:2.6,2013:2.6,2015:2.8,2017:3.3,2019:3.6,2021:3.5,2023:4.0,Aprovacao2023:93.9},
-            {UF:'Maranhão',Sigla:'MA',Regiao:'Nordeste',2005:2.4,2007:2.8,2009:3.0,2011:3.0,2013:2.8,2015:3.1,2017:3.4,2019:3.7,2021:3.5,2023:3.7,Aprovacao2023:92.3},
-            {UF:'Bahia',Sigla:'BA',Regiao:'Nordeste',2005:2.7,2007:2.8,2009:3.1,2011:3.0,2013:2.8,2015:2.9,2017:2.7,2019:3.2,2021:3.5,2023:3.7,Aprovacao2023:91.2},
-            {UF:'Paraíba',Sigla:'PB',Regiao:'Nordeste',2005:2.6,2007:2.9,2009:3.0,2011:2.9,2013:3.0,2015:3.1,2017:3.1,2019:3.6,2021:3.9,2023:3.6,Aprovacao2023:83.6},
-            {UF:'R. G. do Norte',Sigla:'RN',Regiao:'Nordeste',2005:2.6,2007:2.6,2009:2.8,2011:2.8,2013:2.7,2015:2.8,2017:2.9,2019:3.2,2021:2.8,2023:3.2,Aprovacao2023:75.8},
-            {UF:'Goiás',Sigla:'GO',Regiao:'Centro-Oeste',2005:2.9,2007:3.1,2009:3.1,2011:3.5,2013:3.8,2015:4.1,2017:4.3,2019:4.6,2021:4.5,2023:4.8,Aprovacao2023:96.2},
-            {UF:'Espírito Santo',Sigla:'ES',Regiao:'Sudeste',2005:3.1,2007:3.1,2009:3.4,2011:3.3,2013:3.4,2015:3.7,2017:4.0,2019:4.4,2021:4.6,2023:4.7,Aprovacao2023:95.8},
-            {UF:'Paraná',Sigla:'PR',Regiao:'Sul',2005:3.3,2007:3.7,2009:3.9,2011:3.7,2013:3.4,2015:3.6,2017:3.7,2019:4.3,2021:4.4,2023:4.7,Aprovacao2023:93.5},
-            {UF:'Pará',Sigla:'PA',Regiao:'Norte',2005:2.6,2007:2.3,2009:3.0,2011:2.8,2013:2.7,2015:3.0,2017:2.8,2019:3.2,2021:3.0,2023:4.3,Aprovacao2023:99.0},
-            {UF:'Mato Grosso',Sigla:'MT',Regiao:'Centro-Oeste',2005:2.8,2007:3.0,2009:3.0,2011:2.9,2013:2.7,2015:2.6,2017:2.9,2019:3.5,2021:3.4,2023:4.2,Aprovacao2023:92.4},
-            {UF:'São Paulo',Sigla:'SP',Regiao:'Sudeste',2005:3.3,2007:3.4,2009:3.6,2011:3.9,2013:4.1,2015:4.2,2017:3.8,2019:4.2,2021:4.3,2023:4.2,Aprovacao2023:91.8},
-            {UF:'Tocantins',Sigla:'TO',Regiao:'Norte',2005:2.9,2007:3.1,2009:3.3,2011:3.5,2013:3.2,2015:3.3,2017:3.7,2019:3.9,2021:4.1,2023:4.1,Aprovacao2023:94.6},
-            {UF:'Rondônia',Sigla:'RO',Regiao:'Norte',2005:3.0,2007:3.1,2009:3.7,2011:3.3,2013:3.4,2015:3.3,2017:3.8,2019:4.0,2021:3.9,2023:4.0,Aprovacao2023:90.4},
-            {UF:'Acre',Sigla:'AC',Regiao:'Norte',2005:3.0,2007:3.3,2009:3.5,2011:3.3,2013:3.3,2015:3.5,2017:3.6,2019:3.7,2021:3.9,2023:3.9,Aprovacao2023:86.8},
-            {UF:'Santa Catarina',Sigla:'SC',Regiao:'Sul',2005:3.5,2007:3.8,2009:4.0,2011:4.0,2013:3.6,2015:3.4,2017:3.8,2019:4.1,2021:4.1,2023:3.9,Aprovacao2023:89.2},
-            {UF:'Minas Gerais',Sigla:'MG',Regiao:'Sudeste',2005:3.2,2007:3.4,2009:3.5,2011:3.7,2013:3.6,2015:3.5,2017:3.6,2019:4.1,2021:4.3,2023:3.9,Aprovacao2023:88.5},
-            {UF:'M. G. do Sul',Sigla:'MS',Regiao:'Centro-Oeste',2005:2.8,2007:3.2,2009:3.4,2011:3.4,2013:3.2,2015:3.4,2017:3.5,2019:4.0,2021:3.9,2023:3.8,Aprovacao2023:90.1},
-            {UF:'Amazonas',Sigla:'AM',Regiao:'Norte',2005:2.3,2007:2.8,2009:3.2,2011:3.4,2013:3.0,2015:3.5,2017:3.3,2019:3.5,2021:3.6,2023:3.7,Aprovacao2023:89.2},
-            {UF:'Distrito Federal',Sigla:'DF',Regiao:'Centro-Oeste',2005:2.8,2007:3.0,2009:3.1,2011:3.3,2013:3.3,2015:3.5,2017:3.6,2019:4.0,2021:4.0,2023:3.7,Aprovacao2023:87.5},
-            {UF:'Rio de Janeiro',Sigla:'RJ',Regiao:'Sudeste',2005:2.8,2007:2.8,2009:2.8,2011:3.2,2013:3.2,2015:3.3,2017:3.3,2019:3.8,2021:3.9,2023:3.6,Aprovacao2023:85.3},
-            {UF:'R. G. do Sul',Sigla:'RS',Regiao:'Sul',2005:3.4,2007:3.4,2009:3.3,2011:3.4,2013:3.6,2015:3.1,2017:3.2,2019:3.6,2021:3.6,2023:3.6,Aprovacao2023:86.7},
-            {UF:'Roraima',Sigla:'RR',Regiao:'Norte',2005:3.2,2007:3.1,2009:3.5,2011:3.5,2013:3.2,2015:3.4,2017:3.3,2019:3.5,2021:3.7,2023:3.6,Aprovacao2023:87.2},
-            {UF:'Amapá',Sigla:'AP',Regiao:'Norte',2005:2.7,2007:2.7,2009:2.8,2011:3.0,2013:2.9,2015:3.1,2017:3.0,2019:3.2,2021:3.1,2023:3.6,Aprovacao2023:84.9}
+            {UF:'Sergipe',Sigla:'SE',Regiao:'Nordeste',2005:2.8,2007:2.6,2009:2.9,2011:2.9,2013:2.8,2015:2.6,2017:3.1,2019:3.3,2021:3.9,2023:3.7,
+             Mat2015:248.39,Mat2017:255.92,Mat2019:259.04,Mat2021:252.88,Mat2023:257.32,
+             Port2015:245.24,Port2017:253.82,Port2019:261.78,Port2021:257.91,Port2023:260.30,
+             Aprov2015:66.7,Aprov2017:74.3,Aprov2019:78.1,Aprov2021:94.3,Aprov2023:88.4},
+            {UF:'Pernambuco',Sigla:'PE',Regiao:'Nordeste',2005:2.7,2007:2.7,2009:3.0,2011:3.1,2013:3.6,2015:3.9,2017:4.0,2019:4.4,2021:4.4,2023:4.5,
+             Mat2015:262.29,Mat2017:263.22,Mat2019:272.77,Mat2021:270.71,Mat2023:274.10,
+             Port2015:265.96,Port2017:262.71,Port2019:276.30,Port2021:276.93,Port2023:276.93,
+             Aprov2015:88.1,Aprov2017:92.6,Aprov2019:93.6,Aprov2021:93.8,Aprov2023:95.1},
+            {UF:'Ceará',Sigla:'CE',Regiao:'Nordeste',2005:3.0,2007:3.1,2009:3.4,2011:3.4,2013:3.3,2015:3.4,2017:3.8,2019:4.2,2021:4.4,2023:4.4,
+             Mat2015:252.05,Mat2017:259.08,Mat2019:266.08,Mat2021:262.97,Mat2023:265.61,
+             Port2015:248.03,Port2017:259.46,Port2019:270.42,Port2021:269.78,Port2023:268.90,
+             Aprov2015:84.4,Aprov2017:88.3,Aprov2019:92.4,Aprov2021:98.0,Aprov2023:97.1},
+            {UF:'Piauí',Sigla:'PI',Regiao:'Nordeste',2005:2.3,2007:2.5,2009:2.7,2011:2.9,2013:3.0,2015:3.2,2017:3.3,2019:3.7,2021:4.0,2023:4.3,
+             Mat2015:248.72,Mat2017:250.52,Mat2019:260.93,Mat2021:256.00,Mat2023:266.60,
+             Port2015:247.43,Port2017:247.19,Port2019:262.30,Port2021:260.37,Port2023:266.42,
+             Aprov2015:78.7,Aprov2017:81.5,Aprov2019:83.3,Aprov2021:94.6,Aprov2023:96.7},
+            {UF:'Alagoas',Sigla:'AL',Regiao:'Nordeste',2005:2.8,2007:2.6,2009:2.8,2011:2.6,2013:2.6,2015:2.8,2017:3.3,2019:3.6,2021:3.5,2023:4.0,
+             Mat2015:245.83,Mat2017:247.96,Mat2019:255.24,Mat2021:250.02,Mat2023:258.99,
+             Port2015:242.32,Port2017:248.25,Port2019:260.64,Port2021:256.90,Port2023:259.09,
+             Aprov2015:71.5,Aprov2017:81.9,Aprov2019:86.0,Aprov2021:86.5,Aprov2023:93.9},
+            {UF:'Maranhão',Sigla:'MA',Regiao:'Nordeste',2005:2.4,2007:2.8,2009:3.0,2011:3.0,2013:2.8,2015:3.1,2017:3.4,2019:3.7,2021:3.5,2023:3.7,
+             Mat2015:246.56,Mat2017:247.26,Mat2019:249.77,Mat2021:243.99,Mat2023:251.07,
+             Port2015:244.86,Port2017:250.39,Port2019:256.57,Port2021:253.98,Port2023:254.65,
+             Aprov2015:79.4,Aprov2017:86.0,Aprov2019:90.5,Aprov2021:89.0,Aprov2023:92.3},
+            {UF:'Bahia',Sigla:'BA',Regiao:'Nordeste',2005:2.7,2007:2.8,2009:3.1,2011:3.0,2013:2.8,2015:2.9,2017:2.7,2019:3.2,2021:3.5,2023:3.7,
+             Mat2015:244.89,Mat2017:243.15,Mat2019:253.02,Mat2021:246.49,Mat2023:250.97,
+             Port2015:244.36,Port2017:242.34,Port2019:256.94,Port2021:254.39,Port2023:253.68,
+             Aprov2015:74.3,Aprov2017:72.6,Aprov2019:77.5,Aprov2021:87.4,Aprov2023:91.2},
+            {UF:'Paraíba',Sigla:'PB',Regiao:'Nordeste',2005:2.6,2007:2.9,2009:3.0,2011:2.9,2013:3.0,2015:3.1,2017:3.1,2019:3.6,2021:3.9,2023:3.6,
+             Mat2015:249.10,Mat2017:247.51,Mat2019:261.52,Mat2021:252.78,Mat2023:259.13,
+             Port2015:248.14,Port2017:248.03,Port2019:266.24,Port2021:260.52,Port2023:264.57,
+             Aprov2015:76.2,Aprov2017:75.9,Aprov2019:80.6,Aprov2021:96.0,Aprov2023:83.6},
+            {UF:'R. G. do Norte',Sigla:'RN',Regiao:'Nordeste',2005:2.6,2007:2.6,2009:2.8,2011:2.8,2013:2.7,2015:2.8,2017:2.9,2019:3.2,2021:2.8,2023:3.2,
+             Mat2015:247.36,Mat2017:244.41,Mat2019:250.86,Mat2021:250.99,Mat2023:253.69,
+             Port2015:243.90,Port2017:243.73,Port2019:255.32,Port2021:258.99,Port2023:257.71,
+             Aprov2015:69.4,Aprov2017:71.1,Aprov2019:73.5,Aprov2021:69.1,Aprov2023:75.8},
+            {UF:'Goiás',Sigla:'GO',Regiao:'Centro-Oeste',2005:2.9,2007:3.1,2009:3.1,2011:3.5,2013:3.8,2015:4.1,2017:4.3,2019:4.6,2021:4.5,2023:4.8,
+             Mat2015:269.84,Mat2017:275.92,Mat2019:281.34,Mat2021:275.12,Mat2023:280.45,
+             Port2015:270.55,Port2017:273.68,Port2019:283.45,Port2021:280.23,Port2023:282.56,
+             Aprov2015:89.2,Aprov2017:92.4,Aprov2019:94.8,Aprov2021:95.2,Aprov2023:96.2},
+            {UF:'Espírito Santo',Sigla:'ES',Regiao:'Sudeste',2005:3.1,2007:3.1,2009:3.4,2011:3.3,2013:3.4,2015:3.7,2017:4.0,2019:4.4,2021:4.6,2023:4.7,
+             Mat2015:266.45,Mat2017:272.34,Mat2019:278.56,Mat2021:274.89,Mat2023:279.12,
+             Port2015:267.89,Port2017:270.45,Port2019:280.23,Port2021:278.56,Port2023:281.34,
+             Aprov2015:86.5,Aprov2017:90.2,Aprov2019:93.4,Aprov2021:95.1,Aprov2023:95.8},
+            {UF:'Paraná',Sigla:'PR',Regiao:'Sul',2005:3.3,2007:3.7,2009:3.9,2011:3.7,2013:3.4,2015:3.6,2017:3.7,2019:4.3,2021:4.4,2023:4.7,
+             Mat2015:262.78,Mat2017:266.45,Mat2019:275.34,Mat2021:272.45,Mat2023:278.90,
+             Port2015:264.56,Port2017:268.90,Port2019:277.45,Port2021:275.67,Port2023:280.12,
+             Aprov2015:82.3,Aprov2017:85.6,Aprov2019:91.2,Aprov2021:92.8,Aprov2023:93.5},
+            {UF:'Pará',Sigla:'PA',Regiao:'Norte',2005:2.6,2007:2.3,2009:3.0,2011:2.8,2013:2.7,2015:3.0,2017:2.8,2019:3.2,2021:3.0,2023:4.3,
+             Mat2015:250.36,Mat2017:237.25,Mat2019:246.08,Mat2021:246.26,Mat2023:258.87,
+             Port2015:250.68,Port2017:237.87,Port2019:252.84,Port2021:255.75,Port2023:266.47,
+             Aprov2015:70.4,Aprov2017:74.0,Aprov2019:76.8,Aprov2021:71.0,Aprov2023:99.0},
+            {UF:'Mato Grosso',Sigla:'MT',Regiao:'Centro-Oeste',2005:2.8,2007:3.0,2009:3.0,2011:2.9,2013:2.7,2015:2.6,2017:2.9,2019:3.5,2021:3.4,2023:4.2,
+             Mat2015:251.23,Mat2017:254.67,Mat2019:262.45,Mat2021:258.34,Mat2023:268.90,
+             Port2015:252.45,Port2017:256.78,Port2019:264.56,Port2021:260.23,Port2023:270.12,
+             Aprov2015:72.4,Aprov2017:78.5,Aprov2019:85.6,Aprov2021:88.2,Aprov2023:92.4},
+            {UF:'São Paulo',Sigla:'SP',Regiao:'Sudeste',2005:3.3,2007:3.4,2009:3.6,2011:3.9,2013:4.1,2015:4.2,2017:3.8,2019:4.2,2021:4.3,2023:4.2,
+             Mat2015:270.12,Mat2017:265.45,Mat2019:272.34,Mat2021:270.56,Mat2023:271.23,
+             Port2015:271.34,Port2017:267.89,Port2019:274.56,Port2021:272.34,Port2023:273.45,
+             Aprov2015:88.9,Aprov2017:85.2,Aprov2019:89.6,Aprov2021:91.2,Aprov2023:91.8},
+            {UF:'Tocantins',Sigla:'TO',Regiao:'Norte',2005:2.9,2007:3.1,2009:3.3,2011:3.5,2013:3.2,2015:3.3,2017:3.7,2019:3.9,2021:4.1,2023:4.1,
+             Mat2015:251.92,Mat2017:260.39,Mat2019:264.15,Mat2021:261.32,Mat2023:261.29,
+             Port2015:250.09,Port2017:256.92,Port2019:262.86,Port2021:264.73,Port2023:263.70,
+             Aprov2015:79.6,Aprov2017:83.8,Aprov2019:87.7,Aprov2021:94.2,Aprov2023:94.6},
+            {UF:'Rondônia',Sigla:'RO',Regiao:'Norte',2005:3.0,2007:3.1,2009:3.7,2011:3.3,2013:3.4,2015:3.3,2017:3.8,2019:4.0,2021:3.9,2023:4.0,
+             Mat2015:261.67,Mat2017:268.05,Mat2019:275.89,Mat2021:265.13,Mat2023:264.91,
+             Port2015:264.52,Port2017:264.91,Port2019:275.80,Port2021:270.14,Port2023:268.64,
+             Aprov2015:75.3,Aprov2017:84.2,Aprov2019:85.3,Aprov2021:88.3,Aprov2023:90.4},
+            {UF:'Acre',Sigla:'AC',Regiao:'Norte',2005:3.0,2007:3.3,2009:3.5,2011:3.3,2013:3.3,2015:3.5,2017:3.6,2019:3.7,2021:3.9,2023:3.9,
+             Mat2015:255.70,Mat2017:260.01,Mat2019:265.72,Mat2021:265.32,Mat2023:264.15,
+             Port2015:260.38,Port2017:261.51,Port2019:268.17,Port2021:272.99,Port2023:269.17,
+             Aprov2015:78.7,Aprov2017:84.0,Aprov2019:81.8,Aprov2021:85.9,Aprov2023:86.8},
+            {UF:'Santa Catarina',Sigla:'SC',Regiao:'Sul',2005:3.5,2007:3.8,2009:4.0,2011:4.0,2013:3.6,2015:3.4,2017:3.8,2019:4.1,2021:4.1,2023:3.9,
+             Mat2015:258.45,Mat2017:264.67,Mat2019:270.34,Mat2021:268.45,Mat2023:266.78,
+             Port2015:260.78,Port2017:266.89,Port2019:272.56,Port2021:270.34,Port2023:268.90,
+             Aprov2015:78.9,Aprov2017:84.5,Aprov2019:88.2,Aprov2021:89.5,Aprov2023:89.2},
+            {UF:'Minas Gerais',Sigla:'MG',Regiao:'Sudeste',2005:3.2,2007:3.4,2009:3.5,2011:3.7,2013:3.6,2015:3.5,2017:3.6,2019:4.1,2021:4.3,2023:3.9,
+             Mat2015:260.45,Mat2017:262.34,Mat2019:270.56,Mat2021:268.90,Mat2023:265.12,
+             Port2015:262.34,Port2017:264.56,Port2019:272.34,Port2021:270.45,Port2023:267.89,
+             Aprov2015:80.2,Aprov2017:82.6,Aprov2019:88.4,Aprov2021:91.2,Aprov2023:88.5},
+            {UF:'M. G. do Sul',Sigla:'MS',Regiao:'Centro-Oeste',2005:2.8,2007:3.2,2009:3.4,2011:3.4,2013:3.2,2015:3.4,2017:3.5,2019:4.0,2021:3.9,2023:3.8,
+             Mat2015:258.67,Mat2017:262.45,Mat2019:270.12,Mat2021:266.78,Mat2023:264.56,
+             Port2015:260.34,Port2017:264.12,Port2019:272.45,Port2021:268.90,Port2023:266.78,
+             Aprov2015:78.5,Aprov2017:82.3,Aprov2019:88.9,Aprov2021:89.6,Aprov2023:90.1},
+            {UF:'Amazonas',Sigla:'AM',Regiao:'Norte',2005:2.3,2007:2.8,2009:3.2,2011:3.4,2013:3.0,2015:3.5,2017:3.3,2019:3.5,2021:3.6,2023:3.7,
+             Mat2015:256.50,Mat2017:247.23,Mat2019:248.71,Mat2021:245.54,Mat2023:255.53,
+             Port2015:261.61,Port2017:251.31,Port2019:255.97,Port2021:255.72,Port2023:261.16,
+             Aprov2015:82.5,Aprov2017:83.2,Aprov2019:82.3,Aprov2021:91.5,Aprov2023:89.2},
+            {UF:'Distrito Federal',Sigla:'DF',Regiao:'Centro-Oeste',2005:2.8,2007:3.0,2009:3.1,2011:3.3,2013:3.3,2015:3.5,2017:3.6,2019:4.0,2021:4.0,2023:3.7,
+             Mat2015:262.34,Mat2017:265.78,Mat2019:272.45,Mat2021:270.12,Mat2023:265.89,
+             Port2015:264.56,Port2017:267.90,Port2019:274.34,Port2021:272.45,Port2023:268.12,
+             Aprov2015:81.2,Aprov2017:83.5,Aprov2019:89.2,Aprov2021:90.5,Aprov2023:87.5},
+            {UF:'Rio de Janeiro',Sigla:'RJ',Regiao:'Sudeste',2005:2.8,2007:2.8,2009:2.8,2011:3.2,2013:3.2,2015:3.3,2017:3.3,2019:3.8,2021:3.9,2023:3.6,
+             Mat2015:255.67,Mat2017:258.34,Mat2019:265.45,Mat2021:263.78,Mat2023:260.12,
+             Port2015:257.89,Port2017:260.45,Port2019:268.12,Port2021:266.34,Port2023:262.45,
+             Aprov2015:75.8,Aprov2017:78.2,Aprov2019:84.5,Aprov2021:87.2,Aprov2023:85.3},
+            {UF:'R. G. do Sul',Sigla:'RS',Regiao:'Sul',2005:3.4,2007:3.4,2009:3.3,2011:3.4,2013:3.6,2015:3.1,2017:3.2,2019:3.6,2021:3.6,2023:3.6,
+             Mat2015:250.78,Mat2017:254.45,Mat2019:262.34,Mat2021:260.12,Mat2023:261.45,
+             Port2015:252.34,Port2017:256.78,Port2019:264.56,Port2021:262.34,Port2023:263.78,
+             Aprov2015:72.5,Aprov2017:75.8,Aprov2019:82.4,Aprov2021:84.5,Aprov2023:86.7},
+            {UF:'Roraima',Sigla:'RR',Regiao:'Norte',2005:3.2,2007:3.1,2009:3.5,2011:3.5,2013:3.2,2015:3.4,2017:3.3,2019:3.5,2021:3.7,2023:3.6,
+             Mat2015:254.42,Mat2017:249.19,Mat2019:258.79,Mat2021:259.99,Mat2023:255.63,
+             Port2015:257.16,Port2017:249.05,Port2019:262.39,Port2021:265.32,Port2023:257.07,
+             Aprov2015:79.5,Aprov2017:79.5,Aprov2019:82.3,Aprov2021:86.1,Aprov2023:87.2},
+            {UF:'Amapá',Sigla:'AP',Regiao:'Norte',2005:2.7,2007:2.7,2009:2.8,2011:3.0,2013:2.9,2015:3.1,2017:3.0,2019:3.2,2021:3.1,2023:3.6,
+             Mat2015:248.58,Mat2017:242.86,Mat2019:248.72,Mat2021:251.96,Mat2023:254.36,
+             Port2015:253.15,Port2017:247.58,Port2019:256.64,Port2021:263.63,Port2023:264.77,
+             Aprov2015:73.3,Aprov2017:74.6,Aprov2019:76.7,Aprov2021:74.8,Aprov2023:84.9}
         ];
         
         const ANOS = [2005, 2007, 2009, 2011, 2013, 2015, 2017, 2019, 2021, 2023];
@@ -296,6 +519,9 @@
             renderizarGraficoEvolucao();
             renderizarRankingNordeste();
             renderizarRankingBrasil();
+            renderizarRankingMatematica();
+            renderizarRankingPortugues();
+            renderizarRankingAprovacao();
             mostrarTabela('2023', document.querySelector('.tab-btn.active'));
             atualizarDestaques();
         });
@@ -313,13 +539,14 @@
             document.getElementById('evolucao').textContent = '+' + evolucao + '%';
             document.getElementById('posicaoNordeste').textContent = posNE + 'º';
             document.getElementById('posicaoBrasil').textContent = posBR + 'º';
-            document.getElementById('aprovacao').textContent = sergipe.Aprovacao2023.toFixed(1) + '%';
+            document.getElementById('aprovacao').textContent = sergipe.Aprov2023.toFixed(1) + '%';
+            document.getElementById('saebMat').textContent = Math.round(sergipe.Mat2023);
         }
         
         function renderizarGraficoEvolucao() {
             const container = document.getElementById('chartEvolucao');
             const width = container.offsetWidth;
-            const height = 300;
+            const height = 280;
             const margin = { top: 30, right: 30, bottom: 40, left: 45 };
             
             const sergipe = DADOS_IDEB.find(d => d.Sigla === 'SE');
@@ -332,47 +559,36 @@
                 return vals.reduce((a,b) => a+b, 0) / vals.length;
             });
             
-            const xScale = d3.scaleLinear()
-                .domain([2005, 2023])
-                .range([margin.left, width - margin.right]);
-            
-            const yScale = d3.scaleLinear()
-                .domain([2, 5])
-                .range([height - margin.bottom, margin.top]);
+            const xScale = d3.scaleLinear().domain([2005, 2023]).range([margin.left, width - margin.right]);
+            const yScale = d3.scaleLinear().domain([2, 5]).range([height - margin.bottom, margin.top]);
             
             let svg = `<svg class="chart-svg" viewBox="0 0 ${width} ${height}">`;
             
-            // Grid horizontal
             for (let i = 2; i <= 5; i += 0.5) {
                 svg += `<line x1="${margin.left}" y1="${yScale(i)}" x2="${width-margin.right}" y2="${yScale(i)}" stroke="#e0e0e0" stroke-dasharray="2,2"/>`;
                 svg += `<text x="${margin.left-8}" y="${yScale(i)+4}" class="chart-label" text-anchor="end">${i.toFixed(1)}</text>`;
             }
             
-            // Eixo X - Anos
             ANOS.forEach(ano => {
                 svg += `<text x="${xScale(ano)}" y="${height-10}" class="chart-label" text-anchor="middle">${ano}</text>`;
             });
             
-            // Linha Brasil
             let pathBrasil = `M ${xScale(ANOS[0])} ${yScale(brasil[0])}`;
             brasil.forEach((v, i) => { if(i>0) pathBrasil += ` L ${xScale(ANOS[i])} ${yScale(v)}`; });
             svg += `<path d="${pathBrasil}" class="chart-line brasil"/>`;
             
-            // Linha Nordeste
             let pathNordeste = `M ${xScale(ANOS[0])} ${yScale(nordeste[0])}`;
             nordeste.forEach((v, i) => { if(i>0) pathNordeste += ` L ${xScale(ANOS[i])} ${yScale(v)}`; });
             svg += `<path d="${pathNordeste}" class="chart-line nordeste"/>`;
             
-            // Linha Sergipe
             let pathSergipe = `M ${xScale(ANOS[0])} ${yScale(sergipe[ANOS[0]])}`;
             ANOS.forEach((ano, i) => { if(i>0) pathSergipe += ` L ${xScale(ano)} ${yScale(sergipe[ano])}`; });
             svg += `<path d="${pathSergipe}" class="chart-line sergipe"/>`;
             
-            // Pontos Sergipe
             ANOS.forEach(ano => {
                 const y = yScale(sergipe[ano]);
-                svg += `<circle cx="${xScale(ano)}" cy="${y}" r="6" fill="#27ae60" class="chart-dot"/>`;
-                svg += `<text x="${xScale(ano)}" y="${y-12}" class="chart-value-label" text-anchor="middle" fill="#27ae60">${sergipe[ano].toFixed(1)}</text>`;
+                svg += `<circle cx="${xScale(ano)}" cy="${y}" r="5" fill="#27ae60" class="chart-dot"/>`;
+                svg += `<text x="${xScale(ano)}" y="${y-10}" class="chart-value-label" text-anchor="middle" fill="#27ae60">${sergipe[ano].toFixed(1)}</text>`;
             });
             
             svg += '</svg>';
@@ -380,49 +596,116 @@
         }
         
         function renderizarRankingNordeste() {
-            const nordeste = DADOS_IDEB.filter(d => d.Regiao === 'Nordeste').sort((a,b) => b[2023] - a[2023]);
-            const maxVal = Math.max(...nordeste.map(d => d[2023]));
+            const ano = parseInt(document.getElementById('anoNordeste').value);
+            const nordeste = DADOS_IDEB.filter(d => d.Regiao === 'Nordeste').sort((a,b) => b[ano] - a[ano]);
+            const maxVal = Math.max(...nordeste.map(d => d[ano]));
             
             let html = '';
             nordeste.forEach((d, i) => {
                 const isSergipe = d.Sigla === 'SE';
-                const pct = (d[2023] / maxVal) * 100;
-                html += `
-                    <div class="bar-row">
-                        <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
-                        <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.UF}</div>
-                        <div class="bar-track">
-                            <div class="bar-fill ${isSergipe ? 'sergipe' : 'outros'}" style="width:${pct}%">
-                                <span class="bar-value">${d[2023].toFixed(1)}</span>
-                            </div>
+                const pct = (d[ano] / maxVal) * 100;
+                html += `<div class="bar-row">
+                    <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
+                    <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.UF}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill ${isSergipe ? 'sergipe' : 'outros'}" style="width:${pct}%">
+                            <span class="bar-value">${d[ano].toFixed(1)}</span>
                         </div>
                     </div>
-                `;
+                </div>`;
             });
             document.getElementById('rankingNordeste').innerHTML = html;
         }
         
         function renderizarRankingBrasil() {
-            const brasil = [...DADOS_IDEB].sort((a,b) => b[2023] - a[2023]).slice(0, 10);
-            const maxVal = Math.max(...brasil.map(d => d[2023]));
+            const ano = parseInt(document.getElementById('anoBrasil').value);
+            const brasil = [...DADOS_IDEB].sort((a,b) => b[ano] - a[ano]).slice(0, 10);
+            const maxVal = Math.max(...brasil.map(d => d[ano]));
             
             let html = '';
             brasil.forEach((d, i) => {
                 const isSergipe = d.Sigla === 'SE';
-                const pct = (d[2023] / maxVal) * 100;
-                html += `
-                    <div class="bar-row">
-                        <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
-                        <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.UF}</div>
-                        <div class="bar-track">
-                            <div class="bar-fill ${isSergipe ? 'sergipe' : 'outros'}" style="width:${pct}%">
-                                <span class="bar-value">${d[2023].toFixed(1)}</span>
-                            </div>
+                const pct = (d[ano] / maxVal) * 100;
+                html += `<div class="bar-row">
+                    <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
+                    <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.UF}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill ${isSergipe ? 'sergipe' : 'outros'}" style="width:${pct}%">
+                            <span class="bar-value">${d[ano].toFixed(1)}</span>
                         </div>
                     </div>
-                `;
+                </div>`;
             });
             document.getElementById('rankingBrasil').innerHTML = html;
+        }
+        
+        function renderizarRankingMatematica() {
+            const ano = document.getElementById('anoMat').value;
+            const campo = 'Mat' + ano;
+            const nordeste = DADOS_IDEB.filter(d => d.Regiao === 'Nordeste' && d[campo]).sort((a,b) => b[campo] - a[campo]);
+            const maxVal = Math.max(...nordeste.map(d => d[campo]));
+            
+            let html = '';
+            nordeste.forEach((d, i) => {
+                const isSergipe = d.Sigla === 'SE';
+                const pct = (d[campo] / maxVal) * 100;
+                html += `<div class="bar-row">
+                    <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
+                    <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.Sigla}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill ${isSergipe ? 'sergipe' : 'mat'}" style="width:${pct}%">
+                            <span class="bar-value">${d[campo].toFixed(1)}</span>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('rankingMatematica').innerHTML = html;
+        }
+        
+        function renderizarRankingPortugues() {
+            const ano = document.getElementById('anoPort').value;
+            const campo = 'Port' + ano;
+            const nordeste = DADOS_IDEB.filter(d => d.Regiao === 'Nordeste' && d[campo]).sort((a,b) => b[campo] - a[campo]);
+            const maxVal = Math.max(...nordeste.map(d => d[campo]));
+            
+            let html = '';
+            nordeste.forEach((d, i) => {
+                const isSergipe = d.Sigla === 'SE';
+                const pct = (d[campo] / maxVal) * 100;
+                html += `<div class="bar-row">
+                    <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
+                    <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.Sigla}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill ${isSergipe ? 'sergipe' : 'port'}" style="width:${pct}%">
+                            <span class="bar-value">${d[campo].toFixed(1)}</span>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('rankingPortugues').innerHTML = html;
+        }
+        
+        function renderizarRankingAprovacao() {
+            const ano = document.getElementById('anoAprov').value;
+            const campo = 'Aprov' + ano;
+            const nordeste = DADOS_IDEB.filter(d => d.Regiao === 'Nordeste' && d[campo]).sort((a,b) => b[campo] - a[campo]);
+            const maxVal = Math.max(...nordeste.map(d => d[campo]));
+            
+            let html = '';
+            nordeste.forEach((d, i) => {
+                const isSergipe = d.Sigla === 'SE';
+                const pct = (d[campo] / maxVal) * 100;
+                html += `<div class="bar-row">
+                    <div class="bar-position ${i < 3 ? 'top3' : ''} ${isSergipe ? 'sergipe' : ''}">${i+1}</div>
+                    <div class="bar-label ${isSergipe ? 'sergipe' : ''}">${d.Sigla}</div>
+                    <div class="bar-track">
+                        <div class="bar-fill ${isSergipe ? 'sergipe' : 'aprov'}" style="width:${pct}%">
+                            <span class="bar-value">${d[campo].toFixed(1)}%</span>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('rankingAprovacao').innerHTML = html;
         }
         
         function mostrarTabela(tipo, btn) {
@@ -439,24 +722,20 @@
         function renderizarTabela2023() {
             const dados = [...DADOS_IDEB].sort((a,b) => b[2023] - a[2023]);
             
-            let headHtml = '<tr><th>#</th><th>Estado</th><th>Região</th><th class="num">IDEB 2023</th><th class="num">IDEB 2019</th><th class="num">Variação</th><th class="num">Aprovação</th></tr>';
+            let headHtml = '<tr><th>#</th><th>Estado</th><th>Região</th><th class="num">IDEB</th><th class="num">SAEB Mat</th><th class="num">SAEB Port</th><th class="num">Aprovação</th></tr>';
             document.getElementById('tabelaHead').innerHTML = headHtml;
             
             let bodyHtml = '';
             dados.forEach((d, i) => {
                 const isSergipe = d.Sigla === 'SE';
-                const variacao = d[2023] - d[2019];
-                const varClass = variacao >= 0 ? 'trend-up' : 'trend-down';
-                const varSinal = variacao >= 0 ? '+' : '';
-                
                 bodyHtml += `<tr class="${isSergipe ? 'sergipe' : ''}">
                     <td>${i+1}</td>
                     <td>${d.UF} (${d.Sigla})</td>
                     <td>${d.Regiao}</td>
                     <td class="num"><strong>${d[2023].toFixed(1)}</strong></td>
-                    <td class="num">${d[2019].toFixed(1)}</td>
-                    <td class="num ${varClass}">${varSinal}${variacao.toFixed(1)}</td>
-                    <td class="num">${d.Aprovacao2023.toFixed(1)}%</td>
+                    <td class="num">${d.Mat2023 ? d.Mat2023.toFixed(1) : '-'}</td>
+                    <td class="num">${d.Port2023 ? d.Port2023.toFixed(1) : '-'}</td>
+                    <td class="num">${d.Aprov2023 ? d.Aprov2023.toFixed(1) + '%' : '-'}</td>
                 </tr>`;
             });
             document.getElementById('tabelaBody').innerHTML = bodyHtml;
@@ -484,21 +763,20 @@
         }
         
         function exportarCSV() {
-            let csv = 'UF;Sigla;Regiao;' + ANOS.join(';') + ';Aprovacao_2023\n';
+            let csv = 'UF;Sigla;Regiao;' + ANOS.join(';') + ';Mat2023;Port2023;Aprov2023\n';
             DADOS_IDEB.forEach(d => {
                 csv += `${d.UF};${d.Sigla};${d.Regiao};`;
                 csv += ANOS.map(a => d[a]).join(';');
-                csv += `;${d.Aprovacao2023}\n`;
+                csv += `;${d.Mat2023 || ''};${d.Port2023 || ''};${d.Aprov2023 || ''}\n`;
             });
             
             const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'ideb_estados_2005_2023.csv';
+            link.download = 'ideb_estados_completo.csv';
             link.click();
         }
         
-        // Redimensionar gráfico
         window.addEventListener('resize', () => {
             renderizarGraficoEvolucao();
         });
