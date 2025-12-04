@@ -37,109 +37,39 @@
             box-shadow: var(--sombra-suave);
         }
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
+        .header-content { display: flex; align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
         .logo { height: 60px; width: auto; }
         .header-text { text-align: center; }
         .header-title { color: var(--branco); font-size: 1.75rem; font-weight: 700; margin: 0; }
         .header-subtitle { color: rgba(255, 255, 255, 0.85); font-size: 1rem; margin-top: 0.25rem; }
 
         .main-content { flex: 1; padding: 2.5rem 0; }
-        .intro-section { text-align: center; margin-bottom: 2rem; }
+        .intro-section { text-align: center; margin-bottom: 2.5rem; }
         .intro-title { color: var(--azul-escuro); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.75rem; }
         .intro-description { color: var(--cinza-texto); font-size: 1.05rem; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        .search-section { margin-bottom: 2rem; }
-        .search-container { max-width: 500px; margin: 0 auto; }
-        .search-select { 
-            width: 100%;
-            border: 2px solid #e0e0e0; 
-            border-radius: 12px; 
-            padding: 0.75rem 1rem; 
-            font-size: 1rem; 
-            background-color: var(--branco); 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .search-select:focus { border-color: var(--azul-medio); box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.15); outline: none; }
-
         .category-section { margin-bottom: 2.5rem; }
-        .category-title { 
-            color: var(--azul-escuro); 
-            font-size: 1.15rem; 
-            font-weight: 600; 
-            margin-bottom: 1rem; 
-            padding-bottom: 0.5rem; 
-            border-bottom: 2px solid var(--azul-claro); 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-        }
+        .category-title { color: var(--azul-escuro); font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--azul-claro); display: flex; align-items: center; gap: 0.5rem; }
         .category-icon { width: 24px; height: 24px; }
 
-        .views-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 1.25rem; 
-        }
+        .views-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
 
-        .view-card { 
-            background: var(--branco); 
-            border-radius: 14px; 
-            box-shadow: var(--sombra-suave); 
-            overflow: hidden; 
-            transition: all 0.3s ease; 
-            border: 1px solid rgba(11, 95, 165, 0.08); 
-        }
+        .view-card { background: var(--branco); border-radius: 14px; box-shadow: var(--sombra-suave); overflow: hidden; transition: all 0.3s ease; border: 1px solid rgba(11, 95, 165, 0.08); }
         .view-card:hover { transform: translateY(-4px); box-shadow: var(--sombra-hover); }
         .view-card.disabled { opacity: 0.6; }
         .view-card.disabled:hover { transform: none; box-shadow: var(--sombra-suave); }
 
-        .card-thumbnail { 
-            background: linear-gradient(135deg, var(--azul-pastel) 0%, #e3f2fd 100%); 
-            height: 120px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            border-bottom: 1px solid rgba(11, 95, 165, 0.08); 
-        }
+        .card-thumbnail { background: linear-gradient(135deg, var(--azul-pastel) 0%, #e3f2fd 100%); height: 120px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(11, 95, 165, 0.08); }
         .card-icon { width: 60px; height: 60px; opacity: 0.9; }
         .card-body { padding: 1.25rem; }
         .card-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
         .card-description { color: var(--cinza-texto); font-size: 0.9rem; line-height: 1.4; margin-bottom: 1rem; min-height: 40px; }
         
         .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-        .tag { 
-            background-color: var(--azul-pastel); 
-            color: var(--azul-escuro); 
-            font-size: 0.75rem; 
-            font-weight: 500; 
-            padding: 0.25rem 0.6rem; 
-            border-radius: 15px; 
-        }
+        .tag { background-color: var(--azul-pastel); color: var(--azul-escuro); font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.6rem; border-radius: 15px; }
         .tag.em-breve { background-color: #fff3cd; color: #856404; }
 
-        .btn-open { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); 
-            color: var(--branco); 
-            padding: 0.55rem 1.25rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.9rem; 
-            transition: all 0.3s ease; 
-            border: none; 
-            cursor: pointer; 
-        }
+        .btn-open { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.55rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; border: none; cursor: pointer; }
         .btn-open:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(11, 95, 165, 0.3); color: var(--branco); }
         .btn-open.disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; background: #999; }
 
@@ -147,11 +77,7 @@
         .footer-content { text-align: center; color: var(--cinza-texto); font-size: 0.9rem; }
         .footer-logo { height: 40px; margin-bottom: 0.75rem; opacity: 0.8; }
 
-        @media (max-width: 768px) { 
-            .header-title { font-size: 1.4rem; } 
-            .views-grid { grid-template-columns: 1fr; } 
-            .container { padding: 0 1rem; }
-        }
+        @media (max-width: 768px) { .header-title { font-size: 1.4rem; } .views-grid { grid-template-columns: 1fr; } .container { padding: 0 1rem; } }
     </style>
 </head>
 <body>
@@ -177,29 +103,11 @@
                 </p>
             </section>
 
-            <section class="search-section">
-                <div class="search-container">
-                    <select class="search-select" id="dreFilter" onchange="filterByDRE()">
-                        <option value="">Ir para DRE específica...</option>
-                        <option value="DEA">DEA - Diretoria de Educação de Aracaju</option>
-                        <option value="DRE01">DRE 01 - Estância</option>
-                        <option value="DRE02">DRE 02 - Lagarto</option>
-                        <option value="DRE03">DRE 03 - Itabaiana</option>
-                        <option value="DRE04">DRE 04 - Capela</option>
-                        <option value="DRE05">DRE 05 - Japaratuba</option>
-                        <option value="DRE06">DRE 06 - Propriá</option>
-                        <option value="DRE07">DRE 07 - Nossa Senhora da Glória</option>
-                        <option value="DRE08">DRE 08 - Porto da Folha</option>
-                        <option value="DRE09">DRE 09 - Nossa Senhora do Socorro</option>
-                    </select>
-                </div>
-            </section>
-
-            <!-- VISÕES GEORREFERENCIADAS -->
+            <!-- PROFICIÊNCIAS SAEB, SAESE E PLURALL -->
             <section class="category-section">
                 <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                    Visões Georreferenciadas
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    Proficiências SAEB, SAESE e Plurall
                 </h3>
                 <div class="views-grid">
                     <article class="view-card">
@@ -208,11 +116,12 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title">Mapa por DRE</h3>
-                            <p class="card-description">Indicadores educacionais georreferenciados com comparativo entre regiões e análise por escola.</p>
+                            <p class="card-description">Mapa interativo com indicadores por região, gráficos comparativos, tabelas e análise detalhada por escola.</p>
                             <div class="card-tags">
                                 <span class="tag">Choropleth</span>
                                 <span class="tag">12 Indicadores</span>
-                                <span class="tag">Por Escola</span>
+                                <span class="tag">Gráficos</span>
+                                <span class="tag">Tabelas</span>
                             </div>
                             <a href="mapa_geral.html" class="btn-open">
                                 <span>Abrir Visão</span>
@@ -230,7 +139,6 @@
                     Indicadores de Matrícula e Fluxo
                 </h3>
                 <div class="views-grid">
-                    <!-- Matrículas por Etapa -->
                     <article class="view-card disabled">
                         <div class="card-thumbnail">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
@@ -243,7 +151,6 @@
                         </div>
                     </article>
 
-                    <!-- Turmas -->
                     <article class="view-card disabled">
                         <div class="card-thumbnail">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
@@ -256,7 +163,6 @@
                         </div>
                     </article>
 
-                    <!-- Distorção Idade-Série -->
                     <article class="view-card disabled">
                         <div class="card-thumbnail">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
@@ -269,7 +175,6 @@
                         </div>
                     </article>
 
-                    <!-- Aprovação/Reprovação -->
                     <article class="view-card disabled">
                         <div class="card-thumbnail">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -282,7 +187,6 @@
                         </div>
                     </article>
 
-                    <!-- Abandono/Evasão -->
                     <article class="view-card disabled">
                         <div class="card-thumbnail">
                             <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
@@ -296,28 +200,6 @@
                     </article>
                 </div>
             </section>
-
-            <!-- AVALIAÇÕES E PROFICIÊNCIA -->
-            <section class="category-section">
-                <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                    Avaliações e Proficiência
-                </h3>
-                <div class="views-grid">
-                    <article class="view-card disabled">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Análise Comparativa</h3>
-                            <p class="card-description">Gráficos comparativos de proficiência entre DREs e escolas.</p>
-                            <div class="card-tags"><span class="tag em-breve">Em desenvolvimento</span></div>
-                            <span class="btn-open disabled">Em Breve</span>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
         </div>
     </main>
 
@@ -329,12 +211,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        function filterByDRE() {
-            const selectedDRE = document.getElementById('dreFilter').value;
-            if (selectedDRE) window.location.href = 'mapa_geral.html?dre=' + selectedDRE;
-        }
-    </script>
 </body>
 </html>

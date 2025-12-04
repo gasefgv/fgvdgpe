@@ -25,7 +25,6 @@
 
         .app-container { display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* HEADER */
         .header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); padding: 0.75rem 1.5rem; box-shadow: var(--sombra-suave); z-index: 1000; }
         .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
         .header-left { display: flex; align-items: center; gap: 1rem; }
@@ -35,121 +34,112 @@
         .header-center { text-align: center; flex: 1; }
         .header-title { color: var(--branco); font-size: 1.35rem; font-weight: 700; margin: 0; }
         .header-subtitle { color: rgba(255,255,255,0.8); font-size: 0.85rem; }
-        .header-right { display: flex; gap: 0.75rem; }
-        .btn-export { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--branco); color: var(--azul-escuro); padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; border: none; cursor: pointer; transition: all 0.3s; }
+        .header-right { display: flex; gap: 0.5rem; }
+        .btn-export { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--branco); color: var(--azul-escuro); padding: 0.45rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.8rem; border: none; cursor: pointer; transition: all 0.3s; }
         .btn-export:hover { transform: scale(1.03); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-        /* CONTEÚDO */
         .content-area { display: flex; flex: 1; overflow: hidden; }
 
-        /* SIDEBAR */
-        .sidebar { width: 300px; background: var(--branco); border-right: 1px solid rgba(11,95,165,0.1); padding: 1.25rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
-        .filter-section { background: var(--azul-pastel); border-radius: 12px; padding: 1rem; }
-        .filter-title { color: var(--azul-escuro); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
-        .filter-icon { width: 16px; height: 16px; opacity: 0.8; }
-        .filter-select { width: 100%; padding: 0.6rem 0.75rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 0.9rem; background: var(--branco); cursor: pointer; }
+        .sidebar { width: 280px; background: var(--branco); border-right: 1px solid rgba(11,95,165,0.1); padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.9rem; }
+        .filter-section { background: var(--azul-pastel); border-radius: 10px; padding: 0.9rem; }
+        .filter-title { color: var(--azul-escuro); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .filter-icon { width: 14px; height: 14px; opacity: 0.8; }
+        .filter-select { width: 100%; padding: 0.55rem 0.7rem; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 0.85rem; background: var(--branco); cursor: pointer; }
         .filter-select:focus { border-color: var(--azul-medio); outline: none; }
 
-        .summary-panel { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 12px; padding: 1rem; color: var(--branco); }
-        .summary-title { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 0.6rem; }
-        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+        .summary-panel { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 10px; padding: 0.9rem; color: var(--branco); }
+        .summary-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 0.5rem; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
         .summary-item { text-align: center; }
-        .summary-value { font-size: 1.4rem; font-weight: 700; }
-        .summary-label { font-size: 0.7rem; opacity: 0.85; }
+        .summary-value { font-size: 1.3rem; font-weight: 700; }
+        .summary-label { font-size: 0.65rem; opacity: 0.85; }
 
-        .current-indicator { background: var(--branco); border: 2px solid var(--azul-claro); border-radius: 12px; padding: 0.75rem; text-align: center; }
-        .current-indicator-label { font-size: 0.7rem; color: var(--cinza-texto); text-transform: uppercase; letter-spacing: 0.5px; }
-        .current-indicator-value { font-size: 0.95rem; font-weight: 700; color: var(--azul-escuro); margin-top: 0.2rem; }
+        .current-indicator { background: var(--branco); border: 2px solid var(--azul-claro); border-radius: 10px; padding: 0.7rem; text-align: center; }
+        .current-indicator-label { font-size: 0.65rem; color: var(--cinza-texto); text-transform: uppercase; }
+        .current-indicator-value { font-size: 0.9rem; font-weight: 700; color: var(--azul-escuro); margin-top: 0.15rem; }
 
-        /* MAPA + ANÁLISE */
-        .map-section { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .map-container { flex: 1; position: relative; min-height: 350px; }
+        .main-area { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        .map-container { position: relative; height: 450px; min-height: 350px; }
         #map { width: 100%; height: 100%; }
 
-        /* LEGENDA */
-        .legend { position: absolute; bottom: 20px; right: 15px; background: var(--branco); padding: 0.75rem; border-radius: 8px; box-shadow: var(--sombra-suave); z-index: 1000; min-width: 150px; }
-        .legend-title { font-size: 0.75rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; text-transform: uppercase; }
-        .legend-scale { display: flex; flex-direction: column; gap: 0.2rem; }
-        .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; }
-        .legend-color { width: 20px; height: 14px; border-radius: 2px; }
+        .legend { position: absolute; bottom: 15px; right: 12px; background: var(--branco); padding: 0.6rem; border-radius: 6px; box-shadow: var(--sombra-suave); z-index: 1000; min-width: 140px; }
+        .legend-title { font-size: 0.7rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.4rem; text-transform: uppercase; }
+        .legend-scale { display: flex; flex-direction: column; gap: 0.15rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; }
+        .legend-color { width: 18px; height: 12px; border-radius: 2px; }
 
-        /* LABELS DAS DRES */
-        .dre-label { 
-            background: transparent !important; 
-            border: none !important; 
-            font-weight: 700; 
-            font-size: 10px; 
-            color: #084594; 
-            text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 0 0 4px white; 
-            white-space: nowrap;
-            text-align: center;
-        }
+        .dre-label { background: transparent !important; border: none !important; font-weight: 700; font-size: 10px; color: #084594; text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 0 0 4px white; white-space: nowrap; text-align: center; }
 
-        /* POPUP */
-        .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: var(--sombra-suave); }
-        .leaflet-popup-content { margin: 0; min-width: 260px; }
-        .popup-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.6rem 0.9rem; border-radius: 12px 12px 0 0; margin: -1px -1px 0 -1px; }
-        .popup-title { font-size: 0.95rem; font-weight: 700; margin: 0; }
-        .popup-subtitle { font-size: 0.75rem; opacity: 0.85; }
-        .popup-body { padding: 0.9rem; }
-        .popup-table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
-        .popup-table th { text-align: left; color: var(--cinza-texto); font-weight: 400; padding: 0.3rem 0; border-bottom: 1px solid #eee; }
-        .popup-table td { text-align: right; font-weight: 600; color: var(--azul-escuro); padding: 0.3rem 0; border-bottom: 1px solid #eee; }
-        .popup-btn { width: 100%; padding: 0.45rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-align: center; cursor: pointer; background: var(--azul-escuro); color: var(--branco); border: none; margin-top: 0.6rem; }
+        .leaflet-popup-content-wrapper { border-radius: 10px; box-shadow: var(--sombra-suave); }
+        .leaflet-popup-content { margin: 0; min-width: 240px; }
+        .popup-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.5rem 0.8rem; border-radius: 10px 10px 0 0; margin: -1px -1px 0 -1px; }
+        .popup-title { font-size: 0.9rem; font-weight: 700; margin: 0; }
+        .popup-subtitle { font-size: 0.7rem; opacity: 0.85; }
+        .popup-body { padding: 0.7rem; }
+        .popup-table { width: 100%; font-size: 0.75rem; border-collapse: collapse; }
+        .popup-table th { text-align: left; color: var(--cinza-texto); font-weight: 400; padding: 0.25rem 0; border-bottom: 1px solid #eee; }
+        .popup-table td { text-align: right; font-weight: 600; color: var(--azul-escuro); padding: 0.25rem 0; border-bottom: 1px solid #eee; }
+        .popup-btn { width: 100%; padding: 0.4rem; border-radius: 5px; font-size: 0.75rem; font-weight: 600; text-align: center; cursor: pointer; background: var(--azul-escuro); color: var(--branco); border: none; margin-top: 0.5rem; }
         .popup-btn:hover { background: var(--azul-medio); }
 
-        /* SEÇÃO DE ANÁLISE */
-        .analysis-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; max-height: 45vh; overflow-y: auto; }
-        .analysis-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
-        .analysis-title { color: var(--azul-escuro); font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
-        .analysis-tabs { display: flex; gap: 0.4rem; }
-        .tab-btn { padding: 0.45rem 0.9rem; border: 2px solid var(--azul-claro); border-radius: 6px; background: var(--branco); color: var(--azul-escuro); font-weight: 600; font-size: 0.8rem; cursor: pointer; transition: all 0.3s; }
+        /* SEÇÕES DE ANÁLISE */
+        .section-container { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.6rem; }
+        .section-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
+        .section-tabs { display: flex; gap: 0.35rem; }
+        .tab-btn { padding: 0.4rem 0.8rem; border: 2px solid var(--azul-claro); border-radius: 5px; background: var(--branco); color: var(--azul-escuro); font-weight: 600; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; }
         .tab-btn.active, .tab-btn:hover { background: var(--azul-escuro); color: var(--branco); border-color: var(--azul-escuro); }
 
-        .analysis-content { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-        .analysis-panel { flex: 1; min-width: 280px; }
-        .panel-title { font-size: 0.85rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--azul-pastel); }
+        .analysis-content { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .analysis-panel { flex: 1; min-width: 260px; }
+        .panel-title { font-size: 0.8rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--azul-pastel); }
 
-        /* TABELA DE ESCOLAS */
-        .table-scroll { max-height: 220px; overflow-y: auto; border: 1px solid #eee; border-radius: 6px; }
-        .schools-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .schools-table th { background: var(--azul-pastel); color: var(--azul-escuro); padding: 0.5rem 0.4rem; text-align: left; font-weight: 600; position: sticky; top: 0; font-size: 0.75rem; }
-        .schools-table td { padding: 0.4rem; border-bottom: 1px solid #eee; }
+        .table-scroll { max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 5px; }
+        .schools-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .schools-table th { background: var(--azul-pastel); color: var(--azul-escuro); padding: 0.45rem 0.35rem; text-align: left; font-weight: 600; position: sticky; top: 0; font-size: 0.7rem; }
+        .schools-table td { padding: 0.35rem; border-bottom: 1px solid #eee; }
         .schools-table tr:hover { background: var(--azul-pastel); }
         .schools-table .num { text-align: right; font-weight: 600; color: var(--azul-escuro); }
 
-        /* GRÁFICOS */
-        .chart-container { height: 200px; background: var(--azul-pastel); border-radius: 6px; display: flex; align-items: flex-end; justify-content: center; padding: 0.75rem 0.5rem; gap: 0.3rem; overflow-x: auto; }
-        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; min-width: 45px; }
-        .bars-wrapper { display: flex; gap: 2px; align-items: flex-end; height: 140px; }
-        .bar { width: 12px; border-radius: 3px 3px 0 0; transition: height 0.4s; }
+        .chart-container { height: 180px; background: var(--azul-pastel); border-radius: 5px; display: flex; align-items: flex-end; justify-content: center; padding: 0.6rem 0.4rem; gap: 0.25rem; overflow-x: auto; }
+        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; min-width: 40px; }
+        .bars-wrapper { display: flex; gap: 2px; align-items: flex-end; height: 120px; }
+        .bar { width: 10px; border-radius: 2px 2px 0 0; transition: height 0.4s; }
         .bar.saeb { background: #084594; }
         .bar.diag { background: #2171b5; }
         .bar.form { background: #6baed6; }
         .bar.saese { background: #4da6ff; }
-        .bar-label { font-size: 0.65rem; color: var(--cinza-texto); text-align: center; max-width: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .bar-label { font-size: 0.6rem; color: var(--cinza-texto); text-align: center; max-width: 45px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-        .chart-legend { display: flex; justify-content: center; gap: 0.75rem; margin-top: 0.6rem; flex-wrap: wrap; }
-        .legend-chip { display: flex; align-items: center; gap: 0.25rem; font-size: 0.7rem; }
-        .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+        .chart-legend { display: flex; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .legend-chip { display: flex; align-items: center; gap: 0.2rem; font-size: 0.65rem; }
+        .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 
-        /* LOADING */
+        /* GRÁFICO DE DREs */
+        .dre-chart-container { background: var(--azul-pastel); border-radius: 5px; padding: 0.6rem; margin-top: 0.5rem; }
+        .dre-bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+        .dre-bar-label { width: 55px; font-size: 0.7rem; font-weight: 600; color: var(--azul-escuro); text-align: right; }
+        .dre-bar-track { flex: 1; height: 18px; background: #e0e0e0; border-radius: 3px; overflow: hidden; }
+        .dre-bar-fill { height: 100%; background: linear-gradient(90deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 3px; transition: width 0.5s; display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; }
+        .dre-bar-value { font-size: 0.65rem; font-weight: 700; color: white; }
+
+        /* TABELA COMPLETA */
+        .data-table-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
+        .full-table-scroll { max-height: 400px; overflow: auto; border: 1px solid #ddd; border-radius: 6px; }
+        .full-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; white-space: nowrap; }
+        .full-table th { background: var(--azul-escuro); color: white; padding: 0.5rem 0.4rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
+        .full-table td { padding: 0.4rem; border-bottom: 1px solid #eee; }
+        .full-table tr:nth-child(even) { background: var(--azul-pastel); }
+        .full-table tr:hover { background: #d0e8ff; }
+        .full-table .num { text-align: right; }
+
         .loading-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(241,249,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2000; }
-        .loading-spinner { width: 45px; height: 45px; border: 4px solid var(--azul-pastel); border-top-color: var(--azul-escuro); border-radius: 50%; animation: spin 1s linear infinite; }
-        .loading-text { margin-top: 0.75rem; color: var(--azul-escuro); font-weight: 600; font-size: 0.9rem; }
+        .loading-spinner { width: 40px; height: 40px; border: 4px solid var(--azul-pastel); border-top-color: var(--azul-escuro); border-radius: 50%; animation: spin 1s linear infinite; }
+        .loading-text { margin-top: 0.6rem; color: var(--azul-escuro); font-weight: 600; font-size: 0.85rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* RESPONSIVO */
-        @media (max-width: 992px) { 
-            .content-area { flex-direction: column; } 
-            .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; max-height: none; padding: 0.75rem; }
-            .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 200px; }
-        }
-        @media (max-width: 768px) { 
-            .header-center { display: none; } 
-            .legend { bottom: 10px; right: 10px; }
-            .analysis-content { flex-direction: column; }
-        }
+        @media (max-width: 992px) { .content-area { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.6rem; } .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 180px; } }
+        @media (max-width: 768px) { .header-center { display: none; } .legend { bottom: 8px; right: 8px; } .analysis-content { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -158,7 +148,7 @@
             <div class="header-content">
                 <div class="header-left">
                     <a href="index.html" class="btn-voltar">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                         Voltar
                     </a>
                     <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
@@ -169,8 +159,12 @@
                 </div>
                 <div class="header-right">
                     <button class="btn-export" onclick="exportMap()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        Exportar PNG
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        PNG
+                    </button>
+                    <button class="btn-export" onclick="baixarCSVCompleto()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+                        CSV
                     </button>
                 </div>
             </div>
@@ -212,7 +206,7 @@
                 </div>
             </aside>
 
-            <div class="map-section">
+            <div class="main-area">
                 <div class="map-container">
                     <div id="map"></div>
                     <div class="legend" id="legend">
@@ -225,23 +219,33 @@
                     </div>
                 </div>
 
-                <!-- SEÇÃO DE ANÁLISE POR ESCOLA -->
-                <div class="analysis-section" id="analysisSection">
-                    <div class="analysis-header">
-                        <h3 class="analysis-title">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                <!-- GRÁFICO COMPARATIVO DE DREs -->
+                <div class="section-container">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>
+                            <span>Ranking das DREs — <span id="dreChartIndicator">Indicador</span></span>
+                        </h3>
+                    </div>
+                    <div class="dre-chart-container" id="dreChart"></div>
+                </div>
+
+                <!-- ANÁLISE POR ESCOLA -->
+                <div class="section-container">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
                             <span id="analysisTitleText">Análise por Escola — Todas as DREs</span>
                         </h3>
-                        <div class="analysis-tabs">
+                        <div class="section-tabs">
                             <button class="tab-btn active" onclick="showTab('participacao', this)">Participação</button>
                             <button class="tab-btn" onclick="showTab('proficiencia', this)">Proficiência</button>
                         </div>
                     </div>
 
-                    <!-- ABA PARTICIPAÇÃO -->
                     <div class="analysis-content" id="tabParticipacao">
                         <div class="analysis-panel">
-                            <h4 class="panel-title">Comparativo de Taxas de Participação (Top 10)</h4>
+                            <h4 class="panel-title">Top 10 Escolas - Taxa de Participação</h4>
                             <div class="chart-container" id="chartParticipacao"></div>
                             <div class="chart-legend">
                                 <div class="legend-chip"><div class="legend-dot" style="background:#084594"></div>SAEB 23</div>
@@ -250,20 +254,19 @@
                             </div>
                         </div>
                         <div class="analysis-panel">
-                            <h4 class="panel-title">Ranking de Escolas por Participação</h4>
+                            <h4 class="panel-title">Ranking de Escolas</h4>
                             <div class="table-scroll">
                                 <table class="schools-table" id="tableParticipacao">
-                                    <thead><tr><th>Escola</th><th>SAEB</th><th>Diag.</th><th>Form.</th></tr></thead>
+                                    <thead><tr><th>Escola</th><th>DRE</th><th>SAEB</th><th>Diag.</th><th>Form.</th></tr></thead>
                                     <tbody></tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ABA PROFICIÊNCIA -->
                     <div class="analysis-content" id="tabProficiencia" style="display:none;">
                         <div class="analysis-panel">
-                            <h4 class="panel-title">Comparativo de Proficiência Média (Top 10)</h4>
+                            <h4 class="panel-title">Top 10 Escolas - Proficiência Média</h4>
                             <div class="chart-container" id="chartProficiencia"></div>
                             <div class="chart-legend">
                                 <div class="legend-chip"><div class="legend-dot" style="background:#084594"></div>SAEB PT</div>
@@ -273,14 +276,34 @@
                             </div>
                         </div>
                         <div class="analysis-panel">
-                            <h4 class="panel-title">Ranking de Escolas por Proficiência</h4>
+                            <h4 class="panel-title">Ranking de Escolas</h4>
                             <div class="table-scroll">
                                 <table class="schools-table" id="tableProficiencia">
-                                    <thead><tr><th>Escola</th><th>SAEB PT</th><th>SAEB Mat</th><th>SAESE PT</th><th>SAESE Mat</th></tr></thead>
+                                    <thead><tr><th>Escola</th><th>DRE</th><th>SAEB PT</th><th>SAEB Mat</th><th>SAESE PT</th><th>SAESE Mat</th></tr></thead>
                                     <tbody></tbody>
                                 </table>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- TABELA COMPLETA DE DADOS -->
+                <div class="data-table-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7zm4-8h6v2h-6zm0 4h6v2h-6zm0 4h6v2h-6z"/></svg>
+                            <span id="dataTableTitle">Base de Dados Completa — Todas as Escolas</span>
+                        </h3>
+                        <button class="btn-export" onclick="baixarCSVFiltrado()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                            Baixar Tabela
+                        </button>
+                    </div>
+                    <div class="full-table-scroll">
+                        <table class="full-table" id="fullDataTable">
+                            <thead><tr id="fullTableHead"></tr></thead>
+                            <tbody id="fullTableBody"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -292,7 +315,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
-        // CONFIGURAÇÃO DOS INDICADORES
         const INDICADORES = [
             { id: 'SAEB 23 Taxa Participação', nome: 'SAEB 23 - Taxa de Participação', tipo: 'percentual', agregacao: 'media' },
             { id: 'SAEB 23 Nota Média PT', nome: 'SAEB 23 - Nota Média Port.', tipo: 'numero', agregacao: 'media' },
@@ -309,20 +331,7 @@
         ];
 
         const CORES_CHOROPLETH = ['#f7fbff', '#c6dbef', '#6baed6', '#2171b5', '#084594'];
-
-        // NOMES DAS DRES
-        const DRE_NOMES = {
-            'DEA': 'DEA',
-            'DRE 01': 'DRE 01',
-            'DRE 02': 'DRE 02',
-            'DRE 03': 'DRE 03',
-            'DRE 04': 'DRE 04',
-            'DRE 05': 'DRE 05',
-            'DRE 06': 'DRE 06',
-            'DRE 07': 'DRE 07',
-            'DRE 08': 'DRE 08',
-            'DRE 09': 'DRE 09'
-        };
+        const DRE_NOMES = { 'DEA': 'DEA', 'DRE 01': 'DRE 01', 'DRE 02': 'DRE 02', 'DRE 03': 'DRE 03', 'DRE 04': 'DRE 04', 'DRE 05': 'DRE 05', 'DRE 06': 'DRE 06', 'DRE 07': 'DRE 07', 'DRE 08': 'DRE 08', 'DRE 09': 'DRE 09' };
 
         let map, geoJsonLayer, labelMarkers = [], dadosCSV = [], geoJsonData = null, dadosAgregados = {};
         let indicadorAtual = INDICADORES[0].id, dreSelecionada = '';
@@ -336,10 +345,12 @@
                 inicializarMapa();
                 verificarParametroURL();
                 atualizarAnalise();
+                atualizarDREChart();
+                atualizarTabelaCompleta();
                 document.getElementById('loading').style.display = 'none';
             } catch (error) {
                 console.error('Erro:', error);
-                document.getElementById('loading').innerHTML = '<div style="color:#c0392b;text-align:center;padding:20px;"><p><strong>Erro ao carregar dados</strong></p><p>' + error.message + '</p><p style="font-size:0.8rem;margin-top:10px;">Verifique: data/base_tabelar.csv e data/geojs-28-reg.json</p></div>';
+                document.getElementById('loading').innerHTML = '<div style="color:#c0392b;text-align:center;padding:20px;"><p><strong>Erro ao carregar dados</strong></p><p>' + error.message + '</p></div>';
             }
         }
 
@@ -347,11 +358,9 @@
             const csvResponse = await fetch('data/base_tabelar.csv');
             if (!csvResponse.ok) throw new Error('Arquivo CSV não encontrado');
             dadosCSV = d3.csvParse(await csvResponse.text());
-            
             const geoResponse = await fetch('data/geojs-28-reg.json');
             if (!geoResponse.ok) throw new Error('Arquivo GeoJSON não encontrado');
             geoJsonData = await geoResponse.json();
-            
             agregarDadosPorDRE();
             preencherDropdownDREs();
             atualizarResumo();
@@ -360,14 +369,12 @@
         function agregarDadosPorDRE() {
             dadosAgregados = {};
             const mapearDRE = (dre) => dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' ');
-            
             dadosCSV.forEach(escola => {
                 const dreMapeada = mapearDRE(escola.DRE);
                 if (!dadosAgregados[dreMapeada]) dadosAgregados[dreMapeada] = { dreOriginal: escola.DRE, escolas: [], totalAlunos: 0 };
                 dadosAgregados[dreMapeada].escolas.push(escola);
                 dadosAgregados[dreMapeada].totalAlunos += parseFloat(escola['Número de Alunos']) || 0;
             });
-            
             Object.keys(dadosAgregados).forEach(dre => {
                 const escolas = dadosAgregados[dre].escolas;
                 INDICADORES.forEach(ind => {
@@ -416,25 +423,11 @@
                 },
                 onEachFeature: (feature, layer) => {
                     const dre = feature.properties.region;
-                    layer.bindPopup(criarPopupContent(dre, dadosAgregados[dre]), { maxWidth: 320 });
-                    layer.on({ 
-                        mouseover: e => { e.target.setStyle({ weight: 3, fillOpacity: 0.9 }); e.target.bringToFront(); }, 
-                        mouseout: e => geoJsonLayer.resetStyle(e.target) 
-                    });
-
-                    // ADICIONAR LABEL DA DRE
+                    layer.bindPopup(criarPopupContent(dre, dadosAgregados[dre]), { maxWidth: 300 });
+                    layer.on({ mouseover: e => { e.target.setStyle({ weight: 3, fillOpacity: 0.9 }); e.target.bringToFront(); }, mouseout: e => geoJsonLayer.resetStyle(e.target) });
                     const bounds = layer.getBounds();
                     const center = bounds.getCenter();
-                    const labelText = DRE_NOMES[dre] || dre;
-                    const label = L.marker(center, {
-                        icon: L.divIcon({ 
-                            className: 'dre-label', 
-                            html: '<div>' + labelText + '</div>', 
-                            iconSize: [60, 20], 
-                            iconAnchor: [30, 10] 
-                        }),
-                        interactive: false
-                    });
+                    const label = L.marker(center, { icon: L.divIcon({ className: 'dre-label', html: '<div>' + (DRE_NOMES[dre] || dre) + '</div>', iconSize: [55, 18], iconAnchor: [27, 9] }), interactive: false });
                     label.addTo(map);
                     labelMarkers.push(label);
                 }
@@ -466,8 +459,9 @@
         }
 
         function atualizarResumo() {
-            document.getElementById('totalEscolas').textContent = dadosCSV.length;
-            const total = dadosCSV.reduce((a,e) => a + (parseFloat(e['Número de Alunos']) || 0), 0);
+            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
+            document.getElementById('totalEscolas').textContent = escolas.length;
+            const total = escolas.reduce((a,e) => a + (parseFloat(e['Número de Alunos']) || 0), 0);
             document.getElementById('totalAlunos').textContent = total.toLocaleString('pt-BR');
             const vals = Object.values(dadosAgregados).map(d => d[indicadorAtual]).filter(v => v !== null && !isNaN(v));
             if (vals.length > 0) {
@@ -481,28 +475,40 @@
             indicadorAtual = document.getElementById('indicatorSelect').value;
             atualizarCamadaGeoJSON();
             atualizarResumo();
+            atualizarDREChart();
         }
 
         function filterByDRE() {
             dreSelecionada = document.getElementById('dreSelect').value;
             if (dreSelecionada) {
-                geoJsonLayer.eachLayer(layer => {
-                    if (layer.feature?.properties.region === dreSelecionada) map.fitBounds(layer.getBounds(), { padding: [50, 50] });
-                });
-            } else {
-                map.setView([-10.5, -37.4], 8);
-            }
+                geoJsonLayer.eachLayer(layer => { if (layer.feature?.properties.region === dreSelecionada) map.fitBounds(layer.getBounds(), { padding: [50, 50] }); });
+            } else { map.setView([-10.5, -37.4], 8); }
             atualizarCamadaGeoJSON();
+            atualizarResumo();
             atualizarAnalise();
+            atualizarTabelaCompleta();
         }
 
         function verificarParametroURL() {
             const dre = new URLSearchParams(window.location.search).get('dre');
-            if (dre) {
-                dreSelecionada = dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' ');
-                document.getElementById('dreSelect').value = dreSelecionada;
-                filterByDRE();
-            }
+            if (dre) { dreSelecionada = dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' '); document.getElementById('dreSelect').value = dreSelecionada; filterByDRE(); }
+        }
+
+        // GRÁFICO DE RANKING DAS DRES
+        function atualizarDREChart() {
+            const ind = INDICADORES.find(i => i.id === indicadorAtual);
+            document.getElementById('dreChartIndicator').textContent = ind?.nome || indicadorAtual;
+            
+            const dreValores = Object.keys(dadosAgregados).map(dre => ({ dre, valor: dadosAgregados[dre][indicadorAtual] })).filter(d => d.valor !== null && !isNaN(d.valor)).sort((a,b) => b.valor - a.valor);
+            const maxVal = dreValores.length > 0 ? Math.max(...dreValores.map(d => d.valor)) : 1;
+            
+            let html = '';
+            dreValores.forEach(d => {
+                const pct = (d.valor / maxVal) * 100;
+                const valorFmt = ind?.tipo === 'percentual' ? (d.valor*100).toFixed(1)+'%' : d.valor.toFixed(2);
+                html += '<div class="dre-bar-row"><div class="dre-bar-label">' + d.dre + '</div><div class="dre-bar-track"><div class="dre-bar-fill" style="width:' + pct + '%"><span class="dre-bar-value">' + valorFmt + '</span></div></div></div>';
+            });
+            document.getElementById('dreChart').innerHTML = html;
         }
 
         // ANÁLISE POR ESCOLA
@@ -523,26 +529,23 @@
         function atualizarParticipacao(escolas) {
             const container = document.getElementById('chartParticipacao');
             const tbody = document.querySelector('#tableParticipacao tbody');
-
             const sorted = [...escolas].sort((a,b) => (parseFloat(b['SAEB 23 Taxa Participação'])||0) - (parseFloat(a['SAEB 23 Taxa Participação'])||0));
             const top10 = sorted.slice(0, 10);
-
             let chartHtml = '';
             top10.forEach(e => {
                 const saeb = (parseFloat(e['SAEB 23 Taxa Participação']) || 0) * 100;
                 const diag = (parseFloat(e['Participação Avaliação Diagnóstica']) || 0) * 100;
                 const form = (parseFloat(e['Participação Avaliação Formativa']) || 0) * 100;
-                const nome = (e.Escola || '').substring(0, 12);
-                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saeb*1.4) + 'px" title="SAEB: ' + saeb.toFixed(1) + '%"></div><div class="bar diag" style="height:' + (diag*1.4) + 'px" title="Diag: ' + diag.toFixed(1) + '%"></div><div class="bar form" style="height:' + (form*1.4) + 'px" title="Form: ' + form.toFixed(1) + '%"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
+                const nome = (e.Escola || '').substring(0, 10);
+                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saeb*1.2) + 'px" title="SAEB: ' + saeb.toFixed(1) + '%"></div><div class="bar diag" style="height:' + (diag*1.2) + 'px" title="Diag: ' + diag.toFixed(1) + '%"></div><div class="bar form" style="height:' + (form*1.2) + 'px" title="Form: ' + form.toFixed(1) + '%"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
             });
             container.innerHTML = chartHtml;
-
             let tblHtml = '';
-            sorted.slice(0, 20).forEach(e => {
+            sorted.slice(0, 25).forEach(e => {
                 const saeb = parseFloat(e['SAEB 23 Taxa Participação']);
                 const diag = parseFloat(e['Participação Avaliação Diagnóstica']);
                 const form = parseFloat(e['Participação Avaliação Formativa']);
-                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,35) + '</td><td class="num">' + (isNaN(saeb)?'-':(saeb*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(diag)?'-':(diag*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(form)?'-':(form*100).toFixed(1)+'%') + '</td></tr>';
+                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,30) + '</td><td>' + (e.DRE||'') + '</td><td class="num">' + (isNaN(saeb)?'-':(saeb*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(diag)?'-':(diag*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(form)?'-':(form*100).toFixed(1)+'%') + '</td></tr>';
             });
             tbody.innerHTML = tblHtml;
         }
@@ -550,31 +553,63 @@
         function atualizarProficiencia(escolas) {
             const container = document.getElementById('chartProficiencia');
             const tbody = document.querySelector('#tableProficiencia tbody');
-
             const sorted = [...escolas].sort((a,b) => (parseFloat(b['SAEB 23 Nota Média PT'])||0) - (parseFloat(a['SAEB 23 Nota Média PT'])||0));
             const top10 = sorted.slice(0, 10);
-            const maxProf = 320;
-
+            const maxProf = 300;
             let chartHtml = '';
             top10.forEach(e => {
                 const saebPT = parseFloat(e['SAEB 23 Nota Média PT']) || 0;
                 const saebMat = parseFloat(e['SAEB 23 Nota Média Mat']) || 0;
                 const saesePT = parseFloat(e['SAESE 24 Proficiência PT']) || 0;
                 const saeseMat = parseFloat(e['SAESE 24 Proficiência MAT']) || 0;
-                const nome = (e.Escola || '').substring(0, 12);
-                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saebPT/maxProf*140) + 'px" title="SAEB PT: ' + saebPT.toFixed(1) + '"></div><div class="bar diag" style="height:' + (saebMat/maxProf*140) + 'px" title="SAEB Mat: ' + saebMat.toFixed(1) + '"></div><div class="bar saese" style="height:' + (saesePT/maxProf*140) + 'px" title="SAESE PT: ' + saesePT.toFixed(1) + '"></div><div class="bar form" style="height:' + (saeseMat/maxProf*140) + 'px" title="SAESE Mat: ' + saeseMat.toFixed(1) + '"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
+                const nome = (e.Escola || '').substring(0, 10);
+                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saebPT/maxProf*120) + 'px" title="SAEB PT: ' + saebPT.toFixed(1) + '"></div><div class="bar diag" style="height:' + (saebMat/maxProf*120) + 'px" title="SAEB Mat: ' + saebMat.toFixed(1) + '"></div><div class="bar saese" style="height:' + (saesePT/maxProf*120) + 'px" title="SAESE PT: ' + saesePT.toFixed(1) + '"></div><div class="bar form" style="height:' + (saeseMat/maxProf*120) + 'px" title="SAESE Mat: ' + saeseMat.toFixed(1) + '"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
             });
             container.innerHTML = chartHtml;
-
             let tblHtml = '';
-            sorted.slice(0, 20).forEach(e => {
+            sorted.slice(0, 25).forEach(e => {
                 const saebPT = parseFloat(e['SAEB 23 Nota Média PT']);
                 const saebMat = parseFloat(e['SAEB 23 Nota Média Mat']);
                 const saesePT = parseFloat(e['SAESE 24 Proficiência PT']);
                 const saeseMat = parseFloat(e['SAESE 24 Proficiência MAT']);
-                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,30) + '</td><td class="num">' + (isNaN(saebPT)?'-':saebPT.toFixed(1)) + '</td><td class="num">' + (isNaN(saebMat)?'-':saebMat.toFixed(1)) + '</td><td class="num">' + (isNaN(saesePT)?'-':saesePT.toFixed(1)) + '</td><td class="num">' + (isNaN(saeseMat)?'-':saeseMat.toFixed(1)) + '</td></tr>';
+                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,25) + '</td><td>' + (e.DRE||'') + '</td><td class="num">' + (isNaN(saebPT)?'-':saebPT.toFixed(1)) + '</td><td class="num">' + (isNaN(saebMat)?'-':saebMat.toFixed(1)) + '</td><td class="num">' + (isNaN(saesePT)?'-':saesePT.toFixed(1)) + '</td><td class="num">' + (isNaN(saeseMat)?'-':saeseMat.toFixed(1)) + '</td></tr>';
             });
             tbody.innerHTML = tblHtml;
+        }
+
+        // TABELA COMPLETA
+        function atualizarTabelaCompleta() {
+            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
+            document.getElementById('dataTableTitle').textContent = dreSelecionada ? 'Base de Dados — ' + dreSelecionada + ' (' + escolas.length + ' escolas)' : 'Base de Dados Completa — ' + escolas.length + ' escolas';
+            
+            const colunas = ['Escola', 'DRE', 'Número de Alunos', 'SAEB 23 Taxa Participação', 'SAEB 23 Nota Média PT', 'SAEB 23 Nota Média Mat', 'SAESE 24 Proficiência PT', 'SAESE 24 Proficiência MAT', 'Participação Avaliação Diagnóstica', 'Participação Avaliação Formativa'];
+            const colunasDisplay = ['Escola', 'DRE', 'Alunos', 'SAEB Part.', 'SAEB PT', 'SAEB Mat', 'SAESE PT', 'SAESE Mat', 'Diag. Part.', 'Form. Part.'];
+            
+            let headHtml = '';
+            colunasDisplay.forEach(c => { headHtml += '<th>' + c + '</th>'; });
+            document.getElementById('fullTableHead').innerHTML = headHtml;
+            
+            let bodyHtml = '';
+            escolas.forEach(e => {
+                bodyHtml += '<tr>';
+                colunas.forEach((col, i) => {
+                    let val = e[col] || '-';
+                    if (col === 'Escola') val = (val + '').substring(0, 40);
+                    else if (col.includes('Taxa') || col.includes('Participação')) {
+                        const num = parseFloat(val);
+                        val = isNaN(num) ? '-' : (num * 100).toFixed(1) + '%';
+                    } else if (col.includes('Nota') || col.includes('Proficiência')) {
+                        const num = parseFloat(val);
+                        val = isNaN(num) ? '-' : num.toFixed(1);
+                    } else if (col === 'Número de Alunos') {
+                        const num = parseFloat(val);
+                        val = isNaN(num) ? '-' : num.toLocaleString('pt-BR');
+                    }
+                    bodyHtml += '<td class="' + (i > 1 ? 'num' : '') + '">' + val + '</td>';
+                });
+                bodyHtml += '</tr>';
+            });
+            document.getElementById('fullTableBody').innerHTML = bodyHtml;
         }
 
         function exportMap() {
@@ -586,11 +621,24 @@
         function baixarCSVDRE(dre) {
             const dados = dadosAgregados[dre];
             if (!dados?.escolas) return;
-            const headers = Object.keys(dados.escolas[0]);
+            gerarCSV(dados.escolas, 'escolas_' + dre.replace(/\s/g,'_') + '.csv');
+        }
+
+        function baixarCSVCompleto() { gerarCSV(dadosCSV, 'dados_completos_sergipe.csv'); }
+
+        function baixarCSVFiltrado() {
+            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
+            const nome = dreSelecionada ? 'dados_' + dreSelecionada.replace(/\s/g,'_') + '.csv' : 'dados_completos_sergipe.csv';
+            gerarCSV(escolas, nome);
+        }
+
+        function gerarCSV(dados, nomeArquivo) {
+            if (!dados || dados.length === 0) return;
+            const headers = Object.keys(dados[0]);
             let csv = headers.join(';') + '\n';
-            dados.escolas.forEach(e => { csv += headers.map(h => { let v = e[h]||''; if (typeof v === 'string' && (v.includes(';')||v.includes('"'))) v = '"'+v.replace(/"/g,'""')+'"'; return v; }).join(';') + '\n'; });
+            dados.forEach(e => { csv += headers.map(h => { let v = e[h]||''; if (typeof v === 'string' && (v.includes(';')||v.includes('"'))) v = '"'+v.replace(/"/g,'""')+'"'; return v; }).join(';') + '\n'; });
             const blob = new Blob(['\ufeff'+csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'escolas_' + dre.replace(/\s/g,'_') + '.csv'; link.click();
+            const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = nomeArquivo; link.click();
         }
     </script>
 </body>
