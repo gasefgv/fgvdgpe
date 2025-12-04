@@ -4,142 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa por DRE — Gestão para a Aprendizagem</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --azul-escuro: #0b5fa5;
-            --azul-medio: #1e90ff;
-            --azul-claro: #4da6ff;
-            --azul-pastel: #f1f9ff;
-            --cinza-texto: #666666;
-            --branco: #FFFFFF;
-            --sombra-suave: 0 4px 15px rgba(11, 95, 165, 0.1);
-        }
-
+        :root { --azul-escuro: #0b5fa5; --azul-medio: #1e90ff; --azul-claro: #4da6ff; --azul-pastel: #f1f9ff; --cinza-texto: #666666; --branco: #FFFFFF; --sombra-suave: 0 4px 15px rgba(11, 95, 165, 0.1); --verde: #27ae60; --laranja: #f39c12; --vermelho: #e74c3c; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; font-family: 'Source Sans Pro', sans-serif; background-color: var(--azul-pastel); color: var(--cinza-texto); }
-
         .app-container { display: flex; flex-direction: column; min-height: 100vh; }
-
-        .header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); padding: 0.75rem 1.5rem; box-shadow: var(--sombra-suave); z-index: 1000; }
-        .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; }
-        .header-left { display: flex; align-items: center; gap: 1rem; }
-        .btn-voltar { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--branco); text-decoration: none; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 8px; background: rgba(255,255,255,0.1); transition: background 0.3s; }
+        .header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); padding: 0.6rem 1.5rem; box-shadow: var(--sombra-suave); z-index: 1000; }
+        .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; position: relative; }
+        .header-left { display: flex; align-items: center; gap: 0.75rem; z-index: 2; }
+        .btn-voltar { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--branco); text-decoration: none; font-size: 0.85rem; padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(255,255,255,0.1); transition: background 0.3s; }
         .btn-voltar:hover { background: rgba(255,255,255,0.2); color: var(--branco); }
-        .logo { height: 45px; }
-        .header-center { text-align: center; flex: 1; }
-        .header-title { color: var(--branco); font-size: 1.35rem; font-weight: 700; margin: 0; }
-        .header-subtitle { color: rgba(255,255,255,0.8); font-size: 0.85rem; }
-        .header-right { display: flex; gap: 0.5rem; }
-        .btn-export { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--branco); color: var(--azul-escuro); padding: 0.45rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.8rem; border: none; cursor: pointer; transition: all 0.3s; }
+        .logo { height: 40px; }
+        .header-center { position: absolute; left: 50%; transform: translateX(-50%); text-align: center; z-index: 1; }
+        .header-title { color: var(--branco); font-size: 1.2rem; font-weight: 700; margin: 0; }
+        .header-subtitle { color: rgba(255,255,255,0.85); font-size: 0.75rem; }
+        .header-right { display: flex; gap: 0.4rem; z-index: 2; }
+        .btn-export { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--branco); color: var(--azul-escuro); padding: 0.4rem 0.7rem; border-radius: 6px; font-weight: 600; font-size: 0.75rem; border: none; cursor: pointer; transition: all 0.3s; }
         .btn-export:hover { transform: scale(1.03); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-
         .content-area { display: flex; flex: 1; overflow: hidden; }
-
-        .sidebar { width: 280px; background: var(--branco); border-right: 1px solid rgba(11,95,165,0.1); padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.9rem; }
-        .filter-section { background: var(--azul-pastel); border-radius: 10px; padding: 0.9rem; }
-        .filter-title { color: var(--azul-escuro); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .sidebar { width: 260px; background: var(--branco); border-right: 1px solid rgba(11,95,165,0.1); padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8rem; }
+        .filter-section { background: var(--azul-pastel); border-radius: 10px; padding: 0.8rem; }
+        .filter-title { color: var(--azul-escuro); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.45rem; display: flex; align-items: center; gap: 0.35rem; }
         .filter-icon { width: 14px; height: 14px; opacity: 0.8; }
-        .filter-select { width: 100%; padding: 0.55rem 0.7rem; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 0.85rem; background: var(--branco); cursor: pointer; }
+        .filter-select { width: 100%; padding: 0.5rem 0.65rem; border: 2px solid #e0e0e0; border-radius: 6px; font-size: 0.82rem; background: var(--branco); cursor: pointer; }
         .filter-select:focus { border-color: var(--azul-medio); outline: none; }
-
-        .summary-panel { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 10px; padding: 0.9rem; color: var(--branco); }
-        .summary-title { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 0.5rem; }
-        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .summary-panel { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 10px; padding: 0.8rem; color: var(--branco); }
+        .summary-title { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 0.45rem; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
         .summary-item { text-align: center; }
-        .summary-value { font-size: 1.3rem; font-weight: 700; }
-        .summary-label { font-size: 0.65rem; opacity: 0.85; }
-
-        .current-indicator { background: var(--branco); border: 2px solid var(--azul-claro); border-radius: 10px; padding: 0.7rem; text-align: center; }
-        .current-indicator-label { font-size: 0.65rem; color: var(--cinza-texto); text-transform: uppercase; }
-        .current-indicator-value { font-size: 0.9rem; font-weight: 700; color: var(--azul-escuro); margin-top: 0.15rem; }
-
+        .summary-value { font-size: 1.2rem; font-weight: 700; }
+        .summary-label { font-size: 0.62rem; opacity: 0.85; }
+        .current-indicator { background: var(--branco); border: 2px solid var(--azul-claro); border-radius: 10px; padding: 0.65rem; text-align: center; }
+        .current-indicator-label { font-size: 0.62rem; color: var(--cinza-texto); text-transform: uppercase; }
+        .current-indicator-value { font-size: 0.85rem; font-weight: 700; color: var(--azul-escuro); margin-top: 0.1rem; }
         .main-area { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
-        .map-container { position: relative; height: 450px; min-height: 350px; }
+        .map-container { position: relative; height: 420px; min-height: 320px; }
         #map { width: 100%; height: 100%; }
-
-        .legend { position: absolute; bottom: 15px; right: 12px; background: var(--branco); padding: 0.6rem; border-radius: 6px; box-shadow: var(--sombra-suave); z-index: 1000; min-width: 140px; }
-        .legend-title { font-size: 0.7rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.4rem; text-transform: uppercase; }
-        .legend-scale { display: flex; flex-direction: column; gap: 0.15rem; }
-        .legend-item { display: flex; align-items: center; gap: 0.35rem; font-size: 0.7rem; }
-        .legend-color { width: 18px; height: 12px; border-radius: 2px; }
-
-        .dre-label { background: transparent !important; border: none !important; font-weight: 700; font-size: 10px; color: #084594; text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 0 0 4px white; white-space: nowrap; text-align: center; }
-
+        .legend { position: absolute; bottom: 12px; right: 10px; background: var(--branco); padding: 0.55rem; border-radius: 6px; box-shadow: var(--sombra-suave); z-index: 1000; min-width: 130px; }
+        .legend-title { font-size: 0.68rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.35rem; text-transform: uppercase; }
+        .legend-scale { display: flex; flex-direction: column; gap: 0.12rem; }
+        .legend-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.68rem; }
+        .legend-color { width: 16px; height: 10px; border-radius: 2px; }
+        .dre-label { background: transparent !important; border: none !important; font-weight: 700; font-size: 9px; color: #084594; text-shadow: 1px 1px 2px white, -1px -1px 2px white, 1px -1px 2px white, -1px 1px 2px white, 0 0 3px white; white-space: nowrap; text-align: center; }
         .leaflet-popup-content-wrapper { border-radius: 10px; box-shadow: var(--sombra-suave); }
-        .leaflet-popup-content { margin: 0; min-width: 240px; }
-        .popup-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.5rem 0.8rem; border-radius: 10px 10px 0 0; margin: -1px -1px 0 -1px; }
+        .leaflet-popup-content { margin: 0; min-width: 220px; }
+        .popup-header { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.5rem 0.75rem; border-radius: 10px 10px 0 0; }
         .popup-title { font-size: 0.9rem; font-weight: 700; margin: 0; }
         .popup-subtitle { font-size: 0.7rem; opacity: 0.85; }
-        .popup-body { padding: 0.7rem; }
-        .popup-table { width: 100%; font-size: 0.75rem; border-collapse: collapse; }
-        .popup-table th { text-align: left; color: var(--cinza-texto); font-weight: 400; padding: 0.25rem 0; border-bottom: 1px solid #eee; }
-        .popup-table td { text-align: right; font-weight: 600; color: var(--azul-escuro); padding: 0.25rem 0; border-bottom: 1px solid #eee; }
-        .popup-btn { width: 100%; padding: 0.4rem; border-radius: 5px; font-size: 0.75rem; font-weight: 600; text-align: center; cursor: pointer; background: var(--azul-escuro); color: var(--branco); border: none; margin-top: 0.5rem; }
+        .popup-body { padding: 0.65rem; }
+        .popup-table { width: 100%; font-size: 0.72rem; border-collapse: collapse; }
+        .popup-table th { text-align: left; color: var(--cinza-texto); font-weight: 400; padding: 0.22rem 0; border-bottom: 1px solid #eee; }
+        .popup-table td { text-align: right; font-weight: 600; color: var(--azul-escuro); padding: 0.22rem 0; border-bottom: 1px solid #eee; }
+        .popup-btn { width: 100%; padding: 0.4rem; border-radius: 5px; font-size: 0.72rem; font-weight: 600; cursor: pointer; background: var(--azul-escuro); color: var(--branco); border: none; margin-top: 0.4rem; transition: background 0.3s; }
         .popup-btn:hover { background: var(--azul-medio); }
-
-        /* SEÇÕES DE ANÁLISE */
-        .section-container { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.6rem; }
-        .section-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 0.4rem; }
-        .section-tabs { display: flex; gap: 0.35rem; }
-        .tab-btn { padding: 0.4rem 0.8rem; border: 2px solid var(--azul-claro); border-radius: 5px; background: var(--branco); color: var(--azul-escuro); font-weight: 600; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; }
-        .tab-btn.active, .tab-btn:hover { background: var(--azul-escuro); color: var(--branco); border-color: var(--azul-escuro); }
-
-        .analysis-content { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .analysis-panel { flex: 1; min-width: 260px; }
-        .panel-title { font-size: 0.8rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 2px solid var(--azul-pastel); }
-
-        .table-scroll { max-height: 200px; overflow-y: auto; border: 1px solid #eee; border-radius: 5px; }
-        .schools-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        .schools-table th { background: var(--azul-pastel); color: var(--azul-escuro); padding: 0.45rem 0.35rem; text-align: left; font-weight: 600; position: sticky; top: 0; font-size: 0.7rem; }
-        .schools-table td { padding: 0.35rem; border-bottom: 1px solid #eee; }
-        .schools-table tr:hover { background: var(--azul-pastel); }
-        .schools-table .num { text-align: right; font-weight: 600; color: var(--azul-escuro); }
-
-        .chart-container { height: 180px; background: var(--azul-pastel); border-radius: 5px; display: flex; align-items: flex-end; justify-content: center; padding: 0.6rem 0.4rem; gap: 0.25rem; overflow-x: auto; }
-        .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; min-width: 40px; }
-        .bars-wrapper { display: flex; gap: 2px; align-items: flex-end; height: 120px; }
-        .bar { width: 10px; border-radius: 2px 2px 0 0; transition: height 0.4s; }
-        .bar.saeb { background: #084594; }
-        .bar.diag { background: #2171b5; }
-        .bar.form { background: #6baed6; }
-        .bar.saese { background: #4da6ff; }
-        .bar-label { font-size: 0.6rem; color: var(--cinza-texto); text-align: center; max-width: 45px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-        .chart-legend { display: flex; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; flex-wrap: wrap; }
-        .legend-chip { display: flex; align-items: center; gap: 0.2rem; font-size: 0.65rem; }
-        .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
-
-        /* GRÁFICO DE DREs */
-        .dre-chart-container { background: var(--azul-pastel); border-radius: 5px; padding: 0.6rem; margin-top: 0.5rem; }
-        .dre-bar-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
-        .dre-bar-label { width: 55px; font-size: 0.7rem; font-weight: 600; color: var(--azul-escuro); text-align: right; }
-        .dre-bar-track { flex: 1; height: 18px; background: #e0e0e0; border-radius: 3px; overflow: hidden; }
-        .dre-bar-fill { height: 100%; background: linear-gradient(90deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 3px; transition: width 0.5s; display: flex; align-items: center; justify-content: flex-end; padding-right: 4px; }
-        .dre-bar-value { font-size: 0.65rem; font-weight: 700; color: white; }
-
-        /* TABELA COMPLETA */
+        .popup-btn.secondary { background: var(--verde); margin-top: 0.25rem; }
+        .popup-btn.secondary:hover { background: #219a52; }
+        .dre-detail-panel { display: none; background: var(--branco); border-top: 3px solid var(--azul-escuro); padding: 1.25rem; animation: slideDown 0.3s ease; }
+        .dre-detail-panel.active { display: block; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .detail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .detail-title { color: var(--azul-escuro); font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .detail-badge { background: var(--azul-escuro); color: white; padding: 0.25rem 0.6rem; border-radius: 15px; font-size: 0.7rem; }
+        .btn-close-detail { background: #e74c3c; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 5px; font-size: 0.8rem; cursor: pointer; }
+        .btn-close-detail:hover { background: #c0392b; }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+        .detail-card { background: var(--azul-pastel); border-radius: 10px; padding: 1rem; }
+        .detail-card-title { font-size: 0.8rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-row { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px solid rgba(11,95,165,0.1); }
+        .metric-row:last-child { border-bottom: none; }
+        .metric-label { font-size: 0.8rem; color: var(--cinza-texto); }
+        .metric-value { font-size: 0.9rem; font-weight: 700; color: var(--azul-escuro); }
+        .metric-value.good { color: var(--verde); }
+        .metric-value.warning { color: var(--laranja); }
+        .metric-value.bad { color: var(--vermelho); }
+        .big-chart-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
+        .big-chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        .big-chart-title { color: var(--azul-escuro); font-size: 1.05rem; font-weight: 600; }
+        .chart-tabs { display: flex; gap: 0.3rem; }
+        .chart-tab { padding: 0.4rem 0.8rem; border: 2px solid var(--azul-claro); border-radius: 5px; background: var(--branco); color: var(--azul-escuro); font-weight: 600; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; }
+        .chart-tab.active, .chart-tab:hover { background: var(--azul-escuro); color: white; border-color: var(--azul-escuro); }
+        .big-chart-container { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .chart-area { flex: 2; min-width: 400px; background: linear-gradient(180deg, var(--azul-pastel) 0%, #e8f4fc 100%); border-radius: 10px; padding: 1rem; min-height: 280px; }
+        .chart-bars { display: flex; align-items: flex-end; justify-content: space-around; height: 220px; gap: 0.5rem; padding: 0 0.5rem; }
+        .chart-bar-group { display: flex; flex-direction: column; align-items: center; flex: 1; max-width: 80px; }
+        .chart-bar-wrapper { display: flex; gap: 3px; align-items: flex-end; height: 180px; }
+        .chart-bar { width: 16px; border-radius: 4px 4px 0 0; transition: height 0.5s ease; cursor: pointer; position: relative; }
+        .chart-bar:hover { opacity: 0.8; }
+        .chart-bar.saeb { background: linear-gradient(180deg, #084594 0%, #0b5fa5 100%); }
+        .chart-bar.diag { background: linear-gradient(180deg, #2171b5 0%, #4292c6 100%); }
+        .chart-bar.form { background: linear-gradient(180deg, #6baed6 0%, #9ecae1 100%); }
+        .chart-bar.saese { background: linear-gradient(180deg, #4da6ff 0%, #7ec8ff 100%); }
+        .chart-bar-label { font-size: 0.65rem; color: var(--cinza-texto); text-align: center; margin-top: 0.35rem; max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .chart-sidebar { flex: 1; min-width: 250px; }
+        .chart-legend-big { background: var(--branco); border-radius: 8px; padding: 0.75rem; margin-bottom: 0.75rem; }
+        .chart-legend-big-title { font-size: 0.72rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; text-transform: uppercase; }
+        .legend-row { display: flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0; }
+        .legend-color-big { width: 14px; height: 14px; border-radius: 3px; }
+        .legend-text { font-size: 0.75rem; color: var(--cinza-texto); }
+        .top-schools-list { background: var(--branco); border-radius: 8px; padding: 0.75rem; max-height: 200px; overflow-y: auto; }
+        .top-schools-title { font-size: 0.72rem; font-weight: 600; color: var(--azul-escuro); margin-bottom: 0.5rem; text-transform: uppercase; }
+        .school-row { display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid #eee; font-size: 0.75rem; }
+        .school-row:last-child { border-bottom: none; }
+        .school-rank { width: 20px; height: 20px; background: var(--azul-escuro); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; margin-right: 0.4rem; }
+        .school-name { flex: 1; color: var(--cinza-texto); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .school-value { font-weight: 700; color: var(--azul-escuro); }
+        .dre-ranking-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
+        .dre-ranking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .dre-ranking-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; }
+        .dre-bars-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.5rem; }
+        .dre-bar-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0; }
+        .dre-bar-label { width: 55px; font-size: 0.72rem; font-weight: 600; color: var(--azul-escuro); text-align: right; }
+        .dre-bar-track { flex: 1; height: 22px; background: #e8f4fc; border-radius: 4px; overflow: hidden; }
+        .dre-bar-fill { height: 100%; background: linear-gradient(90deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; transition: width 0.6s ease; }
+        .dre-bar-value { font-size: 0.68rem; font-weight: 700; color: white; }
         .data-table-section { background: var(--branco); border-top: 2px solid var(--azul-claro); padding: 1.25rem; }
-        .full-table-scroll { max-height: 400px; overflow: auto; border: 1px solid #ddd; border-radius: 6px; }
-        .full-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; white-space: nowrap; }
+        .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
+        .table-title { color: var(--azul-escuro); font-size: 1rem; font-weight: 600; }
+        .full-table-scroll { max-height: 350px; overflow: auto; border: 1px solid #ddd; border-radius: 6px; }
+        .full-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; white-space: nowrap; }
         .full-table th { background: var(--azul-escuro); color: white; padding: 0.5rem 0.4rem; text-align: left; font-weight: 600; position: sticky; top: 0; z-index: 10; }
         .full-table td { padding: 0.4rem; border-bottom: 1px solid #eee; }
         .full-table tr:nth-child(even) { background: var(--azul-pastel); }
         .full-table tr:hover { background: #d0e8ff; }
         .full-table .num { text-align: right; }
-
         .loading-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(241,249,255,0.95); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2000; }
         .loading-spinner { width: 40px; height: 40px; border: 4px solid var(--azul-pastel); border-top-color: var(--azul-escuro); border-radius: 50%; animation: spin 1s linear infinite; }
         .loading-text { margin-top: 0.6rem; color: var(--azul-escuro); font-weight: 600; font-size: 0.85rem; }
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        @media (max-width: 992px) { .content-area { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.6rem; } .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 180px; } }
-        @media (max-width: 768px) { .header-center { display: none; } .legend { bottom: 8px; right: 8px; } .analysis-content { flex-direction: column; } }
+        @media (max-width: 992px) { .content-area { flex-direction: column; } .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 0.5rem; } .filter-section, .summary-panel, .current-indicator { flex: 1; min-width: 160px; } .header-center { position: relative; left: auto; transform: none; } .header-content { flex-wrap: wrap; justify-content: center; gap: 0.5rem; } }
+        @media (max-width: 768px) { .legend { bottom: 5px; right: 5px; } .chart-area { min-width: 100%; } .detail-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -147,499 +143,72 @@
         <header class="header">
             <div class="header-content">
                 <div class="header-left">
-                    <a href="index.html" class="btn-voltar">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                        Voltar
-                    </a>
+                    <a href="index.html" class="btn-voltar"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>Voltar</a>
                     <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
                 </div>
                 <div class="header-center">
-                    <h1 class="header-title">Mapa por Diretoria Regional</h1>
-                    <p class="header-subtitle">Indicadores educacionais georreferenciados</p>
+                    <h1 class="header-title">Gestão para a Aprendizagem</h1>
+                    <p class="header-subtitle">Painel de Suporte de Dados - Avaliação das Unidades Escolares</p>
                 </div>
                 <div class="header-right">
-                    <button class="btn-export" onclick="exportMap()">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                        PNG
-                    </button>
-                    <button class="btn-export" onclick="baixarCSVCompleto()">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
-                        CSV
-                    </button>
+                    <button class="btn-export" onclick="exportMap()"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>PNG</button>
+                    <button class="btn-export" onclick="baixarCSVCompleto()"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>CSV</button>
                 </div>
             </div>
         </header>
-
         <div class="content-area">
             <aside class="sidebar">
-                <div class="filter-section">
-                    <h3 class="filter-title">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>
-                        Indicador
-                    </h3>
-                    <select id="indicatorSelect" class="filter-select" onchange="updateMap()"></select>
-                </div>
-
-                <div class="filter-section">
-                    <h3 class="filter-title">
-                        <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Diretoria Regional
-                    </h3>
-                    <select id="dreSelect" class="filter-select" onchange="filterByDRE()">
-                        <option value="">Todas as DREs</option>
-                    </select>
-                </div>
-
-                <div class="current-indicator">
-                    <div class="current-indicator-label">Indicador Ativo</div>
-                    <div class="current-indicator-value" id="currentIndicatorName">Carregando...</div>
-                </div>
-
-                <div class="summary-panel">
-                    <h3 class="summary-title">Resumo Geral</h3>
-                    <div class="summary-grid">
-                        <div class="summary-item"><div class="summary-value" id="totalEscolas">--</div><div class="summary-label">Escolas</div></div>
-                        <div class="summary-item"><div class="summary-value" id="totalDREs">10</div><div class="summary-label">DREs</div></div>
-                        <div class="summary-item"><div class="summary-value" id="mediaIndicador">--</div><div class="summary-label">Média Geral</div></div>
-                        <div class="summary-item"><div class="summary-value" id="totalAlunos">--</div><div class="summary-label">Alunos</div></div>
-                    </div>
-                </div>
+                <div class="filter-section"><h3 class="filter-title"><svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>Indicador</h3><select id="indicatorSelect" class="filter-select" onchange="updateMap()"></select></div>
+                <div class="filter-section"><h3 class="filter-title"><svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>Diretoria Regional</h3><select id="dreSelect" class="filter-select" onchange="filterByDRE()"><option value="">Todas as DREs</option></select></div>
+                <div class="current-indicator"><div class="current-indicator-label">Indicador Ativo</div><div class="current-indicator-value" id="currentIndicatorName">Carregando...</div></div>
+                <div class="summary-panel"><h3 class="summary-title">Resumo</h3><div class="summary-grid"><div class="summary-item"><div class="summary-value" id="totalEscolas">--</div><div class="summary-label">Escolas</div></div><div class="summary-item"><div class="summary-value" id="totalDREs">10</div><div class="summary-label">DREs</div></div><div class="summary-item"><div class="summary-value" id="mediaIndicador">--</div><div class="summary-label">Média</div></div><div class="summary-item"><div class="summary-value" id="totalAlunos">--</div><div class="summary-label">Alunos</div></div></div></div>
             </aside>
-
             <div class="main-area">
-                <div class="map-container">
-                    <div id="map"></div>
-                    <div class="legend" id="legend">
-                        <div class="legend-title">Legenda</div>
-                        <div class="legend-scale" id="legendScale"></div>
-                    </div>
-                    <div class="loading-overlay" id="loading">
-                        <div class="loading-spinner"></div>
-                        <div class="loading-text">Carregando dados...</div>
-                    </div>
-                </div>
-
-                <!-- GRÁFICO COMPARATIVO DE DREs -->
-                <div class="section-container">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v8H3zm4-5h2v13H7zm4-4h2v17h-2zm4 8h2v9h-2zm4-4h2v13h-2z"/></svg>
-                            <span>Ranking das DREs — <span id="dreChartIndicator">Indicador</span></span>
-                        </h3>
-                    </div>
-                    <div class="dre-chart-container" id="dreChart"></div>
-                </div>
-
-                <!-- ANÁLISE POR ESCOLA -->
-                <div class="section-container">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                            <span id="analysisTitleText">Análise por Escola — Todas as DREs</span>
-                        </h3>
-                        <div class="section-tabs">
-                            <button class="tab-btn active" onclick="showTab('participacao', this)">Participação</button>
-                            <button class="tab-btn" onclick="showTab('proficiencia', this)">Proficiência</button>
-                        </div>
-                    </div>
-
-                    <div class="analysis-content" id="tabParticipacao">
-                        <div class="analysis-panel">
-                            <h4 class="panel-title">Top 10 Escolas - Taxa de Participação</h4>
-                            <div class="chart-container" id="chartParticipacao"></div>
-                            <div class="chart-legend">
-                                <div class="legend-chip"><div class="legend-dot" style="background:#084594"></div>SAEB 23</div>
-                                <div class="legend-chip"><div class="legend-dot" style="background:#2171b5"></div>Av. Diagnóstica</div>
-                                <div class="legend-chip"><div class="legend-dot" style="background:#6baed6"></div>Av. Formativa</div>
-                            </div>
-                        </div>
-                        <div class="analysis-panel">
-                            <h4 class="panel-title">Ranking de Escolas</h4>
-                            <div class="table-scroll">
-                                <table class="schools-table" id="tableParticipacao">
-                                    <thead><tr><th>Escola</th><th>DRE</th><th>SAEB</th><th>Diag.</th><th>Form.</th></tr></thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="analysis-content" id="tabProficiencia" style="display:none;">
-                        <div class="analysis-panel">
-                            <h4 class="panel-title">Top 10 Escolas - Proficiência Média</h4>
-                            <div class="chart-container" id="chartProficiencia"></div>
-                            <div class="chart-legend">
-                                <div class="legend-chip"><div class="legend-dot" style="background:#084594"></div>SAEB PT</div>
-                                <div class="legend-chip"><div class="legend-dot" style="background:#2171b5"></div>SAEB Mat</div>
-                                <div class="legend-chip"><div class="legend-dot" style="background:#4da6ff"></div>SAESE PT</div>
-                                <div class="legend-chip"><div class="legend-dot" style="background:#6baed6"></div>SAESE Mat</div>
-                            </div>
-                        </div>
-                        <div class="analysis-panel">
-                            <h4 class="panel-title">Ranking de Escolas</h4>
-                            <div class="table-scroll">
-                                <table class="schools-table" id="tableProficiencia">
-                                    <thead><tr><th>Escola</th><th>DRE</th><th>SAEB PT</th><th>SAEB Mat</th><th>SAESE PT</th><th>SAESE Mat</th></tr></thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TABELA COMPLETA DE DADOS -->
-                <div class="data-table-section">
-                    <div class="section-header">
-                        <h3 class="section-title">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h2v2H7zm0 4h2v2H7zm0 4h2v2H7zm4-8h6v2h-6zm0 4h6v2h-6zm0 4h6v2h-6z"/></svg>
-                            <span id="dataTableTitle">Base de Dados Completa — Todas as Escolas</span>
-                        </h3>
-                        <button class="btn-export" onclick="baixarCSVFiltrado()">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                            Baixar Tabela
-                        </button>
-                    </div>
-                    <div class="full-table-scroll">
-                        <table class="full-table" id="fullDataTable">
-                            <thead><tr id="fullTableHead"></tr></thead>
-                            <tbody id="fullTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
+                <div class="map-container"><div id="map"></div><div class="legend" id="legend"><div class="legend-title">Legenda</div><div class="legend-scale" id="legendScale"></div></div><div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text">Carregando dados...</div></div></div>
+                <div class="dre-detail-panel" id="dreDetailPanel"><div class="detail-header"><div class="detail-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span id="detailDREName">DRE</span><span class="detail-badge" id="detailEscolasCount">0 escolas</span></div><button class="btn-close-detail" onclick="fecharPainelDRE()">✕ Fechar</button></div><div class="detail-grid" id="detailContent"></div></div>
+                <div class="big-chart-section"><div class="big-chart-header"><div class="big-chart-title" id="bigChartTitle">Top 10 Escolas — Taxa de Participação</div><div class="chart-tabs"><button class="chart-tab active" onclick="trocarGraficoGrande('participacao', this)">Participação</button><button class="chart-tab" onclick="trocarGraficoGrande('proficiencia', this)">Proficiência</button></div></div><div class="big-chart-container"><div class="chart-area"><div class="chart-bars" id="bigChartBars"></div></div><div class="chart-sidebar"><div class="chart-legend-big"><div class="chart-legend-big-title">Legenda</div><div id="bigChartLegend"></div></div><div class="top-schools-list"><div class="top-schools-title">Ranking Completo</div><div id="topSchoolsList"></div></div></div></div></div>
+                <div class="dre-ranking-section"><div class="dre-ranking-header"><div class="dre-ranking-title" id="dreRankingTitle">Ranking das DREs</div></div><div class="dre-bars-container" id="dreRankingBars"></div></div>
+                <div class="data-table-section"><div class="table-header"><div class="table-title" id="dataTableTitle">Base de Dados Completa</div><button class="btn-export" onclick="baixarCSVFiltrado()"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Baixar Tabela</button></div><div class="full-table-scroll"><table class="full-table" id="fullDataTable"><thead><tr id="fullTableHead"></tr></thead><tbody id="fullTableBody"></tbody></table></div></div>
             </div>
         </div>
     </div>
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
     <script>
-        const INDICADORES = [
-            { id: 'SAEB 23 Taxa Participação', nome: 'SAEB 23 - Taxa de Participação', tipo: 'percentual', agregacao: 'media' },
-            { id: 'SAEB 23 Nota Média PT', nome: 'SAEB 23 - Nota Média Port.', tipo: 'numero', agregacao: 'media' },
-            { id: 'SAEB 23 Nota Média Mat', nome: 'SAEB 23 - Nota Média Mat.', tipo: 'numero', agregacao: 'media' },
-            { id: 'SAESE 24 Proficiência PT', nome: 'SAESE 24 - Proficiência Port.', tipo: 'numero', agregacao: 'media' },
-            { id: 'SAESE 24 Proficiência MAT', nome: 'SAESE 24 - Proficiência Mat.', tipo: 'numero', agregacao: 'media' },
-            { id: 'Participação Avaliação Diagnóstica', nome: 'Av. Diagnóstica - Participação', tipo: 'percentual', agregacao: 'media' },
-            { id: 'Rendimento Médio Língua Portuguesa Avaliação Diagnóstica', nome: 'Av. Diagnóstica - Rend. Port.', tipo: 'percentual', agregacao: 'media' },
-            { id: 'Rendimento Médio Matemática Avaliação Diagnóstica', nome: 'Av. Diagnóstica - Rend. Mat.', tipo: 'percentual', agregacao: 'media' },
-            { id: 'Número de Alunos', nome: 'Número de Alunos', tipo: 'numero', agregacao: 'soma' },
-            { id: 'Participação Avaliação Formativa', nome: 'Av. Formativa - Participação', tipo: 'percentual', agregacao: 'media' },
-            { id: 'Rendimento LP Avaliação Formativa', nome: 'Av. Formativa - Rend. Port.', tipo: 'percentual', agregacao: 'media' },
-            { id: 'Rendimento MAT Avaliação Formativa', nome: 'Av. Formativa - Rend. Mat.', tipo: 'percentual', agregacao: 'media' }
-        ];
-
-        const CORES_CHOROPLETH = ['#f7fbff', '#c6dbef', '#6baed6', '#2171b5', '#084594'];
-        const DRE_NOMES = { 'DEA': 'DEA', 'DRE 01': 'DRE 01', 'DRE 02': 'DRE 02', 'DRE 03': 'DRE 03', 'DRE 04': 'DRE 04', 'DRE 05': 'DRE 05', 'DRE 06': 'DRE 06', 'DRE 07': 'DRE 07', 'DRE 08': 'DRE 08', 'DRE 09': 'DRE 09' };
-
-        let map, geoJsonLayer, labelMarkers = [], dadosCSV = [], geoJsonData = null, dadosAgregados = {};
-        let indicadorAtual = INDICADORES[0].id, dreSelecionada = '';
-
-        document.addEventListener('DOMContentLoaded', init);
-
-        async function init() {
-            try {
-                preencherDropdownIndicadores();
-                await carregarDados();
-                inicializarMapa();
-                verificarParametroURL();
-                atualizarAnalise();
-                atualizarDREChart();
-                atualizarTabelaCompleta();
-                document.getElementById('loading').style.display = 'none';
-            } catch (error) {
-                console.error('Erro:', error);
-                document.getElementById('loading').innerHTML = '<div style="color:#c0392b;text-align:center;padding:20px;"><p><strong>Erro ao carregar dados</strong></p><p>' + error.message + '</p></div>';
-            }
-        }
-
-        async function carregarDados() {
-            const csvResponse = await fetch('data/base_tabelar.csv');
-            if (!csvResponse.ok) throw new Error('Arquivo CSV não encontrado');
-            dadosCSV = d3.csvParse(await csvResponse.text());
-            const geoResponse = await fetch('data/geojs-28-reg.json');
-            if (!geoResponse.ok) throw new Error('Arquivo GeoJSON não encontrado');
-            geoJsonData = await geoResponse.json();
-            agregarDadosPorDRE();
-            preencherDropdownDREs();
-            atualizarResumo();
-        }
-
-        function agregarDadosPorDRE() {
-            dadosAgregados = {};
-            const mapearDRE = (dre) => dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' ');
-            dadosCSV.forEach(escola => {
-                const dreMapeada = mapearDRE(escola.DRE);
-                if (!dadosAgregados[dreMapeada]) dadosAgregados[dreMapeada] = { dreOriginal: escola.DRE, escolas: [], totalAlunos: 0 };
-                dadosAgregados[dreMapeada].escolas.push(escola);
-                dadosAgregados[dreMapeada].totalAlunos += parseFloat(escola['Número de Alunos']) || 0;
-            });
-            Object.keys(dadosAgregados).forEach(dre => {
-                const escolas = dadosAgregados[dre].escolas;
-                INDICADORES.forEach(ind => {
-                    const valores = escolas.map(e => parseFloat(e[ind.id])).filter(v => !isNaN(v));
-                    dadosAgregados[dre][ind.id] = valores.length > 0 ? (ind.agregacao === 'soma' ? valores.reduce((a,b)=>a+b,0) : valores.reduce((a,b)=>a+b,0)/valores.length) : null;
-                });
-            });
-        }
-
-        function preencherDropdownIndicadores() {
-            const select = document.getElementById('indicatorSelect');
-            INDICADORES.forEach(ind => { const opt = document.createElement('option'); opt.value = ind.id; opt.textContent = ind.nome; select.appendChild(opt); });
-        }
-
-        function preencherDropdownDREs() {
-            const select = document.getElementById('dreSelect');
-            Object.keys(dadosAgregados).sort().forEach(dre => { const opt = document.createElement('option'); opt.value = dre; opt.textContent = dre; select.appendChild(opt); });
-        }
-
-        function inicializarMapa() {
-            map = L.map('map').setView([-10.5, -37.4], 8);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap © CARTO', maxZoom: 19 }).addTo(map);
-            atualizarCamadaGeoJSON();
-        }
-
-        function atualizarCamadaGeoJSON() {
-            if (geoJsonLayer) map.removeLayer(geoJsonLayer);
-            labelMarkers.forEach(m => map.removeLayer(m)); labelMarkers = [];
-
-            const dres = dreSelecionada ? [dreSelecionada] : Object.keys(dadosAgregados);
-            const valores = dres.map(dre => dadosAgregados[dre]?.[indicadorAtual]).filter(v => v !== null && !isNaN(v));
-            const minVal = Math.min(...valores), maxVal = Math.max(...valores);
-
-            const obterCor = (valor) => {
-                if (valor === null || isNaN(valor)) return '#e0e0e0';
-                const norm = (valor - minVal) / (maxVal - minVal || 1);
-                return CORES_CHOROPLETH[Math.min(Math.floor(norm * CORES_CHOROPLETH.length), CORES_CHOROPLETH.length - 1)];
-            };
-
-            geoJsonLayer = L.geoJSON(geoJsonData, {
-                style: (feature) => {
-                    const dre = feature.properties.region;
-                    const valor = dadosAgregados[dre]?.[indicadorAtual];
-                    const visivel = !dreSelecionada || dreSelecionada === dre;
-                    return { fillColor: visivel ? obterCor(valor) : '#f0f0f0', weight: 2, opacity: 1, color: visivel ? '#0b5fa5' : '#ccc', fillOpacity: visivel ? 0.75 : 0.3 };
-                },
-                onEachFeature: (feature, layer) => {
-                    const dre = feature.properties.region;
-                    layer.bindPopup(criarPopupContent(dre, dadosAgregados[dre]), { maxWidth: 300 });
-                    layer.on({ mouseover: e => { e.target.setStyle({ weight: 3, fillOpacity: 0.9 }); e.target.bringToFront(); }, mouseout: e => geoJsonLayer.resetStyle(e.target) });
-                    const bounds = layer.getBounds();
-                    const center = bounds.getCenter();
-                    const label = L.marker(center, { icon: L.divIcon({ className: 'dre-label', html: '<div>' + (DRE_NOMES[dre] || dre) + '</div>', iconSize: [55, 18], iconAnchor: [27, 9] }), interactive: false });
-                    label.addTo(map);
-                    labelMarkers.push(label);
-                }
-            }).addTo(map);
-
-            atualizarLegenda(minVal, maxVal);
-            document.getElementById('currentIndicatorName').textContent = INDICADORES.find(i => i.id === indicadorAtual)?.nome || indicadorAtual;
-        }
-
-        function criarPopupContent(dre, dados) {
-            if (!dados) return '<div class="popup-header"><h4 class="popup-title">' + dre + '</h4></div><div class="popup-body"><p>Sem dados</p></div>';
-            const fmt = (v, t) => (v === null || isNaN(v)) ? '-' : (t === 'percentual' ? (v*100).toFixed(1)+'%' : v.toFixed(2));
-            let tbl = '';
-            INDICADORES.slice(0,6).forEach(ind => { tbl += '<tr><th>' + ind.nome + '</th><td>' + fmt(dados[ind.id], ind.tipo) + '</td></tr>'; });
-            return '<div class="popup-header"><h4 class="popup-title">' + dre + '</h4><span class="popup-subtitle">' + dados.escolas.length + ' escolas | ' + dados.totalAlunos.toLocaleString('pt-BR') + ' alunos</span></div><div class="popup-body"><table class="popup-table">' + tbl + '</table><button class="popup-btn" onclick="baixarCSVDRE(\'' + dre + '\')">Baixar CSV desta DRE</button></div>';
-        }
-
-        function atualizarLegenda(minVal, maxVal) {
-            const tipo = INDICADORES.find(i => i.id === indicadorAtual)?.tipo || 'numero';
-            const fmt = v => tipo === 'percentual' ? (v*100).toFixed(0)+'%' : v.toFixed(1);
-            const intervalo = (maxVal - minVal) / CORES_CHOROPLETH.length;
-            let html = '';
-            for (let i = CORES_CHOROPLETH.length - 1; i >= 0; i--) {
-                const vi = minVal + i * intervalo, vf = minVal + (i+1) * intervalo;
-                html += '<div class="legend-item"><div class="legend-color" style="background:' + CORES_CHOROPLETH[i] + '"></div><span>' + fmt(vi) + ' - ' + fmt(vf) + '</span></div>';
-            }
-            html += '<div class="legend-item"><div class="legend-color" style="background:#e0e0e0"></div><span>Sem dados</span></div>';
-            document.getElementById('legendScale').innerHTML = html;
-        }
-
-        function atualizarResumo() {
-            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
-            document.getElementById('totalEscolas').textContent = escolas.length;
-            const total = escolas.reduce((a,e) => a + (parseFloat(e['Número de Alunos']) || 0), 0);
-            document.getElementById('totalAlunos').textContent = total.toLocaleString('pt-BR');
-            const vals = Object.values(dadosAgregados).map(d => d[indicadorAtual]).filter(v => v !== null && !isNaN(v));
-            if (vals.length > 0) {
-                const media = vals.reduce((a,b) => a+b, 0) / vals.length;
-                const ind = INDICADORES.find(i => i.id === indicadorAtual);
-                document.getElementById('mediaIndicador').textContent = ind?.tipo === 'percentual' ? (media*100).toFixed(1)+'%' : media.toFixed(2);
-            }
-        }
-
-        function updateMap() {
-            indicadorAtual = document.getElementById('indicatorSelect').value;
-            atualizarCamadaGeoJSON();
-            atualizarResumo();
-            atualizarDREChart();
-        }
-
-        function filterByDRE() {
-            dreSelecionada = document.getElementById('dreSelect').value;
-            if (dreSelecionada) {
-                geoJsonLayer.eachLayer(layer => { if (layer.feature?.properties.region === dreSelecionada) map.fitBounds(layer.getBounds(), { padding: [50, 50] }); });
-            } else { map.setView([-10.5, -37.4], 8); }
-            atualizarCamadaGeoJSON();
-            atualizarResumo();
-            atualizarAnalise();
-            atualizarTabelaCompleta();
-        }
-
-        function verificarParametroURL() {
-            const dre = new URLSearchParams(window.location.search).get('dre');
-            if (dre) { dreSelecionada = dre === 'DEA' ? 'DEA' : dre.replace(/(\d+)/, ' $1').replace('  ', ' '); document.getElementById('dreSelect').value = dreSelecionada; filterByDRE(); }
-        }
-
-        // GRÁFICO DE RANKING DAS DRES
-        function atualizarDREChart() {
-            const ind = INDICADORES.find(i => i.id === indicadorAtual);
-            document.getElementById('dreChartIndicator').textContent = ind?.nome || indicadorAtual;
-            
-            const dreValores = Object.keys(dadosAgregados).map(dre => ({ dre, valor: dadosAgregados[dre][indicadorAtual] })).filter(d => d.valor !== null && !isNaN(d.valor)).sort((a,b) => b.valor - a.valor);
-            const maxVal = dreValores.length > 0 ? Math.max(...dreValores.map(d => d.valor)) : 1;
-            
-            let html = '';
-            dreValores.forEach(d => {
-                const pct = (d.valor / maxVal) * 100;
-                const valorFmt = ind?.tipo === 'percentual' ? (d.valor*100).toFixed(1)+'%' : d.valor.toFixed(2);
-                html += '<div class="dre-bar-row"><div class="dre-bar-label">' + d.dre + '</div><div class="dre-bar-track"><div class="dre-bar-fill" style="width:' + pct + '%"><span class="dre-bar-value">' + valorFmt + '</span></div></div></div>';
-            });
-            document.getElementById('dreChart').innerHTML = html;
-        }
-
-        // ANÁLISE POR ESCOLA
-        function showTab(tab, btn) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('tabParticipacao').style.display = tab === 'participacao' ? 'flex' : 'none';
-            document.getElementById('tabProficiencia').style.display = tab === 'proficiencia' ? 'flex' : 'none';
-        }
-
-        function atualizarAnalise() {
-            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
-            document.getElementById('analysisTitleText').textContent = dreSelecionada ? 'Análise por Escola — ' + dreSelecionada : 'Análise por Escola — Todas as DREs';
-            atualizarParticipacao(escolas);
-            atualizarProficiencia(escolas);
-        }
-
-        function atualizarParticipacao(escolas) {
-            const container = document.getElementById('chartParticipacao');
-            const tbody = document.querySelector('#tableParticipacao tbody');
-            const sorted = [...escolas].sort((a,b) => (parseFloat(b['SAEB 23 Taxa Participação'])||0) - (parseFloat(a['SAEB 23 Taxa Participação'])||0));
-            const top10 = sorted.slice(0, 10);
-            let chartHtml = '';
-            top10.forEach(e => {
-                const saeb = (parseFloat(e['SAEB 23 Taxa Participação']) || 0) * 100;
-                const diag = (parseFloat(e['Participação Avaliação Diagnóstica']) || 0) * 100;
-                const form = (parseFloat(e['Participação Avaliação Formativa']) || 0) * 100;
-                const nome = (e.Escola || '').substring(0, 10);
-                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saeb*1.2) + 'px" title="SAEB: ' + saeb.toFixed(1) + '%"></div><div class="bar diag" style="height:' + (diag*1.2) + 'px" title="Diag: ' + diag.toFixed(1) + '%"></div><div class="bar form" style="height:' + (form*1.2) + 'px" title="Form: ' + form.toFixed(1) + '%"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
-            });
-            container.innerHTML = chartHtml;
-            let tblHtml = '';
-            sorted.slice(0, 25).forEach(e => {
-                const saeb = parseFloat(e['SAEB 23 Taxa Participação']);
-                const diag = parseFloat(e['Participação Avaliação Diagnóstica']);
-                const form = parseFloat(e['Participação Avaliação Formativa']);
-                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,30) + '</td><td>' + (e.DRE||'') + '</td><td class="num">' + (isNaN(saeb)?'-':(saeb*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(diag)?'-':(diag*100).toFixed(1)+'%') + '</td><td class="num">' + (isNaN(form)?'-':(form*100).toFixed(1)+'%') + '</td></tr>';
-            });
-            tbody.innerHTML = tblHtml;
-        }
-
-        function atualizarProficiencia(escolas) {
-            const container = document.getElementById('chartProficiencia');
-            const tbody = document.querySelector('#tableProficiencia tbody');
-            const sorted = [...escolas].sort((a,b) => (parseFloat(b['SAEB 23 Nota Média PT'])||0) - (parseFloat(a['SAEB 23 Nota Média PT'])||0));
-            const top10 = sorted.slice(0, 10);
-            const maxProf = 300;
-            let chartHtml = '';
-            top10.forEach(e => {
-                const saebPT = parseFloat(e['SAEB 23 Nota Média PT']) || 0;
-                const saebMat = parseFloat(e['SAEB 23 Nota Média Mat']) || 0;
-                const saesePT = parseFloat(e['SAESE 24 Proficiência PT']) || 0;
-                const saeseMat = parseFloat(e['SAESE 24 Proficiência MAT']) || 0;
-                const nome = (e.Escola || '').substring(0, 10);
-                chartHtml += '<div class="bar-group"><div class="bars-wrapper"><div class="bar saeb" style="height:' + (saebPT/maxProf*120) + 'px" title="SAEB PT: ' + saebPT.toFixed(1) + '"></div><div class="bar diag" style="height:' + (saebMat/maxProf*120) + 'px" title="SAEB Mat: ' + saebMat.toFixed(1) + '"></div><div class="bar saese" style="height:' + (saesePT/maxProf*120) + 'px" title="SAESE PT: ' + saesePT.toFixed(1) + '"></div><div class="bar form" style="height:' + (saeseMat/maxProf*120) + 'px" title="SAESE Mat: ' + saeseMat.toFixed(1) + '"></div></div><div class="bar-label" title="' + e.Escola + '">' + nome + '</div></div>';
-            });
-            container.innerHTML = chartHtml;
-            let tblHtml = '';
-            sorted.slice(0, 25).forEach(e => {
-                const saebPT = parseFloat(e['SAEB 23 Nota Média PT']);
-                const saebMat = parseFloat(e['SAEB 23 Nota Média Mat']);
-                const saesePT = parseFloat(e['SAESE 24 Proficiência PT']);
-                const saeseMat = parseFloat(e['SAESE 24 Proficiência MAT']);
-                tblHtml += '<tr><td title="' + e.Escola + '">' + (e.Escola||'').substring(0,25) + '</td><td>' + (e.DRE||'') + '</td><td class="num">' + (isNaN(saebPT)?'-':saebPT.toFixed(1)) + '</td><td class="num">' + (isNaN(saebMat)?'-':saebMat.toFixed(1)) + '</td><td class="num">' + (isNaN(saesePT)?'-':saesePT.toFixed(1)) + '</td><td class="num">' + (isNaN(saeseMat)?'-':saeseMat.toFixed(1)) + '</td></tr>';
-            });
-            tbody.innerHTML = tblHtml;
-        }
-
-        // TABELA COMPLETA
-        function atualizarTabelaCompleta() {
-            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
-            document.getElementById('dataTableTitle').textContent = dreSelecionada ? 'Base de Dados — ' + dreSelecionada + ' (' + escolas.length + ' escolas)' : 'Base de Dados Completa — ' + escolas.length + ' escolas';
-            
-            const colunas = ['Escola', 'DRE', 'Número de Alunos', 'SAEB 23 Taxa Participação', 'SAEB 23 Nota Média PT', 'SAEB 23 Nota Média Mat', 'SAESE 24 Proficiência PT', 'SAESE 24 Proficiência MAT', 'Participação Avaliação Diagnóstica', 'Participação Avaliação Formativa'];
-            const colunasDisplay = ['Escola', 'DRE', 'Alunos', 'SAEB Part.', 'SAEB PT', 'SAEB Mat', 'SAESE PT', 'SAESE Mat', 'Diag. Part.', 'Form. Part.'];
-            
-            let headHtml = '';
-            colunasDisplay.forEach(c => { headHtml += '<th>' + c + '</th>'; });
-            document.getElementById('fullTableHead').innerHTML = headHtml;
-            
-            let bodyHtml = '';
-            escolas.forEach(e => {
-                bodyHtml += '<tr>';
-                colunas.forEach((col, i) => {
-                    let val = e[col] || '-';
-                    if (col === 'Escola') val = (val + '').substring(0, 40);
-                    else if (col.includes('Taxa') || col.includes('Participação')) {
-                        const num = parseFloat(val);
-                        val = isNaN(num) ? '-' : (num * 100).toFixed(1) + '%';
-                    } else if (col.includes('Nota') || col.includes('Proficiência')) {
-                        const num = parseFloat(val);
-                        val = isNaN(num) ? '-' : num.toFixed(1);
-                    } else if (col === 'Número de Alunos') {
-                        const num = parseFloat(val);
-                        val = isNaN(num) ? '-' : num.toLocaleString('pt-BR');
-                    }
-                    bodyHtml += '<td class="' + (i > 1 ? 'num' : '') + '">' + val + '</td>';
-                });
-                bodyHtml += '</tr>';
-            });
-            document.getElementById('fullTableBody').innerHTML = bodyHtml;
-        }
-
-        function exportMap() {
-            html2canvas(document.querySelector('.map-container'), { useCORS: true, scale: 2 }).then(canvas => {
-                const link = document.createElement('a'); link.download = 'mapa_' + indicadorAtual.replace(/\s/g,'_') + '.png'; link.href = canvas.toDataURL(); link.click();
-            }).catch(() => alert('Use Ctrl+P → Salvar como PDF'));
-        }
-
-        function baixarCSVDRE(dre) {
-            const dados = dadosAgregados[dre];
-            if (!dados?.escolas) return;
-            gerarCSV(dados.escolas, 'escolas_' + dre.replace(/\s/g,'_') + '.csv');
-        }
-
-        function baixarCSVCompleto() { gerarCSV(dadosCSV, 'dados_completos_sergipe.csv'); }
-
-        function baixarCSVFiltrado() {
-            const escolas = dreSelecionada ? dadosAgregados[dreSelecionada]?.escolas || [] : dadosCSV;
-            const nome = dreSelecionada ? 'dados_' + dreSelecionada.replace(/\s/g,'_') + '.csv' : 'dados_completos_sergipe.csv';
-            gerarCSV(escolas, nome);
-        }
-
-        function gerarCSV(dados, nomeArquivo) {
-            if (!dados || dados.length === 0) return;
-            const headers = Object.keys(dados[0]);
-            let csv = headers.join(';') + '\n';
-            dados.forEach(e => { csv += headers.map(h => { let v = e[h]||''; if (typeof v === 'string' && (v.includes(';')||v.includes('"'))) v = '"'+v.replace(/"/g,'""')+'"'; return v; }).join(';') + '\n'; });
-            const blob = new Blob(['\ufeff'+csv], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = nomeArquivo; link.click();
-        }
+        const INDICADORES=[{id:'SAEB 23 Taxa Participação',nome:'SAEB 23 - Taxa de Participação',tipo:'percentual',agregacao:'media'},{id:'SAEB 23 Nota Média PT',nome:'SAEB 23 - Nota Média Port.',tipo:'numero',agregacao:'media'},{id:'SAEB 23 Nota Média Mat',nome:'SAEB 23 - Nota Média Mat.',tipo:'numero',agregacao:'media'},{id:'SAESE 24 Proficiência PT',nome:'SAESE 24 - Proficiência Port.',tipo:'numero',agregacao:'media'},{id:'SAESE 24 Proficiência MAT',nome:'SAESE 24 - Proficiência Mat.',tipo:'numero',agregacao:'media'},{id:'Participação Avaliação Diagnóstica',nome:'Av. Diagnóstica - Participação',tipo:'percentual',agregacao:'media'},{id:'Rendimento Médio Língua Portuguesa Avaliação Diagnóstica',nome:'Av. Diagnóstica - Rend. Port.',tipo:'percentual',agregacao:'media'},{id:'Rendimento Médio Matemática Avaliação Diagnóstica',nome:'Av. Diagnóstica - Rend. Mat.',tipo:'percentual',agregacao:'media'},{id:'Número de Alunos',nome:'Número de Alunos',tipo:'numero',agregacao:'soma'},{id:'Participação Avaliação Formativa',nome:'Av. Formativa - Participação',tipo:'percentual',agregacao:'media'},{id:'Rendimento LP Avaliação Formativa',nome:'Av. Formativa - Rend. Port.',tipo:'percentual',agregacao:'media'},{id:'Rendimento MAT Avaliação Formativa',nome:'Av. Formativa - Rend. Mat.',tipo:'percentual',agregacao:'media'}];
+        const CORES_CHOROPLETH=['#f7fbff','#c6dbef','#6baed6','#2171b5','#084594'];
+        const DRE_NOMES={'DEA':'DEA','DRE 01':'DRE 01','DRE 02':'DRE 02','DRE 03':'DRE 03','DRE 04':'DRE 04','DRE 05':'DRE 05','DRE 06':'DRE 06','DRE 07':'DRE 07','DRE 08':'DRE 08','DRE 09':'DRE 09'};
+        let map,geoJsonLayer,labelMarkers=[],dadosCSV=[],geoJsonData=null,dadosAgregados={};
+        let indicadorAtual=INDICADORES[0].id,dreSelecionada='';
+        let graficoGrandeAtual='participacao';
+        document.addEventListener('DOMContentLoaded',init);
+        async function init(){try{preencherDropdownIndicadores();await carregarDados();inicializarMapa();verificarParametroURL();atualizarGraficoGrande();atualizarDRERanking();atualizarTabelaCompleta();document.getElementById('loading').style.display='none';}catch(error){console.error('Erro:',error);document.getElementById('loading').innerHTML='<div style="color:#c0392b;text-align:center;padding:20px;"><p><strong>Erro ao carregar dados</strong></p><p>'+error.message+'</p></div>';}}
+        async function carregarDados(){const csvResponse=await fetch('data/base_tabelar.csv');if(!csvResponse.ok)throw new Error('Arquivo CSV não encontrado');dadosCSV=d3.csvParse(await csvResponse.text());const geoResponse=await fetch('data/geojs-28-reg.json');if(!geoResponse.ok)throw new Error('Arquivo GeoJSON não encontrado');geoJsonData=await geoResponse.json();agregarDadosPorDRE();preencherDropdownDREs();atualizarResumo();}
+        function agregarDadosPorDRE(){dadosAgregados={};const mapearDRE=(dre)=>dre==='DEA'?'DEA':dre.replace(/(\d+)/,' $1').replace('  ',' ');dadosCSV.forEach(escola=>{const dreMapeada=mapearDRE(escola.DRE);if(!dadosAgregados[dreMapeada])dadosAgregados[dreMapeada]={dreOriginal:escola.DRE,escolas:[],totalAlunos:0};dadosAgregados[dreMapeada].escolas.push(escola);dadosAgregados[dreMapeada].totalAlunos+=parseFloat(escola['Número de Alunos'])||0;});Object.keys(dadosAgregados).forEach(dre=>{const escolas=dadosAgregados[dre].escolas;INDICADORES.forEach(ind=>{const valores=escolas.map(e=>parseFloat(e[ind.id])).filter(v=>!isNaN(v));dadosAgregados[dre][ind.id]=valores.length>0?(ind.agregacao==='soma'?valores.reduce((a,b)=>a+b,0):valores.reduce((a,b)=>a+b,0)/valores.length):null;});});}
+        function preencherDropdownIndicadores(){const select=document.getElementById('indicatorSelect');INDICADORES.forEach(ind=>{const opt=document.createElement('option');opt.value=ind.id;opt.textContent=ind.nome;select.appendChild(opt);});}
+        function preencherDropdownDREs(){const select=document.getElementById('dreSelect');Object.keys(dadosAgregados).sort().forEach(dre=>{const opt=document.createElement('option');opt.value=dre;opt.textContent=dre;select.appendChild(opt);});}
+        function inicializarMapa(){map=L.map('map').setView([-10.5,-37.4],8);L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19}).addTo(map);atualizarCamadaGeoJSON();}
+        function atualizarCamadaGeoJSON(){if(geoJsonLayer)map.removeLayer(geoJsonLayer);labelMarkers.forEach(m=>map.removeLayer(m));labelMarkers=[];const dres=dreSelecionada?[dreSelecionada]:Object.keys(dadosAgregados);const valores=dres.map(dre=>dadosAgregados[dre]?.[indicadorAtual]).filter(v=>v!==null&&!isNaN(v));const minVal=Math.min(...valores),maxVal=Math.max(...valores);const obterCor=(valor)=>{if(valor===null||isNaN(valor))return'#e0e0e0';const norm=(valor-minVal)/(maxVal-minVal||1);return CORES_CHOROPLETH[Math.min(Math.floor(norm*CORES_CHOROPLETH.length),CORES_CHOROPLETH.length-1)];};geoJsonLayer=L.geoJSON(geoJsonData,{style:(feature)=>{const dre=feature.properties.region;const valor=dadosAgregados[dre]?.[indicadorAtual];const visivel=!dreSelecionada||dreSelecionada===dre;return{fillColor:visivel?obterCor(valor):'#f0f0f0',weight:2,opacity:1,color:visivel?'#0b5fa5':'#ccc',fillOpacity:visivel?0.75:0.3};},onEachFeature:(feature,layer)=>{const dre=feature.properties.region;layer.bindPopup(criarPopupContent(dre,dadosAgregados[dre]),{maxWidth:280});layer.on({mouseover:e=>{e.target.setStyle({weight:3,fillOpacity:0.9});e.target.bringToFront();},mouseout:e=>geoJsonLayer.resetStyle(e.target),click:()=>abrirPainelDRE(dre)});const bounds=layer.getBounds();const center=bounds.getCenter();const label=L.marker(center,{icon:L.divIcon({className:'dre-label',html:'<div>'+(DRE_NOMES[dre]||dre)+'</div>',iconSize:[50,16],iconAnchor:[25,8]}),interactive:false});label.addTo(map);labelMarkers.push(label);}}).addTo(map);atualizarLegenda(minVal,maxVal);document.getElementById('currentIndicatorName').textContent=INDICADORES.find(i=>i.id===indicadorAtual)?.nome||indicadorAtual;}
+        function criarPopupContent(dre,dados){if(!dados)return'<div class="popup-header"><h4 class="popup-title">'+dre+'</h4></div><div class="popup-body"><p>Sem dados</p></div>';const fmt=(v,t)=>(v===null||isNaN(v))?'-':(t==='percentual'?(v*100).toFixed(1)+'%':v.toFixed(2));let tbl='';INDICADORES.slice(0,6).forEach(ind=>{tbl+='<tr><th>'+ind.nome+'</th><td>'+fmt(dados[ind.id],ind.tipo)+'</td></tr>';});return'<div class="popup-header"><h4 class="popup-title">'+dre+'</h4><span class="popup-subtitle">'+dados.escolas.length+' escolas | '+dados.totalAlunos.toLocaleString('pt-BR')+' alunos</span></div><div class="popup-body"><table class="popup-table">'+tbl+'</table><button class="popup-btn secondary" onclick="abrirPainelDRE(\''+dre+'\')">Ver Detalhes</button><button class="popup-btn" onclick="baixarCSVDRE(\''+dre+'\')">Baixar CSV</button></div>';}
+        function atualizarLegenda(minVal,maxVal){const tipo=INDICADORES.find(i=>i.id===indicadorAtual)?.tipo||'numero';const fmt=v=>tipo==='percentual'?(v*100).toFixed(0)+'%':v.toFixed(1);const intervalo=(maxVal-minVal)/CORES_CHOROPLETH.length;let html='';for(let i=CORES_CHOROPLETH.length-1;i>=0;i--){const vi=minVal+i*intervalo,vf=minVal+(i+1)*intervalo;html+='<div class="legend-item"><div class="legend-color" style="background:'+CORES_CHOROPLETH[i]+'"></div><span>'+fmt(vi)+' - '+fmt(vf)+'</span></div>';}html+='<div class="legend-item"><div class="legend-color" style="background:#e0e0e0"></div><span>Sem dados</span></div>';document.getElementById('legendScale').innerHTML=html;}
+        function atualizarResumo(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;document.getElementById('totalEscolas').textContent=escolas.length;const total=escolas.reduce((a,e)=>a+(parseFloat(e['Número de Alunos'])||0),0);document.getElementById('totalAlunos').textContent=total>=1000?(total/1000).toFixed(1)+'k':total;const vals=Object.values(dadosAgregados).map(d=>d[indicadorAtual]).filter(v=>v!==null&&!isNaN(v));if(vals.length>0){const media=vals.reduce((a,b)=>a+b,0)/vals.length;const ind=INDICADORES.find(i=>i.id===indicadorAtual);document.getElementById('mediaIndicador').textContent=ind?.tipo==='percentual'?(media*100).toFixed(1)+'%':media.toFixed(1);}}
+        function updateMap(){indicadorAtual=document.getElementById('indicatorSelect').value;atualizarCamadaGeoJSON();atualizarResumo();atualizarDRERanking();atualizarGraficoGrande();}
+        function filterByDRE(){dreSelecionada=document.getElementById('dreSelect').value;if(dreSelecionada){geoJsonLayer.eachLayer(layer=>{if(layer.feature?.properties.region===dreSelecionada)map.fitBounds(layer.getBounds(),{padding:[50,50]});});abrirPainelDRE(dreSelecionada);}else{map.setView([-10.5,-37.4],8);fecharPainelDRE();}atualizarCamadaGeoJSON();atualizarResumo();atualizarGraficoGrande();atualizarTabelaCompleta();}
+        function verificarParametroURL(){const dre=new URLSearchParams(window.location.search).get('dre');if(dre){dreSelecionada=dre==='DEA'?'DEA':dre.replace(/(\d+)/,' $1').replace('  ',' ');document.getElementById('dreSelect').value=dreSelecionada;filterByDRE();}}
+        function abrirPainelDRE(dre){const dados=dadosAgregados[dre];if(!dados)return;document.getElementById('detailDREName').textContent=dre;document.getElementById('detailEscolasCount').textContent=dados.escolas.length+' escolas';const fmt=(v,t)=>(v===null||isNaN(v))?'-':(t==='percentual'?(v*100).toFixed(1)+'%':v.toFixed(2));const getClass=(v,t)=>{if(v===null||isNaN(v))return'';const pct=t==='percentual'?v*100:v;if(t==='percentual')return pct>=90?'good':pct>=70?'warning':'bad';return'';};let html='<div class="detail-card"><div class="detail-card-title">Participação nas Avaliações</div>';['SAEB 23 Taxa Participação','Participação Avaliação Diagnóstica','Participação Avaliação Formativa'].forEach(id=>{const ind=INDICADORES.find(i=>i.id===id);const val=dados[id];html+='<div class="metric-row"><span class="metric-label">'+(ind?.nome||id)+'</span><span class="metric-value '+getClass(val,'percentual')+'">'+fmt(val,'percentual')+'</span></div>';});html+='</div>';html+='<div class="detail-card"><div class="detail-card-title">Proficiência SAEB 23</div>';['SAEB 23 Nota Média PT','SAEB 23 Nota Média Mat'].forEach(id=>{const ind=INDICADORES.find(i=>i.id===id);html+='<div class="metric-row"><span class="metric-label">'+(ind?.nome||id)+'</span><span class="metric-value">'+fmt(dados[id],'numero')+'</span></div>';});html+='</div>';html+='<div class="detail-card"><div class="detail-card-title">Proficiência SAESE 24</div>';['SAESE 24 Proficiência PT','SAESE 24 Proficiência MAT'].forEach(id=>{const ind=INDICADORES.find(i=>i.id===id);html+='<div class="metric-row"><span class="metric-label">'+(ind?.nome||id)+'</span><span class="metric-value">'+fmt(dados[id],'numero')+'</span></div>';});html+='</div>';html+='<div class="detail-card"><div class="detail-card-title">Informações Gerais</div>';html+='<div class="metric-row"><span class="metric-label">Total de Alunos</span><span class="metric-value">'+dados.totalAlunos.toLocaleString('pt-BR')+'</span></div>';html+='<div class="metric-row"><span class="metric-label">Escolas</span><span class="metric-value">'+dados.escolas.length+'</span></div>';html+='</div>';document.getElementById('detailContent').innerHTML=html;document.getElementById('dreDetailPanel').classList.add('active');document.getElementById('dreDetailPanel').scrollIntoView({behavior:'smooth',block:'start'});}
+        function fecharPainelDRE(){document.getElementById('dreDetailPanel').classList.remove('active');}
+        function trocarGraficoGrande(tipo,btn){graficoGrandeAtual=tipo;document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');atualizarGraficoGrande();}
+        function atualizarGraficoGrande(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;const titulo=dreSelecionada?'Top 10 Escolas — '+dreSelecionada:'Top 10 Escolas — Todas as DREs';if(graficoGrandeAtual==='participacao'){document.getElementById('bigChartTitle').textContent=titulo+' — Taxa de Participação';renderizarGraficoParticipacao(escolas);}else{document.getElementById('bigChartTitle').textContent=titulo+' — Proficiência';renderizarGraficoProficiencia(escolas);}}
+        function renderizarGraficoParticipacao(escolas){const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Taxa Participação'])||0)-(parseFloat(a['SAEB 23 Taxa Participação'])||0));const top10=sorted.slice(0,10);let barsHtml='';top10.forEach(e=>{const saeb=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;const diag=(parseFloat(e['Participação Avaliação Diagnóstica'])||0)*100;const form=(parseFloat(e['Participação Avaliação Formativa'])||0)*100;const nome=(e.Escola||'').substring(0,12);barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saeb*1.8)+'px" title="SAEB: '+saeb.toFixed(1)+'%"></div><div class="chart-bar diag" style="height:'+(diag*1.8)+'px" title="Diagnóstica: '+diag.toFixed(1)+'%"></div><div class="chart-bar form" style="height:'+(form*1.8)+'px" title="Formativa: '+form.toFixed(1)+'%"></div></div><div class="chart-bar-label" title="'+e.Escola+'">'+nome+'</div></div>';});document.getElementById('bigChartBars').innerHTML=barsHtml;document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB 23</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">Av. Diagnóstica</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">Av. Formativa</span></div>';let listHtml='';sorted.slice(0,15).forEach((e,i)=>{const val=(parseFloat(e['SAEB 23 Taxa Participação'])||0)*100;listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+e.Escola+'">'+(e.Escola||'').substring(0,25)+'</span><span class="school-value">'+val.toFixed(1)+'%</span></div>';});document.getElementById('topSchoolsList').innerHTML=listHtml;}
+        function renderizarGraficoProficiencia(escolas){const sorted=[...escolas].sort((a,b)=>(parseFloat(b['SAEB 23 Nota Média PT'])||0)-(parseFloat(a['SAEB 23 Nota Média PT'])||0));const top10=sorted.slice(0,10);const maxProf=300;let barsHtml='';top10.forEach(e=>{const saebPT=parseFloat(e['SAEB 23 Nota Média PT'])||0;const saebMat=parseFloat(e['SAEB 23 Nota Média Mat'])||0;const saesePT=parseFloat(e['SAESE 24 Proficiência PT'])||0;const saeseMat=parseFloat(e['SAESE 24 Proficiência MAT'])||0;const nome=(e.Escola||'').substring(0,12);barsHtml+='<div class="chart-bar-group"><div class="chart-bar-wrapper"><div class="chart-bar saeb" style="height:'+(saebPT/maxProf*180)+'px" title="SAEB PT: '+saebPT.toFixed(1)+'"></div><div class="chart-bar diag" style="height:'+(saebMat/maxProf*180)+'px" title="SAEB Mat: '+saebMat.toFixed(1)+'"></div><div class="chart-bar saese" style="height:'+(saesePT/maxProf*180)+'px" title="SAESE PT: '+saesePT.toFixed(1)+'"></div><div class="chart-bar form" style="height:'+(saeseMat/maxProf*180)+'px" title="SAESE Mat: '+saeseMat.toFixed(1)+'"></div></div><div class="chart-bar-label" title="'+e.Escola+'">'+nome+'</div></div>';});document.getElementById('bigChartBars').innerHTML=barsHtml;document.getElementById('bigChartLegend').innerHTML='<div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #084594, #0b5fa5)"></div><span class="legend-text">SAEB Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #2171b5, #4292c6)"></div><span class="legend-text">SAEB Mat.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #4da6ff, #7ec8ff)"></div><span class="legend-text">SAESE Port.</span></div><div class="legend-row"><div class="legend-color-big" style="background:linear-gradient(180deg, #6baed6, #9ecae1)"></div><span class="legend-text">SAESE Mat.</span></div>';let listHtml='';sorted.slice(0,15).forEach((e,i)=>{const val=parseFloat(e['SAEB 23 Nota Média PT'])||0;listHtml+='<div class="school-row"><span class="school-rank">'+(i+1)+'</span><span class="school-name" title="'+e.Escola+'">'+(e.Escola||'').substring(0,25)+'</span><span class="school-value">'+val.toFixed(1)+'</span></div>';});document.getElementById('topSchoolsList').innerHTML=listHtml;}
+        function atualizarDRERanking(){const ind=INDICADORES.find(i=>i.id===indicadorAtual);document.getElementById('dreRankingTitle').textContent='Ranking das DREs — '+(ind?.nome||indicadorAtual);const dreValores=Object.keys(dadosAgregados).map(dre=>({dre,valor:dadosAgregados[dre][indicadorAtual]})).filter(d=>d.valor!==null&&!isNaN(d.valor)).sort((a,b)=>b.valor-a.valor);const maxVal=dreValores.length>0?Math.max(...dreValores.map(d=>d.valor)):1;let html='';dreValores.forEach(d=>{const pct=(d.valor/maxVal)*100;const valorFmt=ind?.tipo==='percentual'?(d.valor*100).toFixed(1)+'%':d.valor.toFixed(2);html+='<div class="dre-bar-row"><div class="dre-bar-label">'+d.dre+'</div><div class="dre-bar-track"><div class="dre-bar-fill" style="width:'+pct+'%"><span class="dre-bar-value">'+valorFmt+'</span></div></div></div>';});document.getElementById('dreRankingBars').innerHTML=html;}
+        function atualizarTabelaCompleta(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;document.getElementById('dataTableTitle').textContent=dreSelecionada?'Base de Dados — '+dreSelecionada+' ('+escolas.length+' escolas)':'Base de Dados Completa — '+escolas.length+' escolas';const colunas=['Escola','DRE','Número de Alunos','SAEB 23 Taxa Participação','SAEB 23 Nota Média PT','SAEB 23 Nota Média Mat','SAESE 24 Proficiência PT','SAESE 24 Proficiência MAT'];const colunasDisplay=['Escola','DRE','Alunos','SAEB Part.','SAEB PT','SAEB Mat','SAESE PT','SAESE Mat'];let headHtml='';colunasDisplay.forEach(c=>{headHtml+='<th>'+c+'</th>';});document.getElementById('fullTableHead').innerHTML=headHtml;let bodyHtml='';escolas.forEach(e=>{bodyHtml+='<tr>';colunas.forEach((col,i)=>{let val=e[col]||'-';if(col==='Escola')val=(val+'').substring(0,35);else if(col.includes('Taxa')||col.includes('Participação')){const num=parseFloat(val);val=isNaN(num)?'-':(num*100).toFixed(1)+'%';}else if(col.includes('Nota')||col.includes('Proficiência')){const num=parseFloat(val);val=isNaN(num)?'-':num.toFixed(1);}else if(col==='Número de Alunos'){const num=parseFloat(val);val=isNaN(num)?'-':num.toLocaleString('pt-BR');}bodyHtml+='<td class="'+(i>1?'num':'')+'">'+ val+'</td>';});bodyHtml+='</tr>';});document.getElementById('fullTableBody').innerHTML=bodyHtml;}
+        function exportMap(){html2canvas(document.querySelector('.map-container'),{useCORS:true,scale:2}).then(canvas=>{const link=document.createElement('a');link.download='mapa_'+indicadorAtual.replace(/\s/g,'_')+'.png';link.href=canvas.toDataURL();link.click();}).catch(()=>alert('Use Ctrl+P → Salvar como PDF'));}
+        function baixarCSVDRE(dre){const dados=dadosAgregados[dre];if(!dados?.escolas)return;gerarCSV(dados.escolas,'escolas_'+dre.replace(/\s/g,'_')+'.csv');}
+        function baixarCSVCompleto(){gerarCSV(dadosCSV,'dados_completos_sergipe.csv');}
+        function baixarCSVFiltrado(){const escolas=dreSelecionada?dadosAgregados[dreSelecionada]?.escolas||[]:dadosCSV;const nome=dreSelecionada?'dados_'+dreSelecionada.replace(/\s/g,'_')+'.csv':'dados_completos_sergipe.csv';gerarCSV(escolas,nome);}
+        function gerarCSV(dados,nomeArquivo){if(!dados||dados.length===0)return;const headers=Object.keys(dados[0]);let csv=headers.join(';')+'\n';dados.forEach(e=>{csv+=headers.map(h=>{let v=e[h]||'';if(typeof v==='string'&&(v.includes(';')||v.includes('"')))v='"'+v.replace(/"/g,'""')+'"';return v;}).join(';')+'\n';});const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=nomeArquivo;link.click();}
     </script>
 </body>
 </html>
