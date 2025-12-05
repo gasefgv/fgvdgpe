@@ -75,9 +75,13 @@
         }
 
         .intro-box p {
-            margin: 0;
+            margin: 0 0 0.75rem 0;
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
         }
 
         .dre-section {
@@ -243,42 +247,6 @@
             color: var(--branco);
         }
 
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-            }
-            
-            .header {
-                background: var(--azul-escuro) !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            
-            .dre-section {
-                page-break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
-            
-            .escola-card:hover {
-                background-color: transparent;
-            }
-            
-            .btn-voltar {
-                display: none;
-            }
-            
-            .dre-header {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .tabela-section {
-                display: none;
-            }
-        }
-
         /* Estilos da tabela */
         .tabela-section {
             background: var(--branco);
@@ -340,6 +308,25 @@
             font-size: 0.9rem;
             color: var(--cinza-texto);
             user-select: none;
+        }
+
+        .btn-limpar-filtros {
+            display: inline-block;
+            background: #f44336;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-limpar-filtros:hover {
+            background: #d32f2f;
+            transform: scale(1.02);
         }
 
         .table-container {
@@ -415,23 +402,40 @@
             width: 120px;
         }
 
-        .btn-limpar-filtros {
-            display: inline-block;
-            background: #f44336;
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            margin-top: 0.5rem;
-        }
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .header {
+                background: var(--azul-escuro) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .dre-section {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .escola-card:hover {
+                background-color: transparent;
+            }
+            
+            .btn-voltar {
+                display: none;
+            }
+            
+            .dre-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
 
-        .btn-limpar-filtros:hover {
-            background: #d32f2f;
-            transform: scale(1.02);
+            .tabela-section {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -484,6 +488,258 @@
             </div>
             
             <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;"><em>Observação: Se uma escola não possui dados para algum indicador, o peso é redistribuído automaticamente entre os indicadores disponíveis, garantindo que todas as escolas sejam avaliadas de forma justa.</em></p>
+        </div>
+
+        <!-- DEA -->
+        <div class="dre-section">
+            <div class="dre-header">
+                <h3 class="dre-title">DEA — Diretoria de Educação de Aracaju</h3>
+                <span class="dre-badge">10 escolas (2 articuladoras)</span>
+            </div>
+            
+            <!-- Articuladora 1 -->
+            <div class="articuladora-section">
+                <div class="articuladora-header">
+                    <h4 class="articuladora-title">Articuladora 1</h4>
+                </div>
+            <div class="escola-card">
+                <div class="escola-rank">1</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL PROFESSORA MARIA DAS GRAÇAS AZEVEDO MELO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">190</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.708</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">2</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA  VITÓRIA DE SANTA MARIA</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">629</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.560</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL LEONOR TELES DE MENEZES</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">247</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.531</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">4</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL PAULINO NASCIMENTO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">196</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.512</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">5</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL JACKSON DE FIGUEIREDO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">595</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.474</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Articuladora 2 -->
+            <div class="articuladora-section">
+                <div class="articuladora-header">
+                    <h4 class="articuladora-title">Articuladora 2</h4>
+                </div>
+            <div class="escola-card">
+                <div class="escola-rank">1</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR ARICIO FORTES</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">318</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.612</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">2</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL SENADOR LEITE NETO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">276</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.508</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL OLAVO BILAC</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">370</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.491</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">4</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL MONSENHOR CARLOS CAMÉLIO COSTA</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">225</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.489</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">5</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL IVO DO PRADO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">439</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.468</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
 
         <!-- DRE01 -->
@@ -855,258 +1111,6 @@
             </div>
         </div>
 
-        <!-- DEA -->
-        <div class="dre-section">
-            <div class="dre-header">
-                <h3 class="dre-title">DEA — Diretoria de Educação de Aracaju</h3>
-                <span class="dre-badge">10 escolas (2 articuladoras)</span>
-            </div>
-            
-            <!-- Articuladora 1 -->
-            <div class="articuladora-section">
-                <div class="articuladora-header">
-                    <h4 class="articuladora-title">Articuladora 1</h4>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">1</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL PROFESSORA MARIA DAS GRAÇAS AZEVEDO MELO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">190</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.708</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">2</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">CENTRO DE EXCELÊNCIA  VITÓRIA DE SANTA MARIA</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">629</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.560</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">3</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL LEONOR TELES DE MENEZES</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">247</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.531</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">4</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL PAULINO NASCIMENTO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">196</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.512</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">5</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL JACKSON DE FIGUEIREDO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">595</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.474</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Articuladora 2 -->
-            <div class="articuladora-section">
-                <div class="articuladora-header">
-                    <h4 class="articuladora-title">Articuladora 2</h4>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">1</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR ARICIO FORTES</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">318</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.612</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">2</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL SENADOR LEITE NETO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">276</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.508</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">3</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL OLAVO BILAC</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">370</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.491</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">4</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL MONSENHOR CARLOS CAMÉLIO COSTA</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">225</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.489</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="escola-card">
-                    <div class="escola-rank">5</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL IVO DO PRADO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">439</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.468</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- DRE04 -->
         <div class="dre-section">
             <div class="dre-header">
@@ -1162,18 +1166,18 @@
             <div class="escola-card">
                 <div class="escola-rank">3</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DR MILTON DORTAS</div>
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL E PROFISSIONAL GOVERNADOR MARCELO DÉDA CHAGAS</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
-                            <span class="detail-value">Ensino Médio Parcial</span>
+                            <span class="detail-value">Ensino Profissional</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">471</span>
+                            <span class="detail-value">308</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.407</span>
+                            <span class="score-badge">Score: 0.478</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1185,7 +1189,7 @@
             <div class="escola-card">
                 <div class="escola-rank">4</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA GOVERNADOR DJENAL QUEIROZ</div>
+                    <div class="escola-nome">COLÉGIO ESTADUAL POETA JOSÉ SAMPAIO</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1193,14 +1197,14 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">358</span>
+                            <span class="detail-value">273</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.406</span>
+                            <span class="score-badge">Score: 0.426</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
-                            <span class="detail-value prioridade-alta">Alta</span>
+                            <span class="detail-value prioridade-media">Média</span>
                         </div>
                     </div>
                 </div>
@@ -1208,7 +1212,7 @@
             <div class="escola-card">
                 <div class="escola-rank">5</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELENCIA SEMENTEIRA DO AMANHA</div>
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA PROFESSORA MARIA CONCEIÇÃO DE SANTANA</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1219,7 +1223,7 @@
                             <span class="detail-value">146</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.385</span>
+                            <span class="score-badge">Score: 0.420</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1262,30 +1266,7 @@
             <div class="escola-card">
                 <div class="escola-rank">2</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSORA ANITA MAGALHÃES</div>
-                    <div class="escola-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Tipo:</span>
-                            <span class="detail-value">Ensino Médio Integral</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">118</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="score-badge">Score: 0.385</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Prioridade:</span>
-                            <span class="detail-value prioridade-media">Média</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="escola-card">
-                <div class="escola-rank">3</div>
-                <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA JULIO CESAR DE OLIVEIRA</div>
+                    <div class="escola-nome">COLÉGIO ESTADUAL MANOEL ALCINO DO NASCIMENTO</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1293,10 +1274,33 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">167</span>
+                            <span class="detail-value">192</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.384</span>
+                            <span class="score-badge">Score: 0.442</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL GENERAL CALAZANS</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">326</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.394</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1308,7 +1312,7 @@
             <div class="escola-card">
                 <div class="escola-rank">4</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA PROFESSORA MARIA IVANDA CORREIA DE MATOS</div>
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL NAÇÕES UNIDAS</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1316,10 +1320,10 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">262</span>
+                            <span class="detail-value">188</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.373</span>
+                            <span class="score-badge">Score: 0.392</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1331,7 +1335,7 @@
             <div class="escola-card">
                 <div class="escola-rank">5</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA PROFESSORA ROSA MARIA DE FREITAS BONÉ</div>
+                    <div class="escola-nome">COLÉGIO ESTADUAL FRANCISCO FIGUEIREDO</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1339,10 +1343,10 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">197</span>
+                            <span class="detail-value">577</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.344</span>
+                            <span class="score-badge">Score: 0.373</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1476,6 +1480,129 @@
             </div>
         </div>
 
+        <!-- DRE07 -->
+        <div class="dre-section">
+            <div class="dre-header">
+                <h3 class="dre-title">DRE 07</h3>
+                <span class="dre-badge">5 escolas</span>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">1</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA QUILOMBOLA 27 DE MAIO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Integral</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">69</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.473</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">2</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL CEL MAYNARD GOMES</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">218</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.454</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL PEDRO ALVES DE SOUZA</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">266</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.436</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">4</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL PROFESSORA MARIA ZENITE DOS SANTOS</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">61</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.430</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">5</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA GOVERNADOR LOURIVAL BAPTISTA</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Integral</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">250</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.404</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-media">Média</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- DRE08 -->
         <div class="dre-section">
             <div class="dre-header">
@@ -1488,121 +1615,121 @@
                 <div class="articuladora-header">
                     <h4 class="articuladora-title">Articuladora 1</h4>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">1</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL FELIPE TIAGO GOMES</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">274</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.549</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            <div class="escola-card">
+                <div class="escola-rank">1</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL FELIPE TIAGO GOMES</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">274</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.549</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">2</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR ANTONIO FONTES FREITAS</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">615</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.504</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">2</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR ANTONIO FONTES FREITAS</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">615</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.504</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">3</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">CENTRO DE EXECELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSORA MARIA DE LOURDES GOIS</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">403</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.502</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXECELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSORA MARIA DE LOURDES GOIS</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">403</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.502</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">4</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL PADRE GASPAR LOURENCO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">174</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.381</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-media">Média</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">4</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR JOSE BARRETO FONTES</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">258</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.446</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">5</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL PROFESSOR JOSE BARRETO FONTES</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">190</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.351</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-media">Média</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">5</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL HELIO WANDERLEY SOBRAL CARVALHO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">621</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.421</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-media">Média</span>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             <!-- Articuladora 2 -->
@@ -1610,121 +1737,121 @@
                 <div class="articuladora-header">
                     <h4 class="articuladora-title">Articuladora 2</h4>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">1</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL PROF LEAO MAGNO BRASIL</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">457</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.491</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            <div class="escola-card">
+                <div class="escola-rank">1</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL PROF LEAO MAGNO BRASIL</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">457</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.491</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">2</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL DR CARLOS FIRPO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">142</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.462</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">2</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSOR ROGACIANO MAGNO LEÃO BRASIL</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Integral</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">356</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.481</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">3</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL PRESIDENTE JUSCELINO KUBITSCHEK</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">332</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.457</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">3</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLEGIO ESTADUAL PRESIDENTE JUSCELINO KUBITSCHEK</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">696</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.478</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">4</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLÉGIO ESTADUAL ARMINDO GUARANÁ</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">253</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.439</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-alta">Alta</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">4</div>
+                <div class="escola-info">
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL DR CARLOS FIRPO</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Integral</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">405</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.467</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
-                <div class="escola-card">
-                    <div class="escola-rank">5</div>
-                    <div class="escola-info">
-                        <div class="escola-nome">COLEGIO ESTADUAL DEPUTADO ELISIO CARMELO</div>
-                        <div class="escola-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Tipo:</span>
-                                <span class="detail-value">Ensino Médio Parcial</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Alunos:</span>
-                                <span class="detail-value">189</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="score-badge">Score: 0.386</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Prioridade:</span>
-                                <span class="detail-value prioridade-media">Média</span>
-                            </div>
+            </div>
+            <div class="escola-card">
+                <div class="escola-rank">5</div>
+                <div class="escola-info">
+                    <div class="escola-nome">COLÉGIO ESTADUAL ARMINDO GUARANÁ</div>
+                    <div class="escola-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value">Ensino Médio Parcial</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Alunos:</span>
+                            <span class="detail-value">622</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="score-badge">Score: 0.459</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Prioridade:</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
 
@@ -1783,22 +1910,22 @@
             <div class="escola-card">
                 <div class="escola-rank">3</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELÊNCIA GOVERNADOR ALBANO FRANCO</div>
+                    <div class="escola-nome">CENTRO DE EXCELÊNCIA 28 DE JANEIRO</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
-                            <span class="detail-value">Ensino Médio Parcial</span>
+                            <span class="detail-value">Ensino Médio Integral</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">369</span>
+                            <span class="detail-value">584</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.362</span>
+                            <span class="score-badge">Score: 0.481</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
-                            <span class="detail-value prioridade-media">Média</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
@@ -1806,7 +1933,7 @@
             <div class="escola-card">
                 <div class="escola-rank">4</div>
                 <div class="escola-info">
-                    <div class="escola-nome">COLEGIO ESTADUAL AUGUSTO FRANCO</div>
+                    <div class="escola-nome">COLÉGIO ESTADUAL PROFESSOR JUSTINIANO DE MELO E SILVA</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1814,14 +1941,14 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">244</span>
+                            <span class="detail-value">456</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.339</span>
+                            <span class="score-badge">Score: 0.462</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
-                            <span class="detail-value prioridade-media">Média</span>
+                            <span class="detail-value prioridade-alta">Alta</span>
                         </div>
                     </div>
                 </div>
@@ -1829,7 +1956,7 @@
             <div class="escola-card">
                 <div class="escola-rank">5</div>
                 <div class="escola-info">
-                    <div class="escola-nome">CENTRO DE EXCELENCIA DEPUTADO GONZAGA PATRIOTA</div>
+                    <div class="escola-nome">COLÉGIO ESTADUAL CÍCERO BEZERRA</div>
                     <div class="escola-details">
                         <div class="detail-item">
                             <span class="detail-label">Tipo:</span>
@@ -1837,10 +1964,10 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Alunos:</span>
-                            <span class="detail-value">263</span>
+                            <span class="detail-value">1238</span>
                         </div>
                         <div class="detail-item">
-                            <span class="score-badge">Score: 0.337</span>
+                            <span class="score-badge">Score: 0.416</span>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Prioridade:</span>
@@ -1861,6 +1988,10 @@
                 <label class="filtros-label">Filtrar por Diretoria Regional:</label>
                 <div class="filtros-checkboxes">
                     <div class="filtro-item">
+                        <input type="checkbox" id="dea" value="DEA" checked>
+                        <label for="dea">DEA</label>
+                    </div>
+                    <div class="filtro-item">
                         <input type="checkbox" id="dre01" value="DRE01" checked>
                         <label for="dre01">DRE 01</label>
                     </div>
@@ -1873,10 +2004,6 @@
                         <label for="dre03">DRE 03</label>
                     </div>
                     <div class="filtro-item">
-                        <input type="checkbox" id="dea" value="DEA" checked>
-                        <label for="dea">DEA</label>
-                    </div>
-                    <div class="filtro-item">
                         <input type="checkbox" id="dre04" value="DRE04" checked>
                         <label for="dre04">DRE 04</label>
                     </div>
@@ -1887,6 +2014,10 @@
                     <div class="filtro-item">
                         <input type="checkbox" id="dre06" value="DRE06" checked>
                         <label for="dre06">DRE 06</label>
+                    </div>
+                    <div class="filtro-item">
+                        <input type="checkbox" id="dre07" value="DRE07" checked>
+                        <label for="dre07">DRE 07</label>
                     </div>
                     <div class="filtro-item">
                         <input type="checkbox" id="dre08" value="DRE08" checked>
@@ -1925,6 +2056,16 @@
     <script>
         // Dados das escolas prioritárias
         const escolasData = [
+            {dre: "DEA", articuladora: "Articuladora 1", rank: 1, escola: "COLÉGIO ESTADUAL PROFESSORA MARIA DAS GRAÇAS AZEVEDO MELO", alunos: 190, score: 0.708, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 1", rank: 2, escola: "CENTRO DE EXCELÊNCIA  VITÓRIA DE SANTA MARIA", alunos: 629, score: 0.560, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 1", rank: 3, escola: "COLÉGIO ESTADUAL LEONOR TELES DE MENEZES", alunos: 247, score: 0.531, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 1", rank: 4, escola: "COLÉGIO ESTADUAL PAULINO NASCIMENTO", alunos: 196, score: 0.512, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 1", rank: 5, escola: "COLEGIO ESTADUAL JACKSON DE FIGUEIREDO", alunos: 595, score: 0.474, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 2", rank: 1, escola: "COLEGIO ESTADUAL PROFESSOR ARICIO FORTES", alunos: 318, score: 0.612, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 2", rank: 2, escola: "COLÉGIO ESTADUAL SENADOR LEITE NETO", alunos: 276, score: 0.508, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 2", rank: 3, escola: "COLÉGIO ESTADUAL OLAVO BILAC", alunos: 370, score: 0.491, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 2", rank: 4, escola: "COLÉGIO ESTADUAL MONSENHOR CARLOS CAMÉLIO COSTA", alunos: 225, score: 0.489, prioridade: "Alta"},
+            {dre: "DEA", articuladora: "Articuladora 2", rank: 5, escola: "COLÉGIO ESTADUAL IVO DO PRADO", alunos: 439, score: 0.468, prioridade: "Alta"},
             {dre: "DRE01", articuladora: "", rank: 1, escola: "COLÉGIO ESTADUAL DOUTOR ANTÔNIO GARCIA FILHO", alunos: 400, score: 0.635, prioridade: "Alta"},
             {dre: "DRE01", articuladora: "", rank: 2, escola: "COLEGIO ESTADUAL GUMERCINDO BESSA", alunos: 882, score: 0.549, prioridade: "Alta"},
             {dre: "DRE01", articuladora: "", rank: 3, escola: "COLEGIO ESTADUAL PROFESSOR GILSON AMADO", alunos: 265, score: 0.507, prioridade: "Alta"},
@@ -1940,47 +2081,41 @@
             {dre: "DRE03", articuladora: "", rank: 3, escola: "COLÉGIO ESTADUAL JOÃO SALONIO", alunos: 289, score: 0.458, prioridade: "Alta"},
             {dre: "DRE03", articuladora: "", rank: 4, escola: "COLÉGIO ESTADUAL DEPUTADO GUIDO AZEVEDO", alunos: 434, score: 0.433, prioridade: "Alta"},
             {dre: "DRE03", articuladora: "", rank: 5, escola: "CENTRO DE EXCELÊNCIA EMELIANO RIBEIRO", alunos: 300, score: 0.386, prioridade: "Média"},
-            {dre: "DEA", articuladora: "Articuladora 1", rank: 1, escola: "COLÉGIO ESTADUAL PROFESSORA MARIA DAS GRAÇAS AZEVEDO MELO", alunos: 190, score: 0.708, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 1", rank: 2, escola: "CENTRO DE EXCELÊNCIA  VITÓRIA DE SANTA MARIA", alunos: 629, score: 0.560, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 1", rank: 3, escola: "COLÉGIO ESTADUAL LEONOR TELES DE MENEZES", alunos: 247, score: 0.531, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 1", rank: 4, escola: "COLÉGIO ESTADUAL PAULINO NASCIMENTO", alunos: 196, score: 0.512, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 1", rank: 5, escola: "COLEGIO ESTADUAL JACKSON DE FIGUEIREDO", alunos: 595, score: 0.474, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 2", rank: 1, escola: "COLEGIO ESTADUAL PROFESSOR ARICIO FORTES", alunos: 318, score: 0.612, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 2", rank: 2, escola: "COLÉGIO ESTADUAL SENADOR LEITE NETO", alunos: 276, score: 0.508, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 2", rank: 3, escola: "COLÉGIO ESTADUAL OLAVO BILAC", alunos: 370, score: 0.491, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 2", rank: 4, escola: "COLÉGIO ESTADUAL MONSENHOR CARLOS CAMÉLIO COSTA", alunos: 225, score: 0.489, prioridade: "Alta"},
-            {dre: "DEA", articuladora: "Articuladora 2", rank: 5, escola: "COLÉGIO ESTADUAL IVO DO PRADO", alunos: 439, score: 0.468, prioridade: "Alta"},
             {dre: "DRE04", articuladora: "", rank: 1, escola: "CENTRO DE EXCELÊNCIA EDELZIO VIEIRA DE MELO", alunos: 436, score: 0.575, prioridade: "Alta"},
             {dre: "DRE04", articuladora: "", rank: 2, escola: "COLÉGIO ESTADUAL JOSÉ AMARAL LEMOS", alunos: 310, score: 0.508, prioridade: "Alta"},
-            {dre: "DRE04", articuladora: "", rank: 3, escola: "CENTRO DE EXCELÊNCIA DR MILTON DORTAS", alunos: 471, score: 0.407, prioridade: "Alta"},
-            {dre: "DRE04", articuladora: "", rank: 4, escola: "CENTRO DE EXCELÊNCIA GOVERNADOR DJENAL QUEIROZ", alunos: 358, score: 0.406, prioridade: "Alta"},
-            {dre: "DRE04", articuladora: "", rank: 5, escola: "CENTRO DE EXCELENCIA SEMENTEIRA DO AMANHA", alunos: 146, score: 0.385, prioridade: "Média"},
+            {dre: "DRE04", articuladora: "", rank: 3, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL E PROFISSIONAL GOVERNADOR MARCELO DÉDA CHAGAS", alunos: 308, score: 0.478, prioridade: "Alta"},
+            {dre: "DRE04", articuladora: "", rank: 4, escola: "COLÉGIO ESTADUAL POETA JOSÉ SAMPAIO", alunos: 273, score: 0.426, prioridade: "Média"},
+            {dre: "DRE04", articuladora: "", rank: 5, escola: "CENTRO DE EXCELÊNCIA PROFESSORA MARIA CONCEIÇÃO DE SANTANA", alunos: 146, score: 0.420, prioridade: "Média"},
             {dre: "DRE05", articuladora: "", rank: 1, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL MARIA MONTESSORI", alunos: 133, score: 0.520, prioridade: "Alta"},
-            {dre: "DRE05", articuladora: "", rank: 2, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSORA ANITA MAGALHÃES", alunos: 118, score: 0.385, prioridade: "Média"},
-            {dre: "DRE05", articuladora: "", rank: 3, escola: "CENTRO DE EXCELÊNCIA JULIO CESAR DE OLIVEIRA", alunos: 167, score: 0.384, prioridade: "Média"},
-            {dre: "DRE05", articuladora: "", rank: 4, escola: "CENTRO DE EXCELÊNCIA PROFESSORA MARIA IVANDA CORREIA DE MATOS", alunos: 262, score: 0.373, prioridade: "Média"},
-            {dre: "DRE05", articuladora: "", rank: 5, escola: "CENTRO DE EXCELÊNCIA PROFESSORA ROSA MARIA DE FREITAS BONÉ", alunos: 197, score: 0.344, prioridade: "Média"},
+            {dre: "DRE05", articuladora: "", rank: 2, escola: "COLÉGIO ESTADUAL MANOEL ALCINO DO NASCIMENTO", alunos: 192, score: 0.442, prioridade: "Alta"},
+            {dre: "DRE05", articuladora: "", rank: 3, escola: "COLÉGIO ESTADUAL GENERAL CALAZANS", alunos: 326, score: 0.394, prioridade: "Média"},
+            {dre: "DRE05", articuladora: "", rank: 4, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL NAÇÕES UNIDAS", alunos: 188, score: 0.392, prioridade: "Média"},
+            {dre: "DRE05", articuladora: "", rank: 5, escola: "COLÉGIO ESTADUAL FRANCISCO FIGUEIREDO", alunos: 577, score: 0.373, prioridade: "Média"},
             {dre: "DRE06", articuladora: "", rank: 1, escola: "COLÉGIO ESTADUAL NOSSA SENHORA SANTANA", alunos: 127, score: 0.660, prioridade: "Alta"},
             {dre: "DRE06", articuladora: "", rank: 2, escola: "COLÉGIO ESTADUAL PROFESSORA ROBERTA RAMALHO DE SOUZA", alunos: 65, score: 0.560, prioridade: "Alta"},
             {dre: "DRE06", articuladora: "", rank: 3, escola: "COLÉGIO ESTADUAL GOVERNADOR GERAL MANOEL DE MIRANDA", alunos: 73, score: 0.550, prioridade: "Alta"},
             {dre: "DRE06", articuladora: "", rank: 4, escola: "COLÉGIO ESTADUAL PROFESSORA MARIA VIEIRA DA SILVA SANTOS", alunos: 72, score: 0.534, prioridade: "Alta"},
             {dre: "DRE06", articuladora: "", rank: 5, escola: "CENTRO DE EXCELÊNCIA DR LUIZ GARCIA", alunos: 155, score: 0.493, prioridade: "Alta"},
+            {dre: "DRE07", articuladora: "", rank: 1, escola: "CENTRO DE EXCELÊNCIA QUILOMBOLA 27 DE MAIO", alunos: 69, score: 0.473, prioridade: "Alta"},
+            {dre: "DRE07", articuladora: "", rank: 2, escola: "COLÉGIO ESTADUAL CEL MAYNARD GOMES", alunos: 218, score: 0.454, prioridade: "Alta"},
+            {dre: "DRE07", articuladora: "", rank: 3, escola: "COLÉGIO ESTADUAL PEDRO ALVES DE SOUZA", alunos: 266, score: 0.436, prioridade: "Alta"},
+            {dre: "DRE07", articuladora: "", rank: 4, escola: "COLÉGIO ESTADUAL PROFESSORA MARIA ZENITE DOS SANTOS", alunos: 61, score: 0.430, prioridade: "Alta"},
+            {dre: "DRE07", articuladora: "", rank: 5, escola: "CENTRO DE EXCELÊNCIA GOVERNADOR LOURIVAL BAPTISTA", alunos: 250, score: 0.404, prioridade: "Média"},
             {dre: "DRE08", articuladora: "Articuladora 1", rank: 1, escola: "COLÉGIO ESTADUAL FELIPE TIAGO GOMES", alunos: 274, score: 0.549, prioridade: "Alta"},
             {dre: "DRE08", articuladora: "Articuladora 1", rank: 2, escola: "COLEGIO ESTADUAL PROFESSOR ANTONIO FONTES FREITAS", alunos: 615, score: 0.504, prioridade: "Alta"},
             {dre: "DRE08", articuladora: "Articuladora 1", rank: 3, escola: "CENTRO DE EXECELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSORA MARIA DE LOURDES GOIS", alunos: 403, score: 0.502, prioridade: "Alta"},
-            {dre: "DRE08", articuladora: "Articuladora 1", rank: 4, escola: "COLÉGIO ESTADUAL PADRE GASPAR LOURENCO", alunos: 174, score: 0.381, prioridade: "Média"},
-            {dre: "DRE08", articuladora: "Articuladora 1", rank: 5, escola: "COLEGIO ESTADUAL PROFESSOR JOSE BARRETO FONTES", alunos: 190, score: 0.351, prioridade: "Média"},
+            {dre: "DRE08", articuladora: "Articuladora 1", rank: 4, escola: "COLEGIO ESTADUAL PROFESSOR JOSE BARRETO FONTES", alunos: 258, score: 0.446, prioridade: "Alta"},
+            {dre: "DRE08", articuladora: "Articuladora 1", rank: 5, escola: "COLÉGIO ESTADUAL HELIO WANDERLEY SOBRAL CARVALHO", alunos: 621, score: 0.421, prioridade: "Média"},
             {dre: "DRE08", articuladora: "Articuladora 2", rank: 1, escola: "COLEGIO ESTADUAL PROF LEAO MAGNO BRASIL", alunos: 457, score: 0.491, prioridade: "Alta"},
-            {dre: "DRE08", articuladora: "Articuladora 2", rank: 2, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL DR CARLOS FIRPO", alunos: 142, score: 0.462, prioridade: "Alta"},
-            {dre: "DRE08", articuladora: "Articuladora 2", rank: 3, escola: "COLEGIO ESTADUAL PRESIDENTE JUSCELINO KUBITSCHEK", alunos: 332, score: 0.457, prioridade: "Alta"},
-            {dre: "DRE08", articuladora: "Articuladora 2", rank: 4, escola: "COLÉGIO ESTADUAL ARMINDO GUARANÁ", alunos: 253, score: 0.439, prioridade: "Alta"},
-            {dre: "DRE08", articuladora: "Articuladora 2", rank: 5, escola: "COLEGIO ESTADUAL DEPUTADO ELISIO CARMELO", alunos: 189, score: 0.386, prioridade: "Média"},
+            {dre: "DRE08", articuladora: "Articuladora 2", rank: 2, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL PROFESSOR ROGACIANO MAGNO LEÃO BRASIL", alunos: 356, score: 0.481, prioridade: "Alta"},
+            {dre: "DRE08", articuladora: "Articuladora 2", rank: 3, escola: "COLEGIO ESTADUAL PRESIDENTE JUSCELINO KUBITSCHEK", alunos: 696, score: 0.478, prioridade: "Alta"},
+            {dre: "DRE08", articuladora: "Articuladora 2", rank: 4, escola: "CENTRO DE EXCELÊNCIA DE EDUCAÇÃO EM TEMPO INTEGRAL DR CARLOS FIRPO", alunos: 405, score: 0.467, prioridade: "Alta"},
+            {dre: "DRE08", articuladora: "Articuladora 2", rank: 5, escola: "COLÉGIO ESTADUAL ARMINDO GUARANÁ", alunos: 622, score: 0.459, prioridade: "Alta"},
             {dre: "DRE09", articuladora: "", rank: 1, escola: "COLÉGIO ESTADUAL PROFESSOR JOSÉ ARIBALDO DE CAMPOS LIMA", alunos: 160, score: 0.520, prioridade: "Alta"},
             {dre: "DRE09", articuladora: "", rank: 2, escola: "COLÉGIO ESTADUAL DELMIRO DE MIRANDA BRITTO", alunos: 774, score: 0.483, prioridade: "Alta"},
-            {dre: "DRE09", articuladora: "", rank: 3, escola: "CENTRO DE EXCELÊNCIA GOVERNADOR ALBANO FRANCO", alunos: 369, score: 0.362, prioridade: "Média"},
-            {dre: "DRE09", articuladora: "", rank: 4, escola: "COLEGIO ESTADUAL AUGUSTO FRANCO", alunos: 244, score: 0.339, prioridade: "Média"},
-            {dre: "DRE09", articuladora: "", rank: 5, escola: "CENTRO DE EXCELENCIA DEPUTADO GONZAGA PATRIOTA", alunos: 263, score: 0.337, prioridade: "Média"}
-        ];
+            {dre: "DRE09", articuladora: "", rank: 3, escola: "CENTRO DE EXCELÊNCIA 28 DE JANEIRO", alunos: 584, score: 0.481, prioridade: "Alta"},
+            {dre: "DRE09", articuladora: "", rank: 4, escola: "COLÉGIO ESTADUAL PROFESSOR JUSTINIANO DE MELO E SILVA", alunos: 456, score: 0.462, prioridade: "Alta"},
+            {dre: "DRE09", articuladora: "", rank: 5, escola: "COLÉGIO ESTADUAL CÍCERO BEZERRA", alunos: 1238, score: 0.416, prioridade: "Média"}        ];
 
         // Função para renderizar a tabela
         function renderTable() {
