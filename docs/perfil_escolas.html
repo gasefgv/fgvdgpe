@@ -131,7 +131,33 @@
                 </div>
                 <div class="data-source">📊 <strong>Fonte:</strong> Dados extraídos do Censo Escolar 2023 e Bases Internas da Secretaria de Educação de Sergipe</div>
             </section>
-            
+
+            <section class="section">
+                <h3 class="section-title"><svg class="section-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>Mapa Interativo das Escolas</h3>
+                <div class="map-section">
+                    <div id="map"></div>
+                    <div class="map-filters">
+                        <div class="filter-box">
+                            <div class="filter-label">Filtrar por DRE</div>
+                            <select id="filtroMapa" class="filter-select" onchange="atualizarMapa()">
+                                <option value="">Todas as DREs</option>
+                                <option value="DEA">DEA</option>
+                                <option value="DRE01">DRE 01</option>
+                                <option value="DRE02">DRE 02</option>
+                                <option value="DRE03">DRE 03</option>
+                                <option value="DRE04">DRE 04</option>
+                                <option value="DRE05">DRE 05</option>
+                                <option value="DRE06">DRE 06</option>
+                                <option value="DRE07">DRE 07</option>
+                                <option value="DRE08">DRE 08</option>
+                                <option value="DRE09">DRE 09</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-source">📊 <strong>Fonte:</strong> Dados extraídos do Censo Escolar 2023 e Bases Internas da Secretaria de Educação de Sergipe</div>
+            </section>
+
             <section class="section">
                 <h3 class="section-title"><svg class="section-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 14H7v-2h8v2zm3-4H7v-2h11v2zm0-4H7V7h11v2z"/></svg>Lista Completa das Escolas Estaduais</h3>
                 <div class="table-container">
@@ -256,4 +282,35 @@
                 item.style.display = texto.includes(busca) ? 'block' : 'none';
             });
         }
-               
+        
+        let map;
+        function inicializarMapa() {
+            map = L.map('map').setView([-10.5, -37.4], 8);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {attribution: '© OpenStreetMap © CARTO', maxZoom: 19}).addTo(map);
+            fetch('data/geojs-28-reg.json').then(response => response.json()).then(data => {
+                L.geoJSON(data, {
+                    style: {color: '#0b5fa5', weight: 2, fillColor: '#4da6ff', fillOpacity: 0.2},
+                    onEachFeature: (feature, layer) => {
+                        const dre = feature.properties.region;
+                        const escolas = DADOS_ESCOLAS.filter(e => e.dre === dre);
+                        layer.bindPopup(`<div class="popup-escola"><div class="popup-title">${dre}</div><div class="popup-detail"><strong>Escolas:</strong> ${escolas.length}</div><div class="popup-detail"><strong>Urbanas:</strong> ${escolas.filter(e => e.area === 'Urbana').length}</div><div class="popup-detail"><strong>Rurais:</strong> ${escolas.filter(e => e.area === 'Rural').length}</div><div class="popup-detail"><strong>Com EJA:</strong> ${escolas.filter(e => e.eja === 'Sim').length}</div></div>`);
+                    }
+                }).addTo(map);
+            }).catch(err => console.error('Erro ao carregar GeoJSON:', err));
+        }
+        
+        function atualizarMapa() {
+            console.log('Filtro selecionado:', document.getElementById('filtroMapa').value);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            atualizarEstatisticas();
+            renderizarTabela1();
+            renderizarTabela2();
+            renderizarTabela3();
+            renderizarListaEscolas();
+            inicializarMapa();
+        });
+    </script>
+</body>
+</html>
