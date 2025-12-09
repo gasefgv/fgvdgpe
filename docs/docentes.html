@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
     
     <style>
         :root {
@@ -158,33 +159,6 @@
             font-weight: 600;
         }
 
-        /* Tabela */
-        .custom-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .custom-table thead {
-            background: var(--azul-escuro);
-            color: var(--branco);
-        }
-
-        .custom-table th {
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .custom-table td {
-            padding: 0.875rem 1rem;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .custom-table tbody tr:hover {
-            background-color: var(--azul-pastel);
-        }
-
         /* Gráficos */
         .chart-container {
             position: relative;
@@ -192,81 +166,17 @@
             margin-bottom: 2rem;
         }
 
-        .chart-container-scroll {
+        .chart-container-large {
             position: relative;
+            height: 500px;
             margin-bottom: 2rem;
         }
 
-        .chart-wrapper-paginated {
-            position: relative;
-            height: 400px;
-        }
-
-        .pagination-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .pagination-button {
-            background: var(--azul-escuro);
-            color: var(--branco);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .pagination-button:hover:not(:disabled) {
-            background: var(--azul-medio);
-            transform: translateY(-2px);
-        }
-
-        .pagination-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .pagination-info {
-            color: var(--azul-escuro);
-            font-weight: 600;
-        }
-
-        /* Filtros */
-        .filters-container {
+        .charts-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             margin-bottom: 2rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .filter-label {
-            color: var(--azul-escuro);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .filter-select {
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: var(--azul-medio);
         }
 
         /* Info Box */
@@ -365,48 +275,13 @@
             border-top: 1px solid #f0f0f0;
         }
 
-        /* Paginação de tabela */
-        .table-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .table-pagination-button {
-            background: var(--azul-escuro);
-            color: var(--branco);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: all 0.3s ease;
-        }
-
-        .table-pagination-button:hover:not(:disabled) {
-            background: var(--azul-medio);
-            transform: translateY(-2px);
-        }
-
-        .table-pagination-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            opacity: 0.5;
-        }
-
-        .table-pagination-info {
-            color: var(--azul-escuro);
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-
         @media (max-width: 768px) {
             .header-title { font-size: 1.5rem; }
             .chart-container { height: 300px; }
-            .chart-container-scroll { height: 300px; }
+            .chart-container-large { height: 400px; }
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -456,23 +331,28 @@
                 <div class="data-source">Fonte: Bases internas SEED/SE | Ano base: 2025 | Extraído em: 05/12/25</div>
             </div>
 
-            <!-- SEÇÃO 3: GRÁFICO POR COMPONENTE CURRICULAR -->
+            <!-- SEÇÃO 3: PRINCIPAIS COMPONENTES CURRICULARES -->
             <div class="content-card">
                 <h2 class="section-title">
                     <svg class="section-icon" viewBox="0 0 24 24">
                         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
                     </svg>
-                    Professores por Componente Curricular
+                    Principais Componentes Curriculares dos Professores
                 </h2>
-                <p class="section-subtitle">Use os botões abaixo para navegar entre as componentes curriculares (5 por vez)</p>
-                <div class="chart-container-scroll">
-                    <div class="chart-wrapper-paginated">
-                        <canvas id="chartComponentes"></canvas>
+                <p class="section-subtitle">Top 30 componentes curriculares com maior número de professores</p>
+                
+                <div class="charts-row">
+                    <div>
+                        <h3 style="color: var(--azul-escuro); font-weight: 600; margin-bottom: 1rem; text-align: center;">Top 1 ao 15</h3>
+                        <div class="chart-container-large">
+                            <canvas id="chartComponentes1"></canvas>
+                        </div>
                     </div>
-                    <div class="pagination-controls">
-                        <button class="pagination-button" id="btnPrevComponentes">◀ Anterior</button>
-                        <span class="pagination-info" id="paginaComponentes">1 / 1</span>
-                        <button class="pagination-button" id="btnNextComponentes">Próximo ▶</button>
+                    <div>
+                        <h3 style="color: var(--azul-escuro); font-weight: 600; margin-bottom: 1rem; text-align: center;">Top 16 ao 30</h3>
+                        <div class="chart-container-large">
+                            <canvas id="chartComponentes2"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="data-source">Fonte: Bases internas SEED/SE | Ano base: 2025 | Extraído em: 05/12/25</div>
@@ -492,58 +372,7 @@
                 <div class="data-source">Fonte: Bases internas SEED/SE | Ano base: 2025 | Extraído em: 05/12/25</div>
             </div>
 
-            <!-- SEÇÃO 5: DADOS DO CENSO -->
-            <div class="content-card">
-                <h2 class="section-title">
-                    <svg class="section-icon" viewBox="0 0 24 24">
-                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                    </svg>
-                    Dados do Censo (2023-2024)
-                </h2>
-                
-                <div class="filters-container">
-                    <div class="filter-group">
-                        <label class="filter-label">Diretoria Regional</label>
-                        <select id="filtroDRE" class="filter-select">
-                            <option value="">Todas as DREs</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label class="filter-label">Escola</label>
-                        <select id="filtroEscola" class="filter-select">
-                            <option value="">Todas as Escolas</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="chartCenso"></canvas>
-                </div>
-
-                <h3 style="color: var(--azul-escuro); font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Dados Detalhados</h3>
-                <table class="custom-table">
-                    <thead>
-                        <tr>
-                            <th>Diretoria Regional</th>
-                            <th>Nome da Escola</th>
-                            <th>Quantidade de Docentes - Ensino Médio</th>
-                            <th>Quantidade de Docentes - EJA/Ensino Médio</th>
-                            <th>Ano</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaCenso">
-                        <!-- Linhas serão inseridas aqui -->
-                    </tbody>
-                </table>
-                <div class="table-pagination">
-                    <button class="table-pagination-button" id="btnPrevTabela">◀ Anterior</button>
-                    <span class="table-pagination-info" id="paginaTabela">1 / 1</span>
-                    <button class="table-pagination-button" id="btnNextTabela">Próximo ▶</button>
-                </div>
-                <div class="data-source">Fonte: Censo Escolar INEP | Anos: 2023-2024</div>
-            </div>
-
-            <!-- SEÇÃO 6: IED - INTRODUÇÃO -->
+            <!-- SEÇÃO 5: IED - INTRODUÇÃO -->
             <div class="content-card">
                 <h2 class="section-title">
                     <svg class="section-icon" viewBox="0 0 24 24">
@@ -552,7 +381,7 @@
                     O que é o IED?
                 </h2>
                 <p class="section-subtitle">
-                    O <strong>Indicador de Esforço Docente (IED)</strong> é um indicador desenvolvido pelo INEP que mensura o esforço empreendido pelos docentes da educação básica brasileira no exercício de sua profissão, buscando sintetizar, em uma única medida, aspectos do trabalho do professor que contribuem para a sobrecarga no exercício da profissão..
+                    O <strong>Indicador de Esforço Docente (IED)</strong> é um indicador desenvolvido pelo INEP que mensura o esforço empreendido pelos docentes da educação básica brasileira no exercício de sua profissão, buscando sintetizar, em uma única medida, aspectos do trabalho do professor que contribuem para a sobrecarga no exercício da profissão.
                 </p>
             </div>
 
@@ -562,10 +391,10 @@
                     <svg class="section-icon" viewBox="0 0 24 24">
                         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
                     </svg>
-                    Distribuição dos Docentes por Nível
+                    Distribuição dos Docentes por Nível do IED
                 </h2>
                 <p class="section-subtitle">
-                    Evolução temporal do indicado em Sergipe.
+                    Evolução temporal do indicador em Sergipe.
                 </p>
                 
                 <div class="chart-container">
@@ -674,7 +503,7 @@
                     O IED é calculado pelo INEP utilizando a <strong>Teoria de Resposta ao Item (TRI)</strong>, especificamente o modelo de resposta gradual de Samejima. As variáveis consideradas são:
                 </p>
                 <ul style="color: var(--cinza-texto); line-height: 1.8; margin-left: 1.5rem;">
-                    <li><strong>Número de escolas em que atua</li>
+                    <li><strong>Número de escolas em que atua</strong></li>
                     <li><strong>Número de turnos de trabalho</strong></li>
                     <li><strong>Número de alunos atendidos</strong></li>
                     <li><strong>Número de etapas nas quais leciona</strong></li>
@@ -762,39 +591,28 @@
                 .filter(c => c.componente && c.quantidade)
                 .sort((a, b) => b.quantidade - a.quantidade);
 
-            // Processar Qt Componentes
-            const qt_componentes = (dadosExcel['qt de componentes por professor'] || []).map(row => ({
+            // Processar Qt Componentes - AGREGAR 4+
+            const qt_componentes_raw = (dadosExcel['qt de componentes por professor'] || []).map(row => ({
                 qt_componentes: row['Quantidade de Componentes'],
                 qt_professores: row['Quantidade de Professores']
             })).filter(q => q.qt_componentes && q.qt_professores);
-
-            // Processar Censo
-            const dadosCenso = dadosExcel['Censo'] || [];
-            const dres = new Set();
-            const escolas = new Set();
-            const censoProcessado = [];
-
-            // Detectar coluna de ano
-            const primeiraLinha = dadosCenso[0] || {};
-            const colunaAno = 'NU_ANO_CENSO' in primeiraLinha ? 'NU_ANO_CENSO' : 'Ano';
-
-            dadosCenso.forEach(row => {
-                const dre = (row['DIRETORIA REGIONAL'] || '').toString().toUpperCase();
-                const escola = row['NO_ENTIDADE'];
-                const ano = row[colunaAno] || 2024;
-                
-                if (dre && escola) {
-                    dres.add(dre);
-                    escolas.add(escola);
-                    censoProcessado.push({
-                        dre: dre,
-                        escola: escola,
-                        ano: ano,
-                        qt_doc_med: row['QT_DOC_MED'] || 0,
-                        qt_doc_eja_med: row['QT_DOC_EJA_MED'] || 0
-                    });
+            
+            // Agregar 4 ou mais componentes
+            const qt_componentes = [];
+            let soma_4_mais = 0;
+            qt_componentes_raw.forEach(item => {
+                if (item.qt_componentes <= 3) {
+                    qt_componentes.push(item);
+                } else {
+                    soma_4_mais += item.qt_professores;
                 }
             });
+            if (soma_4_mais > 0) {
+                qt_componentes.push({
+                    qt_componentes: '4+',
+                    qt_professores: soma_4_mais
+                });
+            }
 
             // Processar ICG
             const dadosIED = dadosExcel['IED por Ano'] || [];
@@ -819,7 +637,6 @@
                 tabela_dre: tabela_dre.length,
                 componentes: componentes.length,
                 qt_componentes: qt_componentes.length,
-                censo: censoProcessado.length,
                 icg: Object.keys(icg).length
             });
 
@@ -828,18 +645,10 @@
                 tabela_dre: tabela_dre,
                 componentes: componentes,
                 qt_componentes: qt_componentes,
-                censo: {
-                    dados: censoProcessado,
-                    dres: Array.from(dres).sort(),
-                    escolas: Array.from(escolas).sort()
-                },
                 icg: icg
             };
         }
 
-        // [TODO: COPIAR TODAS AS FUNÇÕES JAVASCRIPT DO ORIGINAL AQUI]
-        // As funções abaixo são IDÊNTICAS ao dashboard original
-        
         // Renderizar Cards de Totais
         function renderizarCards() {
             const container = document.getElementById('cardsContainer');
@@ -853,7 +662,7 @@
             });
         }
 
-        // Criar Gráfico de DRE
+        // Criar Gráfico de DRE COM RÓTULOS
         function criarGraficoDRE() {
             const ctx = document.getElementById('chartDRE').getContext('2d');
             
@@ -881,6 +690,18 @@
                             padding: 12,
                             titleFont: { size: 14, weight: 'bold' },
                             bodyFont: { size: 13 }
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            color: '#0b5fa5',
+                            font: {
+                                weight: 'bold',
+                                size: 13
+                            },
+                            formatter: function(value) {
+                                return value.toLocaleString('pt-BR');
+                            }
                         }
                     },
                     scales: {
@@ -898,91 +719,123 @@
                             }
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
         }
 
-        // Variáveis globais para paginação de componentes
-        let chartComponentes = null;
-        let paginaAtualComponentes = 0;
-        const componentesPorPagina = 5;
-
-        // Criar Gráfico de Componentes com Paginação
-        function criarGraficoComponentes() {
-            const dados = dadosProcessados.componentes;
-            const totalPaginas = Math.ceil(dados.length / componentesPorPagina);
+        // Criar Gráficos de Componentes Curriculares - TOP 30 em 2 gráficos
+        function criarGraficosComponentes() {
+            const dados = dadosProcessados.componentes.slice(0, 30); // Top 30
             
-            function atualizarGrafico() {
-                const inicio = paginaAtualComponentes * componentesPorPagina;
-                const fim = inicio + componentesPorPagina;
-                const dadosPagina = dados.slice(inicio, fim);
-                
-                const ctx = document.getElementById('chartComponentes').getContext('2d');
-                
-                if (chartComponentes) {
-                    chartComponentes.destroy();
-                }
-                
-                chartComponentes = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: dadosPagina.map(d => d.componente),
-                        datasets: [{
-                            label: 'Quantidade de Professores',
-                            data: dadosPagina.map(d => d.quantidade),
-                            backgroundColor: 'rgba(11, 95, 165, 0.8)',
-                            borderColor: 'rgba(11, 95, 165, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                padding: 12,
-                                titleFont: { size: 14, weight: 'bold' },
-                                bodyFont: { size: 13 }
-                            }
+            // Primeiro gráfico: Top 1-15
+            const dados1 = dados.slice(0, 15);
+            const ctx1 = document.getElementById('chartComponentes1').getContext('2d');
+            
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: dados1.map(d => d.componente),
+                    datasets: [{
+                        label: 'Quantidade de Professores',
+                        data: dados1.map(d => d.quantidade),
+                        backgroundColor: 'rgba(11, 95, 165, 0.8)',
+                        borderColor: 'rgba(11, 95, 165, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12
                         },
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'right',
+                            color: '#0b5fa5',
+                            font: {
+                                weight: 'bold',
+                                size: 12
                             },
-                            y: {
-                                grid: { display: false }
+                            formatter: function(value) {
+                                return value.toLocaleString('pt-BR');
                             }
                         }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10 } }
+                        }
                     }
-                });
-                
-                document.getElementById('paginaComponentes').textContent = `${paginaAtualComponentes + 1} / ${totalPaginas}`;
-                document.getElementById('btnPrevComponentes').disabled = paginaAtualComponentes === 0;
-                document.getElementById('btnNextComponentes').disabled = paginaAtualComponentes === totalPaginas - 1;
-            }
-            
-            document.getElementById('btnPrevComponentes').addEventListener('click', () => {
-                if (paginaAtualComponentes > 0) {
-                    paginaAtualComponentes--;
-                    atualizarGrafico();
-                }
+                },
+                plugins: [ChartDataLabels]
             });
             
-            document.getElementById('btnNextComponentes').addEventListener('click', () => {
-                if (paginaAtualComponentes < totalPaginas - 1) {
-                    paginaAtualComponentes++;
-                    atualizarGrafico();
-                }
-            });
+            // Segundo gráfico: Top 16-30
+            const dados2 = dados.slice(15, 30);
+            const ctx2 = document.getElementById('chartComponentes2').getContext('2d');
             
-            atualizarGrafico();
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: dados2.map(d => d.componente),
+                    datasets: [{
+                        label: 'Quantidade de Professores',
+                        data: dados2.map(d => d.quantidade),
+                        backgroundColor: 'rgba(30, 144, 255, 0.8)',
+                        borderColor: 'rgba(30, 144, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'right',
+                            color: '#1e90ff',
+                            font: {
+                                weight: 'bold',
+                                size: 12
+                            },
+                            formatter: function(value) {
+                                return value.toLocaleString('pt-BR');
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10 } }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
         }
 
-        // Criar Gráfico de Componentes por Professor
+        // Criar Gráfico de Componentes por Professor COM RÓTULOS
         function criarGraficoComponentesProfessor() {
             const ctx = document.getElementById('chartComponentesProfessor').getContext('2d');
             const dados = dadosProcessados.qt_componentes;
@@ -990,7 +843,10 @@
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: dados.map(d => `${d.qt_componentes} componente${d.qt_componentes > 1 ? 's' : ''}`),
+                    labels: dados.map(d => {
+                        if (d.qt_componentes === '4+') return '4 ou mais componentes';
+                        return `${d.qt_componentes} componente${d.qt_componentes > 1 ? 's' : ''}`;
+                    }),
                     datasets: [{
                         label: 'Quantidade de Professores',
                         data: dados.map(d => d.qt_professores),
@@ -1007,6 +863,18 @@
                         tooltip: {
                             backgroundColor: 'rgba(0, 0, 0, 0.8)',
                             padding: 12
+                        },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            color: '#1e90ff',
+                            font: {
+                                weight: 'bold',
+                                size: 13
+                            },
+                            formatter: function(value) {
+                                return value.toLocaleString('pt-BR');
+                            }
                         }
                     },
                     scales: {
@@ -1018,184 +886,12 @@
                             grid: { display: false }
                         }
                     }
-                }
-            });
-        }
-
-        // Variável global para o gráfico do Censo
-        let chartCenso = null;
-        
-        // Variáveis para paginação da tabela
-        let paginaAtualTabela = 0;
-        const linhasPorPagina = 10;
-        let dadosTabelaCompletos = [];
-
-        // Inicializar Filtros do Censo
-        function inicializarFiltrosCenso() {
-            const filtroDRE = document.getElementById('filtroDRE');
-            const filtroEscola = document.getElementById('filtroEscola');
-            
-            dadosProcessados.censo.dres.forEach(dre => {
-                const option = document.createElement('option');
-                option.value = dre;
-                option.textContent = dre;
-                filtroDRE.appendChild(option);
-            });
-            
-            dadosProcessados.censo.escolas.forEach(escola => {
-                const option = document.createElement('option');
-                option.value = escola;
-                option.textContent = escola;
-                filtroEscola.appendChild(option);
-            });
-            
-            filtroDRE.addEventListener('change', atualizarCenso);
-            filtroEscola.addEventListener('change', atualizarCenso);
-        }
-
-        // Atualizar dados do Censo
-        function atualizarCenso() {
-            const dreSelec = document.getElementById('filtroDRE').value;
-            const escolaSelec = document.getElementById('filtroEscola').value;
-            
-            let dadosFiltrados = dadosProcessados.censo.dados;
-            
-            if (dreSelec) {
-                dadosFiltrados = dadosFiltrados.filter(d => d.dre === dreSelec);
-            }
-            if (escolaSelec) {
-                dadosFiltrados = dadosFiltrados.filter(d => d.escola === escolaSelec);
-            }
-            
-            atualizarGraficoCenso(dadosFiltrados);
-            atualizarTabelaCenso(dadosFiltrados);
-        }
-
-        // Atualizar Gráfico do Censo
-        function atualizarGraficoCenso(dados) {
-            const ctx = document.getElementById('chartCenso');
-            
-            const dados2023 = dados.filter(d => d.ano === 2023);
-            const dados2024 = dados.filter(d => d.ano === 2024);
-            
-            const total2023Med = dados2023.reduce((sum, d) => sum + d.qt_doc_med, 0);
-            const total2023Eja = dados2023.reduce((sum, d) => sum + d.qt_doc_eja_med, 0);
-            const total2024Med = dados2024.reduce((sum, d) => sum + d.qt_doc_med, 0);
-            const total2024Eja = dados2024.reduce((sum, d) => sum + d.qt_doc_eja_med, 0);
-            
-            if (chartCenso) {
-                chartCenso.destroy();
-            }
-            
-            chartCenso = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['2023', '2024'],
-                    datasets: [
-                        {
-                            label: 'Ensino Médio',
-                            data: [total2023Med, total2024Med],
-                            backgroundColor: 'rgba(11, 95, 165, 0.8)',
-                            borderColor: 'rgba(11, 95, 165, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'EJA/Ensino Médio',
-                            data: [total2023Eja, total2024Eja],
-                            backgroundColor: 'rgba(30, 144, 255, 0.8)',
-                            borderColor: 'rgba(30, 144, 255, 1)',
-                            borderWidth: 1
-                        }
-                    ]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { font: { size: 13 }, padding: 15 }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            padding: 12,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString('pt-BR') + ' professores';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(0, 0, 0, 0.05)' },
-                            ticks: {
-                                callback: function(value) {
-                                    return value.toLocaleString('pt-BR');
-                                }
-                            }
-                        },
-                        x: {
-                            grid: { display: false }
-                        }
-                    }
-                }
+                plugins: [ChartDataLabels]
             });
         }
 
-        // Atualizar Tabela do Censo com Paginação
-        function atualizarTabelaCenso(dados) {
-            dadosTabelaCompletos = dados;
-            paginaAtualTabela = 0;
-            renderizarPaginaTabela();
-        }
-        
-        function renderizarPaginaTabela() {
-            const tbody = document.getElementById('tabelaCenso');
-            tbody.innerHTML = '';
-            
-            const totalPaginas = Math.ceil(dadosTabelaCompletos.length / linhasPorPagina);
-            const inicio = paginaAtualTabela * linhasPorPagina;
-            const fim = inicio + linhasPorPagina;
-            const dadosPagina = dadosTabelaCompletos.slice(inicio, fim);
-            
-            dadosPagina.forEach(row => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${row.dre}</td>
-                        <td>${row.escola}</td>
-                        <td>${row.qt_doc_med.toLocaleString('pt-BR')}</td>
-                        <td>${row.qt_doc_eja_med.toLocaleString('pt-BR')}</td>
-                        <td>${row.ano}</td>
-                    </tr>
-                `;
-            });
-            
-            document.getElementById('paginaTabela').textContent = `${paginaAtualTabela + 1} / ${totalPaginas}`;
-            document.getElementById('btnPrevTabela').disabled = paginaAtualTabela === 0;
-            document.getElementById('btnNextTabela').disabled = paginaAtualTabela === totalPaginas - 1;
-        }
-        
-        // Event listeners para paginação da tabela
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('btnPrevTabela').addEventListener('click', () => {
-                if (paginaAtualTabela > 0) {
-                    paginaAtualTabela--;
-                    renderizarPaginaTabela();
-                }
-            });
-            
-            document.getElementById('btnNextTabela').addEventListener('click', () => {
-                const totalPaginas = Math.ceil(dadosTabelaCompletos.length / linhasPorPagina);
-                if (paginaAtualTabela < totalPaginas - 1) {
-                    paginaAtualTabela++;
-                    renderizarPaginaTabela();
-                }
-            });
-        });
-
-        // Criar Gráfico ICG
+        // Criar Gráfico ICG COM RÓTULOS
         function criarGraficoICG() {
             const ctx = document.getElementById('chartICG').getContext('2d');
             const dados = dadosProcessados.icg;
@@ -1289,9 +985,24 @@
                                     return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
                                 }
                             }
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 11
+                            },
+                            formatter: function(value, context) {
+                                // Só mostrar rótulo se o valor for maior que 2%
+                                if (value > 2) {
+                                    return value.toFixed(1) + '%';
+                                }
+                                return '';
+                            }
                         }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
             
             atualizarDestaquesICG(dados, anos);
@@ -1317,9 +1028,9 @@
                            (dadosUltimoAno.nivel_5 || 0);
             
             const texto = `
-                • <strong>${conc345.toFixed(1)}% das escolas</strong> concentram-se nos níveis 3, 4 e 5 (complexidade média-alta)<br>
-                • <strong>Nível ${nivelMaisComum}</strong> é o mais comum, com ${maiorValor.toFixed(1)}% das escolas em ${ultimoAno}<br>
-                • <strong>Muito poucas escolas</strong> no nível 1 (${(dadosUltimoAno.nivel_1 || 0).toFixed(1)}% em ${ultimoAno})<br>
+                • <strong>${conc345.toFixed(1)}% dos docentes</strong> concentram-se nos níveis 3, 4 e 5 (complexidade média-alta)<br>
+                • <strong>Nível ${nivelMaisComum}</strong> é o mais comum, com ${maiorValor.toFixed(1)}% dos docentes em ${ultimoAno}<br>
+                • <strong>Muito poucos docentes</strong> no nível 1 (${(dadosUltimoAno.nivel_1 || 0).toFixed(1)}% em ${ultimoAno})<br>
                 • <strong>Nível 6</strong> (máxima complexidade): ${(dadosUltimoAno.nivel_6 || 0).toFixed(1)}% em ${ultimoAno}
             `;
             
@@ -1330,10 +1041,8 @@
         function inicializarDashboard() {
             renderizarCards();
             criarGraficoDRE();
-            criarGraficoComponentes();
+            criarGraficosComponentes();
             criarGraficoComponentesProfessor();
-            inicializarFiltrosCenso();
-            atualizarCenso();
             criarGraficoICG();
         }
 
