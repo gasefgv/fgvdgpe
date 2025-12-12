@@ -1,0 +1,1348 @@
+{
+  "Matriculas_DRE": [
+    {
+      "nom_dre": "DEA",
+      "total_matriculas": 15024
+    },
+    {
+      "nom_dre": "DRE01",
+      "total_matriculas": 7784
+    },
+    {
+      "nom_dre": "DRE02",
+      "total_matriculas": 6975
+    },
+    {
+      "nom_dre": "DRE03",
+      "total_matriculas": 7380
+    },
+    {
+      "nom_dre": "DRE04",
+      "total_matriculas": 3330
+    },
+    {
+      "nom_dre": "DRE05",
+      "total_matriculas": 2359
+    },
+    {
+      "nom_dre": "DRE06",
+      "total_matriculas": 4293
+    },
+    {
+      "nom_dre": "DRE07",
+      "total_matriculas": 1569
+    },
+    {
+      "nom_dre": "DRE08",
+      "total_matriculas": 10716
+    },
+    {
+      "nom_dre": "DRE09",
+      "total_matriculas": 4226
+    }
+  ],
+  "Matriculas_Etapa": [
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 6347
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 7822
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Manutenção e Suporte em Informática - Integrado",
+      "total_matriculas": 36
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Nutrição e Dietética - Integrado",
+      "total_matriculas": 75
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Nutrição e Dietética - Integrado 1200h",
+      "total_matriculas": 83
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_matriculas": 14
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Redes de Computadores - Integrado - EMTI",
+      "total_matriculas": 82
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_matriculas": 194
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração  EMTI Concomitante Intercomplementar",
+      "total_matriculas": 85
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração - Integrado - EMTI ",
+      "total_matriculas": 229
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração Concomitante Intercomplementar",
+      "total_matriculas": 14
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Redes de Computadores  EMTI Concomitante Intercomplementar",
+      "total_matriculas": 25
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Redes de Computadores Concomitante Intercomplementar",
+      "total_matriculas": 18
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 2399
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 4888
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Modelagem do Vestuário - Integrado",
+      "total_matriculas": 21
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_matriculas": 111
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática  EMTI Concomitante Intercomplementar",
+      "total_matriculas": 71
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática Concomitante Intercomplementar",
+      "total_matriculas": 111
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática Integrado ao EMTI ",
+      "total_matriculas": 183
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 1601
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 5193
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Nutrição e Dietética - Integrado ao EMTI",
+      "total_matriculas": 100
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_matriculas": 81
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 1425
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 5772
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Informática - Integrado",
+      "total_matriculas": 56
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_matriculas": 127
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Edificações - Integrado",
+      "total_matriculas": 7
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Eletromecânica - Integrado",
+      "total_matriculas": 43
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 1405
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 1618
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Petróleo e Gás - Integrado",
+      "total_matriculas": 44
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Petróleo e Gás - Integrado EMTI",
+      "total_matriculas": 43
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Segurança do Trabalho - Integrado",
+      "total_matriculas": 81
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_matriculas": 50
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Técnico em Segurança do Trabalho Concomitante Intercomplementar",
+      "total_matriculas": 39
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Agroindústria - Integrado ao EMTI",
+      "total_matriculas": 82
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 478
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 1652
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Redes de Computadores - Integrado - EMTI",
+      "total_matriculas": 147
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Administração - Integrado",
+      "total_matriculas": 162
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Alimentos - Integrado",
+      "total_matriculas": 56
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Conjunto FICs - ADMINISTRAÇÃO Concomitante Intercomplementar",
+      "total_matriculas": 31
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Conjunto FICs - INFORMÁTICA Concomitante Intercomplementar",
+      "total_matriculas": 18
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 1708
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 1956
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Manutenção e Suporte em Informática - Integrado ao EMTI",
+      "total_matriculas": 31
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Nutrição e Dietética - Integrado",
+      "total_matriculas": 34
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Pedagogia da Alternância - Agropecuária - Integrado",
+      "total_matriculas": 52
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_matriculas": 35
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Segurança do Trabalho - Integrado",
+      "total_matriculas": 143
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Técnico em Administração - Integrado - EMTI ",
+      "total_matriculas": 67
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 662
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 907
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Automação Industrial - Integrado ao EMTI",
+      "total_matriculas": 468
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 2329
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 7043
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Informática - Integrado",
+      "total_matriculas": 259
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_matriculas": 527
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Técnico em Informática Integrado ao EMTI ",
+      "total_matriculas": 42
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Técnico em Segurança do Trabalho Concomitante Intercomplementar",
+      "total_matriculas": 48
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Conjunto FICs - AGROPECUÁRIA Concomitante Intercomplementar",
+      "total_matriculas": 22
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_matriculas": 1274
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_matriculas": 2705
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Guia de Turismo - Integrado",
+      "total_matriculas": 64
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Guia de Turísmo",
+      "total_matriculas": 65
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Nutrição e Dietética - Integrado ao EMTI",
+      "total_matriculas": 37
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Pedagogia da Alternância - Agropecuária - Integrado",
+      "total_matriculas": 59
+    }
+  ],
+  "Matriculas_Serie": [
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 5281
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 5129
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 4614
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 2738
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 2742
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 2304
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 2554
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 2339
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 2082
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 2712
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 2519
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 2149
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 1147
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 1175
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 1008
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 851
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 803
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 705
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 1522
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 1494
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 1277
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 615
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 514
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 440
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 4007
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 3635
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 3074
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "1ª Série",
+      "total_matriculas": 1630
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "2ª Série",
+      "total_matriculas": 1443
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "3ª Série",
+      "total_matriculas": 1153
+    }
+  ],
+  "Turmas_Etapa": [
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 199
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 213
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Manutenção e Suporte em Informática - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Nutrição e Dietética - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Nutrição e Dietética - Integrado 1200h",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Redes de Computadores - Integrado - EMTI",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_turmas": 8
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração  EMTI Concomitante Intercomplementar",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração - Integrado - EMTI ",
+      "total_turmas": 8
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Administração Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Redes de Computadores  EMTI Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_etapa": "Técnico em Redes de Computadores Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 74
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 147
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Modelagem do Vestuário - Integrado",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática  EMTI Concomitante Intercomplementar",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática Concomitante Intercomplementar",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_etapa": "Técnico em Informática Integrado ao EMTI ",
+      "total_turmas": 7
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 52
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 143
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Nutrição e Dietética - Integrado ao EMTI",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 46
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 174
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Informática - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_turmas": 6
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Edificações - Integrado",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Eletromecânica - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 49
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 46
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Petróleo e Gás - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Petróleo e Gás - Integrado EMTI",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Segurança do Trabalho - Integrado",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_etapa": "Técnico em Segurança do Trabalho Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Agroindústria - Integrado ao EMTI",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 16
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 52
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_etapa": "Redes de Computadores - Integrado - EMTI",
+      "total_turmas": 5
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Administração - Integrado",
+      "total_turmas": 5
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Alimentos - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Conjunto FICs - ADMINISTRAÇÃO Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Conjunto FICs - INFORMÁTICA Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 60
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 69
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Manutenção e Suporte em Informática - Integrado ao EMTI",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Nutrição e Dietética - Integrado",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Pedagogia da Alternância - Agropecuária - Integrado",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Redes de Computadores - Integrado",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Segurança do Trabalho - Integrado",
+      "total_turmas": 4
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_etapa": "Técnico em Administração - Integrado - EMTI ",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 24
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 33
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Automação Industrial - Integrado ao EMTI",
+      "total_turmas": 12
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 73
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 224
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Informática - Integrado",
+      "total_turmas": 10
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Segurança do Trabalho Integrado EMTI",
+      "total_turmas": 18
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Técnico em Informática Integrado ao EMTI ",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_etapa": "Técnico em Segurança do Trabalho Concomitante Intercomplementar",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Conjunto FICs - AGROPECUÁRIA Concomitante Intercomplementar",
+      "total_turmas": 1
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Ensino Médio em Tempo Integral (9 horas)",
+      "total_turmas": 38
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Ensino Médio em Tempo Parcial",
+      "total_turmas": 76
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Guia de Turismo - Integrado",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Guia de Turísmo",
+      "total_turmas": 2
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Nutrição e Dietética - Integrado ao EMTI",
+      "total_turmas": 3
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_etapa": "Pedagogia da Alternância - Agropecuária - Integrado",
+      "total_turmas": 3
+    }
+  ],
+  "Alunos_Turma_DRE": [
+    {
+      "nom_dre": "DEA",
+      "media_alunos_turma": 33.7,
+      "min_alunos_turma": 13,
+      "max_alunos_turma": 51,
+      "total_turmas": 446
+    },
+    {
+      "nom_dre": "DRE01",
+      "media_alunos_turma": 32.4,
+      "min_alunos_turma": 14,
+      "max_alunos_turma": 60,
+      "total_turmas": 240
+    },
+    {
+      "nom_dre": "DRE02",
+      "media_alunos_turma": 34.5,
+      "min_alunos_turma": 10,
+      "max_alunos_turma": 44,
+      "total_turmas": 202
+    },
+    {
+      "nom_dre": "DRE03",
+      "media_alunos_turma": 32.4,
+      "min_alunos_turma": 13,
+      "max_alunos_turma": 50,
+      "total_turmas": 228
+    },
+    {
+      "nom_dre": "DRE04",
+      "media_alunos_turma": 30.6,
+      "min_alunos_turma": 7,
+      "max_alunos_turma": 46,
+      "total_turmas": 109
+    },
+    {
+      "nom_dre": "DRE05",
+      "media_alunos_turma": 31.0,
+      "min_alunos_turma": 10,
+      "max_alunos_turma": 44,
+      "total_turmas": 76
+    },
+    {
+      "nom_dre": "DRE06",
+      "media_alunos_turma": 28.6,
+      "min_alunos_turma": 10,
+      "max_alunos_turma": 45,
+      "total_turmas": 150
+    },
+    {
+      "nom_dre": "DRE07",
+      "media_alunos_turma": 27.5,
+      "min_alunos_turma": 1,
+      "max_alunos_turma": 44,
+      "total_turmas": 57
+    },
+    {
+      "nom_dre": "DRE08",
+      "media_alunos_turma": 31.4,
+      "min_alunos_turma": 12,
+      "max_alunos_turma": 46,
+      "total_turmas": 341
+    },
+    {
+      "nom_dre": "DRE09",
+      "media_alunos_turma": 33.8,
+      "min_alunos_turma": 6,
+      "max_alunos_turma": 48,
+      "total_turmas": 125
+    }
+  ],
+  "Distorcao_DRE": [
+    {
+      "nom_dre": "DEA",
+      "total_alunos": 15023,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 15023,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE01",
+      "total_alunos": 7784,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 7784,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE02",
+      "total_alunos": 6975,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 6975,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE03",
+      "total_alunos": 7380,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 7380,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE04",
+      "total_alunos": 3330,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 3330,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE05",
+      "total_alunos": 2359,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 2359,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE06",
+      "total_alunos": 4293,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 4293,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE07",
+      "total_alunos": 1569,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 1569,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE08",
+      "total_alunos": 10716,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 10716,
+      "percentual_sem_distorcao": 100
+    },
+    {
+      "nom_dre": "DRE09",
+      "total_alunos": 4228,
+      "alunos_com_distorcao": 0,
+      "percentual_com_distorcao": 0,
+      "alunos_sem_distorcao": 4228,
+      "percentual_sem_distorcao": 100
+    }
+  ],
+  "Abandono_DRE": [
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 52
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 60
+    },
+    {
+      "nom_dre": "DEA",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 48
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 15
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 69
+    },
+    {
+      "nom_dre": "DRE01",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 67
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 20
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 14
+    },
+    {
+      "nom_dre": "DRE02",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 7
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 74
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 56
+    },
+    {
+      "nom_dre": "DRE03",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 28
+    },
+    {
+      "nom_dre": "DRE04",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 2
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 20
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 15
+    },
+    {
+      "nom_dre": "DRE05",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 7
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 17
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 9
+    },
+    {
+      "nom_dre": "DRE06",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 12
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 10
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 10
+    },
+    {
+      "nom_dre": "DRE07",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 4
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 43
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 31
+    },
+    {
+      "nom_dre": "DRE08",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 11
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "1ª Série",
+      "total_alunos_abandono": 11
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "2ª Série",
+      "total_alunos_abandono": 12
+    },
+    {
+      "nom_dre": "DRE09",
+      "nom_serie": "3ª Série",
+      "total_alunos_abandono": 9
+    }
+  ],
+  "Censo": [
+    {
+      "nom_dre": "DEA",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 16016,
+      "Quantidade de Matriculas - Ensino Médio Integral": 7756,
+      "Quantidade de Turmas - Ensino Médio": 463,
+      "Quantidade de Turmas - Ensino Médio Integral": 224
+    },
+    {
+      "nom_dre": "DEA",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 16448,
+      "Quantidade de Matriculas - Ensino Médio Integral": 7862,
+      "Quantidade de Turmas - Ensino Médio": 473,
+      "Quantidade de Turmas - Ensino Médio Integral": 224
+    },
+    {
+      "nom_dre": "DRE01",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 9451,
+      "Quantidade de Matriculas - Ensino Médio Integral": 2343,
+      "Quantidade de Turmas - Ensino Médio": 290,
+      "Quantidade de Turmas - Ensino Médio Integral": 73
+    },
+    {
+      "nom_dre": "DRE01",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 9554,
+      "Quantidade de Matriculas - Ensino Médio Integral": 2740,
+      "Quantidade de Turmas - Ensino Médio": 295,
+      "Quantidade de Turmas - Ensino Médio Integral": 84
+    },
+    {
+      "nom_dre": "DRE02",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 7628,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1886,
+      "Quantidade de Turmas - Ensino Médio": 215,
+      "Quantidade de Turmas - Ensino Médio Integral": 54
+    },
+    {
+      "nom_dre": "DRE02",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 7635,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1869,
+      "Quantidade de Turmas - Ensino Médio": 216,
+      "Quantidade de Turmas - Ensino Médio Integral": 52
+    },
+    {
+      "nom_dre": "DRE03",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 7586,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1140,
+      "Quantidade de Turmas - Ensino Médio": 230,
+      "Quantidade de Turmas - Ensino Médio Integral": 35
+    },
+    {
+      "nom_dre": "DRE03",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 8103,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1531,
+      "Quantidade de Turmas - Ensino Médio": 246,
+      "Quantidade de Turmas - Ensino Médio Integral": 44
+    },
+    {
+      "nom_dre": "DRE04",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 3625,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1430,
+      "Quantidade de Turmas - Ensino Médio": 114,
+      "Quantidade de Turmas - Ensino Médio Integral": 45
+    },
+    {
+      "nom_dre": "DRE04",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 3722,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1634,
+      "Quantidade de Turmas - Ensino Médio": 119,
+      "Quantidade de Turmas - Ensino Médio Integral": 49
+    },
+    {
+      "nom_dre": "DRE05",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 2758,
+      "Quantidade de Matriculas - Ensino Médio Integral": 559,
+      "Quantidade de Turmas - Ensino Médio": 86,
+      "Quantidade de Turmas - Ensino Médio Integral": 17
+    },
+    {
+      "nom_dre": "DRE05",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 2853,
+      "Quantidade de Matriculas - Ensino Médio Integral": 628,
+      "Quantidade de Turmas - Ensino Médio": 90,
+      "Quantidade de Turmas - Ensino Médio Integral": 19
+    },
+    {
+      "nom_dre": "DRE06",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 4562,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1806,
+      "Quantidade de Turmas - Ensino Médio": 168,
+      "Quantidade de Turmas - Ensino Médio Integral": 60
+    },
+    {
+      "nom_dre": "DRE06",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 4689,
+      "Quantidade de Matriculas - Ensino Médio Integral": 2014,
+      "Quantidade de Turmas - Ensino Médio": 165,
+      "Quantidade de Turmas - Ensino Médio Integral": 65
+    },
+    {
+      "nom_dre": "DRE07",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 1721,
+      "Quantidade de Matriculas - Ensino Médio Integral": 520,
+      "Quantidade de Turmas - Ensino Médio": 66,
+      "Quantidade de Turmas - Ensino Médio Integral": 18
+    },
+    {
+      "nom_dre": "DRE07",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 1667,
+      "Quantidade de Matriculas - Ensino Médio Integral": 645,
+      "Quantidade de Turmas - Ensino Médio": 62,
+      "Quantidade de Turmas - Ensino Médio Integral": 20
+    },
+    {
+      "nom_dre": "DRE08",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 11392,
+      "Quantidade de Matriculas - Ensino Médio Integral": 2970,
+      "Quantidade de Turmas - Ensino Médio": 344,
+      "Quantidade de Turmas - Ensino Médio Integral": 85
+    },
+    {
+      "nom_dre": "DRE08",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 12144,
+      "Quantidade de Matriculas - Ensino Médio Integral": 3497,
+      "Quantidade de Turmas - Ensino Médio": 377,
+      "Quantidade de Turmas - Ensino Médio Integral": 99
+    },
+    {
+      "nom_dre": "DRE09",
+      "ano": 2023,
+      "Quantidade de Matriculas - Ensino Médio": 4650,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1418,
+      "Quantidade de Turmas - Ensino Médio": 134,
+      "Quantidade de Turmas - Ensino Médio Integral": 42
+    },
+    {
+      "nom_dre": "DRE09",
+      "ano": 2024,
+      "Quantidade de Matriculas - Ensino Médio": 4597,
+      "Quantidade de Matriculas - Ensino Médio Integral": 1442,
+      "Quantidade de Turmas - Ensino Médio": 136,
+      "Quantidade de Turmas - Ensino Médio Integral": 44
+    }
+  ]
+}
