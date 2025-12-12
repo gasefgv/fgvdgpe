@@ -18,6 +18,7 @@
             --branco: #FFFFFF;
             --sombra-suave: 0 4px 15px rgba(11, 95, 165, 0.1);
             --sombra-hover: 0 8px 25px rgba(11, 95, 165, 0.2);
+            --sidebar-width: 260px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,6 +30,99 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--branco);
+            box-shadow: 2px 0 15px rgba(11, 95, 165, 0.08);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--azul-pastel);
+        }
+
+        .sidebar-title {
+            color: var(--azul-escuro);
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .sidebar-subtitle {
+            color: var(--cinza-texto);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 1rem;
+            color: var(--cinza-texto);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav-link:hover {
+            background: var(--azul-pastel);
+            color: var(--azul-escuro);
+            transform: translateX(4px);
+        }
+
+        .sidebar-nav-link.active {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            color: var(--branco);
+        }
+
+        .sidebar-icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            left: 1rem;
+            top: 5.5rem;
+            z-index: 101;
+            background: var(--azul-escuro);
+            color: var(--branco);
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            cursor: pointer;
+            box-shadow: var(--sombra-suave);
+        }
+
+        /* CONTENT WRAPPER */
+        .content-wrapper {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
         }
 
         .header {
@@ -82,7 +176,7 @@
         .intro-section { text-align: center; margin-bottom: 2.5rem; }
         .intro-title { color: var(--azul-escuro); font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
 
-        .category-section { margin-bottom: 2.5rem; }
+        .category-section { margin-bottom: 2.5rem; scroll-margin-top: 100px; }
         .category-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--azul-claro); display: flex; align-items: center; gap: 0.5rem; }
         .category-icon { width: 22px; height: 22px; }
 
@@ -95,6 +189,8 @@
 
         .card-thumbnail { background: linear-gradient(135deg, var(--azul-pastel) 0%, #e3f2fd 100%); height: 100px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(11, 95, 165, 0.08); }
         .card-thumbnail.destaque { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+        .card-thumbnail.looker { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
+        .card-thumbnail.sistema { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
         .card-icon { width: 50px; height: 50px; opacity: 0.9; }
         .card-body { padding: 1.25rem; text-align: center; }
         .card-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; }
@@ -103,12 +199,33 @@
         .btn-open { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 0.55rem 1.25rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; border: none; cursor: pointer; }
         .btn-open:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(11, 95, 165, 0.3); color: var(--branco); }
         .btn-open.disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; background: #999; }
+        .btn-open.looker { background: linear-gradient(135deg, #f57c00 0%, #ff9800 100%); }
+        .btn-open.looker:hover { box-shadow: 0 4px 15px rgba(245, 124, 0, 0.3); }
+        .btn-open.sistema { background: linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%); }
+        .btn-open.sistema:hover { box-shadow: 0 4px 15px rgba(123, 31, 162, 0.3); }
 
         .footer { background-color: var(--branco); border-top: 1px solid rgba(11, 95, 165, 0.1); padding: 1.25rem 0; margin-top: auto; }
         .footer-content { text-align: center; color: var(--cinza-texto); font-size: 0.85rem; }
         .footer-logo { height: 35px; margin-bottom: 0.5rem; opacity: 0.8; }
 
         @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            .content-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+
             .header-text { position: relative; left: auto; transform: none; }
             .header-content { flex-direction: column; gap: 0.75rem; }
             .header-spacer { display: none; }
@@ -119,260 +236,460 @@
             .views-grid { grid-template-columns: 1fr; } 
             .container { padding: 0 1rem; }
         }
+
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="header-logo">
-                    <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Navegação</h2>
+            <p class="sidebar-subtitle">Acesso rápido às seções</p>
+        </div>
+        <nav>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#perfil-escolas" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                        </svg>
+                        Perfil das Escolas
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#indicadores" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Indicadores Educacionais
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#fluxo" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                        </svg>
+                        Fluxo
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#escolas-prioritarias" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
+                        </svg>
+                        Escolas Prioritárias
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#lookers" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        Lookers Desenvolvidos
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#sistemas" class="sidebar-nav-link">
+                        <svg class="sidebar-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L14.4 2.81c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                        </svg>
+                        Sistemas Elaborados
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- SIDEBAR TOGGLE BUTTON -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <!-- CONTENT WRAPPER -->
+    <div class="content-wrapper">
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-logo">
+                        <img src="assets/logo.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+                    </div>
+                    <div class="header-text">
+                        <h1 class="header-title">Gestão para a Aprendizagem</h1>
+                        <p class="header-subtitle">Painel de Suporte de Dados - Produto de Avaliação das Unidades Escolares</p>
+                    </div>
+                    <div class="header-spacer"></div>
                 </div>
-                <div class="header-text">
-                    <h1 class="header-title">Gestão para a Aprendizagem</h1>
-                    <p class="header-subtitle">Painel de Suporte de Dados - Produto de Avaliação das Unidades Escolares</p>
-                </div>
-                <div class="header-spacer"></div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main class="main-content">
-        <div class="container">
-            <section class="intro-section">
-                <h2 class="intro-title">Selecione uma visão abaixo para explorar os indicadores de forma interativa</h2>
-            </section>
+        <main class="main-content">
+            <div class="container">
+                <section class="intro-section">
+                    <h2 class="intro-title">Selecione uma visão abaixo para explorar os indicadores de forma interativa</h2>
+                </section>
 
-            <!-- SEÇÃO: PERFIL DAS ESCOLAS -->
-            <section class="category-section">
-                <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                    </svg>
-                    PERFIL DAS ESCOLAS
-                </h3>
-                <div class="views-grid">
-                    <!-- Card: Números Gerais -->
-                    <article class="view-card disabled">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Números Gerais</h3>
-                            <p class="card-description">Visão geral do sistema estadual: número de escolas, municípios atendidos e distribuição por Diretoria Regional.</p>
-                            <span class="btn-open disabled">Em Breve</span>
-                        </div>
-                    </article>
+                <!-- SEÇÃO: PERFIL DAS ESCOLAS -->
+                <section class="category-section" id="perfil-escolas">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                        </svg>
+                        PERFIL DAS ESCOLAS
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: Números Gerais -->
+                        <article class="view-card disabled">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Números Gerais</h3>
+                                <p class="card-description">Visão geral do sistema estadual: número de escolas, municípios atendidos e distribuição por Diretoria Regional.</p>
+                                <span class="btn-open disabled">Em Breve</span>
+                            </div>
+                        </article>
 
-                    <!-- Card: Perfil das Escolas Estaduais -->
-                    <article class="view-card">
-                        <div class="card-thumbnail destaque">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#1565c0">
-                                <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Perfil das Escolas Estaduais</h3>
-                            <p class="card-description">Visão completa das 201 escolas estaduais: modalidades, turnos de funcionamento, localização geográfica e lista detalhada por DRE.</p>
-                            <a href="perfil_escolas.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
+                        <!-- Card: Perfil das Escolas Estaduais -->
+                        <article class="view-card">
+                            <div class="card-thumbnail destaque">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#1565c0">
+                                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Perfil das Escolas Estaduais</h3>
+                                <p class="card-description">Visão completa das 201 escolas estaduais: modalidades, turnos de funcionamento, localização geográfica e lista detalhada por DRE.</p>
+                                <a href="perfil_escolas.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-                    <!-- Card: Infraestrutura das Escolas -->
-                    <article class="view-card">
-                        <div class="card-thumbnail destaque">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
-                                <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Infraestrutura das Escolas</h3>
-                            <p class="card-description">Diagnóstico completo baseado no Censo Escolar 2023: serviços básicos, tecnologia, acessibilidade e recursos pedagógicos.</p>
-                            <a href="infraestrutura.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
+                        <!-- Card: Infraestrutura das Escolas -->
+                        <article class="view-card">
+                            <div class="card-thumbnail destaque">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
+                                    <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Infraestrutura das Escolas</h3>
+                                <p class="card-description">Diagnóstico completo baseado no Censo Escolar 2023: serviços básicos, tecnologia, acessibilidade e recursos pedagógicos.</p>
+                                <a href="infraestrutura.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-            <!-- SEÇÃO: INDICADORES EDUCACIONAIS -->
-            <section class="category-section">
-                <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                    </svg>
-                    INDICADORES EDUCACIONAIS
-                </h3>
-                <div class="views-grid">
-                    <!-- Card: SAEB/SAESE/Plurall -->
-                    <article class="view-card">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Proficiência e Frequência SAEB, SAESE e Plurall</h3>
-                            <p class="card-description">Mapa por DREs e visões sobre dados de Proficiência e Frequência SAEB (2023), SAESE (2024) e Avaliações Plurall (2025).</p>
-                            <a href="mapa_geral.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
+                        <!-- Card: Números Docentes -->
+                        <article class="view-card">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Números Docentes</h3>
+                                <p class="card-description">Quantidade de docentes por escola, DRE e disciplina. Formação, regime de trabalho e carga horária distribuída.</p>
+                                <a href="docentes.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
 
-                    <!-- Card: IDEB -->
-                    <article class="view-card">
-                        <div class="card-thumbnail destaque">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">IDEB — Ensino Médio Estadual</h3>
-                            <p class="card-description">Evolução histórica do IDEB de Sergipe (2005-2023) com comparativos regionais e nacionais. Análise de tendências e ranking dos estados.</p>
-                            <a href="ideb.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
+                <!-- SEÇÃO: INDICADORES EDUCACIONAIS -->
+                <section class="category-section" id="indicadores">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        INDICADORES EDUCACIONAIS
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: SAEB/SAESE/Plurall -->
+                        <article class="view-card">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Proficiência e Frequência SAEB, SAESE e Plurall</h3>
+                                <p class="card-description">Mapa por DREs e visões sobre dados de Proficiência e Frequência SAEB (2023), SAESE (2024) e Avaliações Plurall (2025).</p>
+                                <a href="mapa_geral.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-                    <!-- Card: ICG -->
-                    <article class="view-card">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Complexidade de Gestão Escolar (ICG)</h3>
-                            <p class="card-description">Indicador de Complexidade de Gestão (2022-2024). Classificação das escolas em 6 níveis segundo porte, turnos e etapas oferecidas.</p>
-                            <a href="icg.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
+                        <!-- Card: IDEB -->
+                        <article class="view-card">
+                            <div class="card-thumbnail destaque">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">IDEB — Ensino Médio Estadual</h3>
+                                <p class="card-description">Evolução histórica do IDEB de Sergipe (2005-2023) com comparativos regionais e nacionais. Análise de tendências e ranking dos estados.</p>
+                                <a href="ideb.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-            <!-- SEÇÃO: FLUXO -->
-            <section class="category-section">
-                <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
-                    </svg>
-                    FLUXO
-                </h3>
-                <div class="views-grid">
-                    <!-- Card: Turmas e Matrículas -->
-                    <article class="view-card disabled">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Turmas e Matrículas</h3>
-                            <p class="card-description">Número de turmas e matrículas por etapa de ensino, série e DRE. Média de alunos por turma e distribuição geográfica.</p>
-                            <span class="btn-open disabled">Em Breve</span>
-                        </div>
-                    </article>
+                        <!-- Card: ICG -->
+                        <article class="view-card">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Complexidade de Gestão Escolar (ICG)</h3>
+                                <p class="card-description">Indicador de Complexidade de Gestão (2022-2024). Classificação das escolas em 6 níveis segundo porte, turnos e etapas oferecidas.</p>
+                                <a href="icg.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
 
-                    <!-- Card: Fluxo -->
-                    <article class="view-card disabled">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Fluxo</h3>
-                            <p class="card-description">Taxas de aprovação, reprovação, abandono e distorção idade-série por DRE e escola. Análise de progressão escolar.</p>
-                            <span class="btn-open disabled">Em Breve</span>
-                        </div>
-                    </article>
+                <!-- SEÇÃO: FLUXO -->
+                <section class="category-section" id="fluxo">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+                        </svg>
+                        FLUXO
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: Fluxo -->
+                        <article class="view-card disabled">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo</h3>
+                                <p class="card-description">Taxas de aprovação, reprovação, abandono e distorção idade-série por DRE e escola. Análise de progressão escolar.</p>
+                                <span class="btn-open disabled">Em Breve</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
 
-                    <!-- Card: Números Docentes -->
-                    <article class="view-card disabled">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Números Docentes</h3>
-                            <p class="card-description">Quantidade de docentes por escola, DRE e disciplina. Formação, regime de trabalho e carga horária distribuída.</p>
-                            <a href="docentes.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                           </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
+                <!-- SEÇÃO: ESCOLAS PRIORITÁRIAS PILOTO -->
+                <section class="category-section" id="escolas-prioritarias">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
+                        </svg>
+                        ESCOLAS PRIORITÁRIAS PILOTO
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: Escolas Prioritárias por DR -->
+                        <article class="view-card">
+                            <div class="card-thumbnail">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                                    <path d="M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Escolas Prioritárias por DR</h3>
+                                <p class="card-description">Lista das 5 escolas prioritárias de cada Diretoria Regional para acompanhamento intensivo. DEA e DRE08 incluem 10 escolas (5 por articuladora).</p>
+                                <a href="escolas_prioritarias.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-            <!-- SEÇÃO: ESCOLAS PRIORITÁRIAS PILOTO -->
-            <section class="category-section">
-                <h3 class="category-title">
-                    <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
-                    </svg>
-                    ESCOLAS PRIORITÁRIAS PILOTO
-                </h3>
-                <div class="views-grid">
-                    <!-- Card: Escolas Prioritárias por DR -->
-                    <article class="view-card">
-                        <div class="card-thumbnail">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
-                                <path d="M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Escolas Prioritárias por DR</h3>
-                            <p class="card-description">Lista das 5 escolas prioritárias de cada Diretoria Regional para acompanhamento intensivo. DEA e DRE08 incluem 10 escolas (5 por articuladora).</p>
-                            <a href="escolas_prioritarias.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
+                        <!-- Card: Sistema de Priorização -->
+                        <article class="view-card">
+                            <div class="card-thumbnail destaque">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#d84315">
+                                    <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Sistema de Priorização das Escolas</h3>
+                                <p class="card-description">Score de prioridade para SAEB 2025 baseado em participação, desempenho e tamanho. Ranking interativo com mapa de dispersão e filtros por DRE.</p>
+                                <a href="https://matheus-bianco.github.io/sergipedgpe/priorizacao_saeb.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
 
-                    <!-- Card: Sistema de Priorização -->
-                    <article class="view-card">
-                        <div class="card-thumbnail destaque">
-                            <svg class="card-icon" viewBox="0 0 24 24" fill="#d84315">
-                                <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
-                            </svg>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">Sistema de Priorização das Escolas</h3>
-                            <p class="card-description">Score de prioridade para SAEB 2025 baseado em participação, desempenho e tamanho. Ranking interativo com mapa de dispersão e filtros por DRE.</p>
-                            <a href="https://matheus-bianco.github.io/sergipedgpe/priorizacao_saeb.html" class="btn-open">
-                                <span>Abrir Visão</span>
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </section>
-        </div>
-    </main>
+                <!-- SEÇÃO: LOOKERS DESENVOLVIDOS -->
+                <section class="category-section" id="lookers">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        LOOKERS DESENVOLVIDOS
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: Resultados Formulário SAEB 2025 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M11 2v20c-5.07-.5-9-4.79-9-10s3.93-9.5 9-10zm2.03 0v8.99H22c-.47-4.74-4.24-8.52-8.97-8.99zm0 11.01V22c4.74-.47 8.5-4.25 8.97-8.99h-8.97z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Formulário Ações ao SAEB 2025</h3>
+                                <p class="card-description">Dashboard interativo com os resultados do formulário de ações das escolas para preparação do SAEB 2025.</p>
+                                <a href="https://lookerstudio.google.com/s/pN3CO9hGTDI" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <img src="assets/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
-                <p>Gestão para a Aprendizagem — Sergipe | Desenvolvido em parceria com a FGV</p>
+                        <!-- Card: Avaliação Formativa Plurall -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M11 2v20c-5.07-.5-9-4.79-9-10s3.93-9.5 9-10zm2.03 0v8.99H22c-.47-4.74-4.24-8.52-8.97-8.99zm0 11.01V22c4.74-.47 8.5-4.25 8.97-8.99h-8.97z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Avaliação Formativa Plurall</h3>
+                                <p class="card-description">Resultados da Avaliação Formativa Plurall realizada entre 29/09 e 03/10. Análise de desempenho por escola e DRE.</p>
+                                <a href="https://lookerstudio.google.com/s/kZKudfChmBs" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: Avaliação Diagnóstica Plurall -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M11 2v20c-5.07-.5-9-4.79-9-10s3.93-9.5 9-10zm2.03 0v8.99H22c-.47-4.74-4.24-8.52-8.97-8.99zm0 11.01V22c4.74-.47 8.5-4.25 8.97-8.99h-8.97z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Avaliação Diagnóstica Plurall</h3>
+                                <p class="card-description">Resultados da Avaliação Diagnóstica Plurall realizada entre 19/08 e 25/08. Diagnóstico inicial de proficiência dos estudantes.</p>
+                                <a href="https://lookerstudio.google.com/s/vmKXI6c6YkI" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- SEÇÃO: SISTEMAS ELABORADOS -->
+                <section class="category-section" id="sistemas">
+                    <h3 class="category-title">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94L14.4 2.81c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                        </svg>
+                        SISTEMAS ELABORADOS
+                    </h3>
+                    <div class="views-grid">
+                        <!-- Card: Sistema de Monitoramento de Fluxo -->
+                        <article class="view-card">
+                            <div class="card-thumbnail sistema">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#7b1fa2">
+                                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Sistema de Monitoramento de Fluxo</h3>
+                                <p class="card-description">Sistema interno para monitoramento de fluxo escolar desenvolvido pela equipe FGV. Acesso restrito à equipe técnica.</p>
+                                <a href="https://script.google.com/macros/s/AKfycbwPZ9LCUxhlrNmQfaA0bR9O4ZqJileZHRVG0FQy5Xk3QwxOAW21kiXjsXaIIMFIyIpt/exec" target="_blank" class="btn-open sistema">
+                                    <span>Abrir Sistema</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
             </div>
-        </div>
-    </footer>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <img src="assets/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+                    <p>Gestão para a Aprendizagem — Sergipe | Desenvolvido em parceria com a FGV</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992) {
+                if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+
+        // Highlight active section in sidebar
+        const sections = document.querySelectorAll('.category-section');
+        const navLinks = document.querySelectorAll('.sidebar-nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close sidebar on nav link click (mobile)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
