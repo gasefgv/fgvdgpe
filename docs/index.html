@@ -180,6 +180,15 @@
         .category-title { color: var(--azul-escuro); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--azul-claro); display: flex; align-items: center; gap: 0.5rem; }
         .category-icon { width: 22px; height: 22px; }
 
+        .subsection-title {
+            color: var(--azul-medio);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--azul-medio);
+        }
+
         .views-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
 
         .view-card { background: var(--branco); border-radius: 14px; box-shadow: var(--sombra-suave); overflow: hidden; transition: all 0.3s ease; border: 1px solid rgba(11, 95, 165, 0.08); }
@@ -478,17 +487,20 @@
                         FLUXO
                     </h3>
                     <div class="views-grid">
-                        <!-- Card: Fluxo -->
-                        <article class="view-card disabled">
-                            <div class="card-thumbnail">
-                                <svg class="card-icon" viewBox="0 0 24 24" fill="#0b5fa5">
+                        <!-- Card: Indicadores de Fluxo Escolar -->
+                        <article class="view-card">
+                            <div class="card-thumbnail destaque">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#2e7d32">
                                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                                 </svg>
                             </div>
                             <div class="card-body">
-                                <h3 class="card-title">Fluxo</h3>
-                                <p class="card-description">Taxas de aprovação, reprovação, abandono e distorção idade-série por DRE e escola. Análise de progressão escolar.</p>
-                                <span class="btn-open disabled">Em Breve</span>
+                                <h3 class="card-title">Indicadores de Fluxo Escolar</h3>
+                                <p class="card-description">Taxas de aprovação, reprovação, abandono e distorção idade-série por DRE e escola. Análise de progressão escolar e matrículas.</p>
+                                <a href="fluxo.html" class="btn-open">
+                                    <span>Abrir Visão</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                </a>
                             </div>
                         </article>
                     </div>
@@ -547,6 +559,8 @@
                         </svg>
                         LOOKERS DESENVOLVIDOS
                     </h3>
+                    
+                    <!-- Subseção: Avaliações -->
                     <div class="views-grid">
                         <!-- Card: Resultados Formulário SAEB 2025 -->
                         <article class="view-card">
@@ -593,6 +607,197 @@
                                 <h3 class="card-title">Avaliação Diagnóstica Plurall</h3>
                                 <p class="card-description">Resultados da Avaliação Diagnóstica Plurall realizada entre 19/08 e 25/08. Diagnóstico inicial de proficiência dos estudantes.</p>
                                 <a href="https://lookerstudio.google.com/s/vmKXI6c6YkI" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Subseção: Acompanhamento de Fluxo por DR -->
+                    <h4 class="subsection-title">Acompanhamento de Fluxo por DR</h4>
+                    <div class="views-grid">
+                        <!-- Card: Rede -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - Rede Estadual</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar consolidado de toda a rede estadual de ensino de Sergipe.</p>
+                                <a href="https://lookerstudio.google.com/reporting/07f317bd-b0f5-4970-a083-696a45290c3f" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DEA -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DEA</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria de Educação de Aracaju.</p>
+                                <a href="https://lookerstudio.google.com/reporting/8e7d66b4-b5bc-4936-8d4e-29d1c6a06ad0" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE01 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE01</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 01.</p>
+                                <a href="https://lookerstudio.google.com/reporting/c3c17a36-f439-4e85-a56c-75f4a81a096b" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE02 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE02</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 02.</p>
+                                <a href="https://lookerstudio.google.com/reporting/db7153ae-db21-41a1-b471-ebeeae3511fa" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE03 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE03</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 03.</p>
+                                <a href="https://lookerstudio.google.com/reporting/e8e12e70-bdb8-414c-8a42-c79b5b21ce29" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE04 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE04</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 04.</p>
+                                <a href="https://lookerstudio.google.com/reporting/a32a7884-2922-48ff-a056-5780ac72746b" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE05 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE05</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 05.</p>
+                                <a href="https://lookerstudio.google.com/reporting/ccbe3879-4b0d-4f14-bd01-2ba3ef7977b7" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE06 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE06</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 06.</p>
+                                <a href="https://lookerstudio.google.com/reporting/0b482080-4145-494d-91ab-b50274624e38" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE07 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE07</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 07.</p>
+                                <a href="https://lookerstudio.google.com/reporting/888700d0-3827-41a6-aac1-eed9a7024d04" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE08 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE08</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 08.</p>
+                                <a href="https://lookerstudio.google.com/reporting/8c3b2cdb-5ebd-4b66-8b45-85405109b88b" target="_blank" class="btn-open looker">
+                                    <span>Abrir Looker</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Card: DRE09 -->
+                        <article class="view-card">
+                            <div class="card-thumbnail looker">
+                                <svg class="card-icon" viewBox="0 0 24 24" fill="#f57c00">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Fluxo - DRE09</h3>
+                                <p class="card-description">Monitoramento de fluxo escolar da Diretoria Regional de Educação 09.</p>
+                                <a href="https://lookerstudio.google.com/reporting/04edfea3-75af-4c53-8b07-dc6850e4b28a" target="_blank" class="btn-open looker">
                                     <span>Abrir Looker</span>
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
                                 </a>
