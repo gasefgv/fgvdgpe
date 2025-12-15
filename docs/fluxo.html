@@ -377,6 +377,7 @@
                     </div>
                 </div>
 
+                <!-- Card de Aprovação comentado - dados não disponíveis
                 <div class="chart-card">
                     <h2>
                         <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -388,7 +389,9 @@
                         <canvas id="chartAprovacao"></canvas>
                     </div>
                 </div>
+                -->
 
+                <!-- Card de Reprovação comentado - dados não disponíveis  
                 <div class="chart-card">
                     <h2>
                         <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -400,6 +403,7 @@
                         <canvas id="chartReprovacao"></canvas>
                     </div>
                 </div>
+                -->
 
                 <div class="chart-card">
                     <h2>
@@ -535,24 +539,28 @@
                 return;
             }
 
+            // Total de Matrículas
             const totalMat = dadosCompletos.Matriculas_DRE.reduce((sum, d) => sum + d.total_matriculas, 0);
             document.getElementById('totalMatriculas').textContent = totalMat.toLocaleString('pt-BR');
 
-            if (dadosCompletos.Distorcao_IdadeSerie && dadosCompletos.Distorcao_IdadeSerie.length > 0) {
-                const distorcoes = dadosCompletos.Distorcao_IdadeSerie.map(d => d.taxa_distorcao);
+            // Média de Distorção (usando Distorcao_DRE)
+            if (dadosCompletos.Distorcao_DRE && dadosCompletos.Distorcao_DRE.length > 0) {
+                const distorcoes = dadosCompletos.Distorcao_DRE.map(d => d.percentual_com_distorcao);
                 const mediaDistorcao = distorcoes.reduce((a, b) => a + b, 0) / distorcoes.length;
                 document.getElementById('mediaDistorcao').textContent = mediaDistorcao.toFixed(1) + '%';
+            } else {
+                document.getElementById('mediaDistorcao').textContent = 'N/D';
             }
 
-            if (dadosCompletos.Taxa_Aprovacao && dadosCompletos.Taxa_Aprovacao.length > 0) {
-                const aprovacoes = dadosCompletos.Taxa_Aprovacao.map(d => d.taxa_aprovacao);
-                const mediaAprovacao = aprovacoes.reduce((a, b) => a + b, 0) / aprovacoes.length;
-                document.getElementById('mediaAprovacao').textContent = mediaAprovacao.toFixed(1) + '%';
-            }
+            // Taxa de Aprovação (não disponível nos dados)
+            document.getElementById('mediaAprovacao').textContent = 'N/D';
 
-            if (dadosCompletos.Abandono && dadosCompletos.Abandono.length > 0) {
-                const totalAband = dadosCompletos.Abandono.reduce((sum, d) => sum + d.total_alunos_abandono, 0);
+            // Total de Abandono (usando Abandono_DRE)
+            if (dadosCompletos.Abandono_DRE && dadosCompletos.Abandono_DRE.length > 0) {
+                const totalAband = dadosCompletos.Abandono_DRE.reduce((sum, d) => sum + d.total_alunos_abandono, 0);
                 document.getElementById('totalAbandono').textContent = totalAband.toLocaleString('pt-BR');
+            } else {
+                document.getElementById('totalAbandono').textContent = 'N/D';
             }
         }
 
@@ -566,8 +574,9 @@
                 criarGraficoMatriculasDRE();
                 criarGraficoMatriculasSerie();
                 criarGraficoDistorcao();
-                criarGraficoAprovacao();
-                criarGraficoReprovacao();
+                // Aprovação e Reprovação não disponíveis nos dados atuais
+                // criarGraficoAprovacao();
+                // criarGraficoReprovacao();
                 criarGraficoAbandono();
                 criarGraficoModalidades();
                 criarGraficoCenso();
@@ -668,26 +677,25 @@
         function criarGraficoDistorcao() {
             const ctx = document.getElementById('chartDistorcao').getContext('2d');
             
-            const dres = [...new Set(dadosCompletos.Distorcao_IdadeSerie.map(d => d.nom_dre))].sort();
-            const series = ['1ª Série', '2ª Série', '3ª Série'];
-            const colors = ['#0b5fa5', '#1e90ff', '#4da6ff'];
-
-            const datasets = series.map((serie, idx) => ({
-                label: serie,
-                data: dres.map(dre => {
-                    const item = dadosCompletos.Distorcao_IdadeSerie.find(d => d.nom_dre === dre && d.nom_serie === serie);
-                    return item ? item.taxa_distorcao : 0;
-                }),
-                backgroundColor: colors[idx],
-                borderColor: colors[idx],
-                borderWidth: 1
-            }));
+            const dados = dadosCompletos.Distorcao_DRE.sort((a, b) => b.percentual_com_distorcao - a.percentual_com_distorcao);
 
             charts.distorcao = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: dres,
-                    datasets: datasets
+                    labels: dados.map(d => d.nom_dre),
+                    datasets: [{
+                        label: '% com Distorção',
+                        data: dados.map(d => d.percentual_com_distorcao),
+                        backgroundColor: '#ef5350',
+                        borderColor: '#ef5350',
+                        borderWidth: 1
+                    }, {
+                        label: '% sem Distorção',
+                        data: dados.map(d => d.percentual_sem_distorcao),
+                        backgroundColor: '#66bb6a',
+                        borderColor: '#66bb6a',
+                        borderWidth: 1
+                    }]
                 },
                 options: {
                     responsive: true,
@@ -707,11 +715,16 @@
                     scales: {
                         y: {
                             beginAtZero: true,
+                            max: 100,
+                            stacked: true,
                             ticks: {
                                 callback: function(value) {
                                     return value + '%';
                                 }
                             }
+                        },
+                        x: {
+                            stacked: true
                         }
                     }
                 }
@@ -828,9 +841,9 @@
         function criarGraficoAbandono() {
             const ctx = document.getElementById('chartAbandono').getContext('2d');
             
-            const dres = [...new Set(dadosCompletos.Abandono.map(d => d.nom_dre))].sort();
+            const dres = [...new Set(dadosCompletos.Abandono_DRE.map(d => d.nom_dre))].sort();
             const dadosAbandono = dres.map(dre => {
-                return dadosCompletos.Abandono
+                return dadosCompletos.Abandono_DRE
                     .filter(d => d.nom_dre === dre)
                     .reduce((sum, d) => sum + d.total_alunos_abandono, 0);
             });
