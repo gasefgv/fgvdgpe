@@ -453,13 +453,68 @@
         let dadosCompletos;
         let charts = {};
 
-        // Carregar dados
+        // Mostrar loading
+        function mostrarLoading(show) {
+            const cards = document.querySelectorAll('.stat-card, .chart-card');
+            cards.forEach(card => {
+                card.style.opacity = show ? '0.5' : '1';
+            });
+        }
+
+        // Mostrar erro
+        function mostrarErro(mensagem) {
+            const container = document.querySelector('.container');
+            const erroDiv = document.createElement('div');
+            erroDiv.style.cssText = 'background: #fee; border: 2px solid #c00; color: #c00; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center;';
+            erroDiv.innerHTML = `
+                <h3>⚠️ Erro ao carregar dados</h3>
+                <p>${mensagem}</p>
+                <p><small>Verifique se o arquivo 'basefluxo.json' está na pasta 'data/' ou na raiz do projeto.</small></p>
+            `;
+            container.insertBefore(erroDiv, container.firstChild);
+        }
+
+        // Carregar dados com fallback
         async function carregarDados() {
-            const response = await fetch('basefluxo.json');
-            dadosCompletos = await response.json();
-            inicializarFiltros();
-            atualizarEstatisticas();
-            criarGraficos();
+            mostrarLoading(true);
+            
+            // Tentar primeiro na pasta data/
+            let response;
+            try {
+                console.log('Tentando carregar de data/basefluxo.json...');
+                response = await fetch('data/basefluxo.json');
+                if (!response.ok) throw new Error('Arquivo não encontrado em data/');
+            } catch (erro1) {
+                console.log('Não encontrado em data/, tentando na raiz...');
+                try {
+                    response = await fetch('basefluxo.json');
+                    if (!response.ok) throw new Error('Arquivo não encontrado na raiz');
+                } catch (erro2) {
+                    console.error('Erro ao carregar JSON:', erro2);
+                    mostrarErro('Não foi possível encontrar o arquivo basefluxo.json. Por favor, verifique se o arquivo está na pasta correta.');
+                    mostrarLoading(false);
+                    return;
+                }
+            }
+
+            try {
+                dadosCompletos = await response.json();
+                console.log('Dados carregados com sucesso!', dadosCompletos);
+                
+                // Verificar se os dados têm a estrutura esperada
+                if (!dadosCompletos.Matriculas_DRE || !Array.isArray(dadosCompletos.Matriculas_DRE)) {
+                    throw new Error('Estrutura de dados inválida');
+                }
+                
+                inicializarFiltros();
+                atualizarEstatisticas();
+                criarGraficos();
+                mostrarLoading(false);
+            } catch (erro) {
+                console.error('Erro ao processar dados:', erro);
+                mostrarErro('Erro ao processar os dados: ' + erro.message);
+                mostrarLoading(false);
+            }
         }
 
         function inicializarFiltros() {
@@ -475,30 +530,51 @@
         }
 
         function atualizarEstatisticas() {
+            if (!dadosCompletos || !dadosCompletos.Matriculas_DRE) {
+                console.error('Dados não carregados corretamente');
+                return;
+            }
+
             const totalMat = dadosCompletos.Matriculas_DRE.reduce((sum, d) => sum + d.total_matriculas, 0);
             document.getElementById('totalMatriculas').textContent = totalMat.toLocaleString('pt-BR');
 
-            const distorcoes = dadosCompletos.Distorcao_IdadeSerie.map(d => d.taxa_distorcao);
-            const mediaDistorcao = distorcoes.reduce((a, b) => a + b, 0) / distorcoes.length;
-            document.getElementById('mediaDistorcao').textContent = mediaDistorcao.toFixed(1) + '%';
+            if (dadosCompletos.Distorcao_IdadeSerie && dadosCompletos.Distorcao_IdadeSerie.length > 0) {
+                const distorcoes = dadosCompletos.Distorcao_IdadeSerie.map(d => d.taxa_distorcao);
+                const mediaDistorcao = distorcoes.reduce((a, b) => a + b, 0) / distorcoes.length;
+                document.getElementById('mediaDistorcao').textContent = mediaDistorcao.toFixed(1) + '%';
+            }
 
-            const aprovacoes = dadosCompletos.Taxa_Aprovacao.map(d => d.taxa_aprovacao);
-            const mediaAprovacao = aprovacoes.reduce((a, b) => a + b, 0) / aprovacoes.length;
-            document.getElementById('mediaAprovacao').textContent = mediaAprovacao.toFixed(1) + '%';
+            if (dadosCompletos.Taxa_Aprovacao && dadosCompletos.Taxa_Aprovacao.length > 0) {
+                const aprovacoes = dadosCompletos.Taxa_Aprovacao.map(d => d.taxa_aprovacao);
+                const mediaAprovacao = aprovacoes.reduce((a, b) => a + b, 0) / aprovacoes.length;
+                document.getElementById('mediaAprovacao').textContent = mediaAprovacao.toFixed(1) + '%';
+            }
 
-            const totalAband = dadosCompletos.Abandono.reduce((sum, d) => sum + d.total_alunos_abandono, 0);
-            document.getElementById('totalAbandono').textContent = totalAband.toLocaleString('pt-BR');
+            if (dadosCompletos.Abandono && dadosCompletos.Abandono.length > 0) {
+                const totalAband = dadosCompletos.Abandono.reduce((sum, d) => sum + d.total_alunos_abandono, 0);
+                document.getElementById('totalAbandono').textContent = totalAband.toLocaleString('pt-BR');
+            }
         }
 
         function criarGraficos() {
-            criarGraficoMatriculasDRE();
-            criarGraficoMatriculasSerie();
-            criarGraficoDistorcao();
-            criarGraficoAprovacao();
-            criarGraficoReprovacao();
-            criarGraficoAbandono();
-            criarGraficoModalidades();
-            criarGraficoCenso();
+            if (!dadosCompletos) {
+                console.error('Dados não disponíveis para criar gráficos');
+                return;
+            }
+            
+            try {
+                criarGraficoMatriculasDRE();
+                criarGraficoMatriculasSerie();
+                criarGraficoDistorcao();
+                criarGraficoAprovacao();
+                criarGraficoReprovacao();
+                criarGraficoAbandono();
+                criarGraficoModalidades();
+                criarGraficoCenso();
+            } catch (erro) {
+                console.error('Erro ao criar gráficos:', erro);
+                mostrarErro('Erro ao criar visualizações: ' + erro.message);
+            }
         }
 
         function criarGraficoMatriculasDRE() {
