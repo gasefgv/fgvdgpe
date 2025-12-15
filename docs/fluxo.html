@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indicadores de Fluxo Escolar - Sergipe</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --azul-escuro: #0b5fa5;
+            --azul-medio: #1e90ff;
+            --azul-claro: #4da6ff;
+            --azul-pastel: #f1f9ff;
+            --cinza-texto: #666666;
+            --branco: #FFFFFF;
+            --sombra-suave: 0 4px 15px rgba(11, 95, 165, 0.1);
+            --sombra-hover: 0 8px 25px rgba(11, 95, 165, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--azul-pastel);
+            color: var(--cinza-texto);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%);
+            padding: 1rem 0;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+
+        .logo { height: 50px; width: auto; }
+
+        .header-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1;
+        }
+
+        .header-title {
+            color: var(--branco);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+
+        .btn-voltar {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--branco);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--branco);
+            transform: translateX(-3px);
+        }
+
+        .main-content { 
+            flex: 1; 
+            padding: 2.5rem 0; 
+        }
+
+        .intro-section { 
+            text-align: center; 
+            margin-bottom: 2rem; 
+        }
+
+        .intro-title { 
+            color: var(--azul-escuro); 
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            margin-bottom: 0.5rem; 
+        }
+
+        .intro-description {
+            color: var(--cinza-texto);
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--branco);
+            padding: 1.5rem;
+            border-radius: 14px;
+            box-shadow: var(--sombra-suave);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(11, 95, 165, 0.08);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--azul-escuro);
+            margin: 0.5rem 0;
+        }
+
+        .stat-label {
+            color: var(--cinza-texto);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-section {
+            background: var(--branco);
+            padding: 1.25rem;
+            border-radius: 14px;
+            box-shadow: var(--sombra-suave);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-section label {
+            font-weight: 600;
+            color: var(--azul-escuro);
+        }
+
+        select {
+            padding: 0.6rem 1rem;
+            border: 2px solid var(--azul-claro);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: var(--branco);
+            color: var(--cinza-texto);
+            font-family: 'Source Sans Pro', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--azul-escuro);
+            box-shadow: 0 0 0 3px rgba(11, 95, 165, 0.1);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-card {
+            background: var(--branco);
+            padding: 1.5rem;
+            border-radius: 14px;
+            box-shadow: var(--sombra-suave);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(11, 95, 165, 0.08);
+        }
+
+        .chart-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .chart-card h2 {
+            color: var(--azul-escuro);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--azul-claro);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chart-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 380px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .footer { 
+            background-color: var(--branco); 
+            border-top: 1px solid rgba(11, 95, 165, 0.1); 
+            padding: 1.25rem 0; 
+            margin-top: auto; 
+        }
+
+        .footer-content { 
+            text-align: center; 
+            color: var(--cinza-texto); 
+            font-size: 0.85rem; 
+        }
+
+        .footer-logo { 
+            height: 35px; 
+            margin-bottom: 0.5rem; 
+            opacity: 0.8; 
+        }
+
+        @media (max-width: 768px) { 
+            .header-title { font-size: 1.3rem; }
+            .header-subtitle { font-size: 0.75rem; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .header-text { position: relative; left: auto; transform: none; margin: 0.5rem 0; }
+            .header-content { flex-direction: column; gap: 0.75rem; }
+            .stat-value { font-size: 1.75rem; }
+        }
+
+        @media print {
+            body { background: white; }
+            .chart-card { 
+                page-break-inside: avoid; 
+                box-shadow: none; 
+                border: 1px solid #ddd; 
+            }
+            .btn-voltar, .filter-section { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">
+                    <a href="index.html" class="btn-voltar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                        Voltar
+                    </a>
+                </div>
+                <div class="header-text">
+                    <h1 class="header-title">Indicadores de Fluxo Escolar</h1>
+                    <p class="header-subtitle">Análise de matrículas, distorção, aprovação e abandono - Rede Estadual de Sergipe</p>
+                </div>
+                <div style="width: 100px;"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="intro-section">
+                <h2 class="intro-title">Panorama Geral dos Indicadores de Fluxo</h2>
+                <p class="intro-description">Explore os principais indicadores educacionais da rede estadual, incluindo distribuição de matrículas, taxas de aprovação e reprovação, distorção idade-série e abandono escolar.</p>
+            </section>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value" id="totalMatriculas">-</div>
+                    <div class="stat-label">Total de Matrículas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-value" id="mediaDistorcao">-</div>
+                    <div class="stat-label">Média Distorção Idade-Série</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value" id="mediaAprovacao">-</div>
+                    <div class="stat-label">Taxa Média de Aprovação</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚠️</div>
+                    <div class="stat-value" id="totalAbandono">-</div>
+                    <div class="stat-label">Total de Alunos em Abandono</div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <label>Filtrar por DRE:</label>
+                <select id="dreFilter" onchange="updateCharts()">
+                    <option value="all">Todas as DREs</option>
+                </select>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        Matrículas por DRE
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartMatriculasDRE"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11 2v20c-5.07-.5-9-4.79-9-10s3.93-9.5 9-10zm2.03 0v8.99H22c-.47-4.74-4.24-8.52-8.97-8.99zm0 11.01V22c4.74-.47 8.5-4.25 8.97-8.99h-8.97z"/>
+                        </svg>
+                        Matrículas por Série
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartMatriculasSerie"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                        </svg>
+                        Distorção Idade-Série por DRE
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartDistorcao"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        Taxas de Aprovação por DRE
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartAprovacao"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                        Taxas de Reprovação por DRE
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartReprovacao"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                        Abandono Escolar por DRE
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartAbandono"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card full-width">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                        </svg>
+                        Principais Modalidades de Ensino
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartModalidades"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card full-width">
+                    <h2>
+                        <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                        </svg>
+                        Evolução de Matrículas (Censo 2023 vs 2024)
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="chartCenso"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="assets/logo.png" alt="Logo" class="footer-logo" onerror="this.style.display='none'">
+                <p>Gestão para a Aprendizagem — Sergipe | Desenvolvido em parceria com a FGV</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let dadosCompletos;
+        let charts = {};
+
+        // Carregar dados
+        async function carregarDados() {
+            const response = await fetch('basefluxo.json');
+            dadosCompletos = await response.json();
+            inicializarFiltros();
+            atualizarEstatisticas();
+            criarGraficos();
+        }
+
+        function inicializarFiltros() {
+            const select = document.getElementById('dreFilter');
+            const dres = [...new Set(dadosCompletos.Matriculas_DRE.map(d => d.nom_dre))].sort();
+            
+            dres.forEach(dre => {
+                const option = document.createElement('option');
+                option.value = dre;
+                option.textContent = dre;
+                select.appendChild(option);
+            });
+        }
+
+        function atualizarEstatisticas() {
+            const totalMat = dadosCompletos.Matriculas_DRE.reduce((sum, d) => sum + d.total_matriculas, 0);
+            document.getElementById('totalMatriculas').textContent = totalMat.toLocaleString('pt-BR');
+
+            const distorcoes = dadosCompletos.Distorcao_IdadeSerie.map(d => d.taxa_distorcao);
+            const mediaDistorcao = distorcoes.reduce((a, b) => a + b, 0) / distorcoes.length;
+            document.getElementById('mediaDistorcao').textContent = mediaDistorcao.toFixed(1) + '%';
+
+            const aprovacoes = dadosCompletos.Taxa_Aprovacao.map(d => d.taxa_aprovacao);
+            const mediaAprovacao = aprovacoes.reduce((a, b) => a + b, 0) / aprovacoes.length;
+            document.getElementById('mediaAprovacao').textContent = mediaAprovacao.toFixed(1) + '%';
+
+            const totalAband = dadosCompletos.Abandono.reduce((sum, d) => sum + d.total_alunos_abandono, 0);
+            document.getElementById('totalAbandono').textContent = totalAband.toLocaleString('pt-BR');
+        }
+
+        function criarGraficos() {
+            criarGraficoMatriculasDRE();
+            criarGraficoMatriculasSerie();
+            criarGraficoDistorcao();
+            criarGraficoAprovacao();
+            criarGraficoReprovacao();
+            criarGraficoAbandono();
+            criarGraficoModalidades();
+            criarGraficoCenso();
+        }
+
+        function criarGraficoMatriculasDRE() {
+            const ctx = document.getElementById('chartMatriculasDRE').getContext('2d');
+            const dados = dadosCompletos.Matriculas_DRE.sort((a, b) => b.total_matriculas - a.total_matriculas);
+            
+            charts.matriculasDRE = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dados.map(d => d.nom_dre),
+                    datasets: [{
+                        label: 'Total de Matrículas',
+                        data: dados.map(d => d.total_matriculas),
+                        backgroundColor: '#0b5fa5',
+                        borderColor: '#0b5fa5',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString('pt-BR') + ' alunos';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoMatriculasSerie() {
+            const ctx = document.getElementById('chartMatriculasSerie').getContext('2d');
+            
+            const series = ['1ª Série', '2ª Série', '3ª Série'];
+            const dadosSerie = series.map(serie => {
+                const total = dadosCompletos.Matriculas_Serie
+                    .filter(d => d.nom_serie === serie)
+                    .reduce((sum, d) => sum + d.total_matriculas, 0);
+                return total;
+            });
+
+            charts.matriculasSerie = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: series,
+                    datasets: [{
+                        data: dadosSerie,
+                        backgroundColor: ['#0b5fa5', '#1e90ff', '#4da6ff'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percent = ((context.parsed / total) * 100).toFixed(1);
+                                    return context.label + ': ' + context.parsed.toLocaleString('pt-BR') + ' (' + percent + '%)';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoDistorcao() {
+            const ctx = document.getElementById('chartDistorcao').getContext('2d');
+            
+            const dres = [...new Set(dadosCompletos.Distorcao_IdadeSerie.map(d => d.nom_dre))].sort();
+            const series = ['1ª Série', '2ª Série', '3ª Série'];
+            const colors = ['#0b5fa5', '#1e90ff', '#4da6ff'];
+
+            const datasets = series.map((serie, idx) => ({
+                label: serie,
+                data: dres.map(dre => {
+                    const item = dadosCompletos.Distorcao_IdadeSerie.find(d => d.nom_dre === dre && d.nom_serie === serie);
+                    return item ? item.taxa_distorcao : 0;
+                }),
+                backgroundColor: colors[idx],
+                borderColor: colors[idx],
+                borderWidth: 1
+            }));
+
+            charts.distorcao = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dres,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoAprovacao() {
+            const ctx = document.getElementById('chartAprovacao').getContext('2d');
+            
+            const dres = [...new Set(dadosCompletos.Taxa_Aprovacao.map(d => d.nom_dre))].sort();
+            const series = ['1ª Série', '2ª Série', '3ª Série'];
+            const colors = ['#2e7d32', '#66bb6a', '#a5d6a7'];
+
+            const datasets = series.map((serie, idx) => ({
+                label: serie,
+                data: dres.map(dre => {
+                    const item = dadosCompletos.Taxa_Aprovacao.find(d => d.nom_dre === dre && d.nom_serie === serie);
+                    return item ? item.taxa_aprovacao : 0;
+                }),
+                backgroundColor: colors[idx],
+                borderColor: colors[idx],
+                borderWidth: 1
+            }));
+
+            charts.aprovacao = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dres,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoReprovacao() {
+            const ctx = document.getElementById('chartReprovacao').getContext('2d');
+            
+            const dres = [...new Set(dadosCompletos.Taxa_Reprovacao.map(d => d.nom_dre))].sort();
+            const series = ['1ª Série', '2ª Série', '3ª Série'];
+            const colors = ['#c62828', '#ef5350', '#e57373'];
+
+            const datasets = series.map((serie, idx) => ({
+                label: serie,
+                data: dres.map(dre => {
+                    const item = dadosCompletos.Taxa_Reprovacao.find(d => d.nom_dre === dre && d.nom_serie === serie);
+                    return item ? item.taxa_reprovacao : 0;
+                }),
+                backgroundColor: colors[idx],
+                borderColor: colors[idx],
+                borderWidth: 1
+            }));
+
+            charts.reprovacao = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dres,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoAbandono() {
+            const ctx = document.getElementById('chartAbandono').getContext('2d');
+            
+            const dres = [...new Set(dadosCompletos.Abandono.map(d => d.nom_dre))].sort();
+            const dadosAbandono = dres.map(dre => {
+                return dadosCompletos.Abandono
+                    .filter(d => d.nom_dre === dre)
+                    .reduce((sum, d) => sum + d.total_alunos_abandono, 0);
+            });
+
+            charts.abandono = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dres,
+                    datasets: [{
+                        label: 'Total de Abandono',
+                        data: dadosAbandono,
+                        backgroundColor: '#d84315',
+                        borderColor: '#d84315',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x.toLocaleString('pt-BR') + ' alunos';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoModalidades() {
+            const ctx = document.getElementById('chartModalidades').getContext('2d');
+            
+            // Agregar todas as modalidades
+            const modalidades = {};
+            dadosCompletos.Matriculas_Etapa.forEach(item => {
+                if (!modalidades[item.nom_etapa]) {
+                    modalidades[item.nom_etapa] = 0;
+                }
+                modalidades[item.nom_etapa] += item.total_matriculas;
+            });
+
+            // Pegar as top 10 modalidades
+            const sorted = Object.entries(modalidades).sort((a, b) => b[1] - a[1]).slice(0, 10);
+            
+            charts.modalidades = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sorted.map(([nome]) => nome),
+                    datasets: [{
+                        label: 'Total de Matrículas',
+                        data: sorted.map(([_, total]) => total),
+                        backgroundColor: '#0b5fa5',
+                        borderColor: '#0b5fa5',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x.toLocaleString('pt-BR') + ' alunos';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function criarGraficoCenso() {
+            const ctx = document.getElementById('chartCenso').getContext('2d');
+            
+            const dres = [...new Set(dadosCompletos.Censo.map(d => d.nom_dre))].sort();
+            
+            const dados2023 = dres.map(dre => {
+                const item = dadosCompletos.Censo.find(d => d.nom_dre === dre && d.ano === 2023);
+                return item ? item['Quantidade de Matriculas - Ensino Médio'] : 0;
+            });
+
+            const dados2024 = dres.map(dre => {
+                const item = dadosCompletos.Censo.find(d => d.nom_dre === dre && d.ano === 2024);
+                return item ? item['Quantidade de Matriculas - Ensino Médio'] : 0;
+            });
+
+            charts.censo = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dres,
+                    datasets: [
+                        {
+                            label: '2023',
+                            data: dados2023,
+                            borderColor: '#0b5fa5',
+                            backgroundColor: 'rgba(11, 95, 165, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: '2024',
+                            data: dados2024,
+                            borderColor: '#1e90ff',
+                            backgroundColor: 'rgba(30, 144, 255, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString('pt-BR') + ' alunos';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            const dreFilter = document.getElementById('dreFilter').value;
+            // Implementar filtro se necessário
+            console.log('Filtro selecionado:', dreFilter);
+        }
+
+        // Inicializar
+        carregarDados();
+    </script>
+</body>
+</html>
