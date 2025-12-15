@@ -243,6 +243,22 @@
             grid-column: 1 / -1;
         }
 
+        .data-source-box {
+            background: var(--branco);
+            border-left: 4px solid var(--azul-escuro);
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--sombra-suave);
+            margin-top: 2rem;
+            color: var(--cinza-texto);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .data-source-box strong {
+            color: var(--azul-escuro);
+        }
+
         .footer { 
             background-color: var(--branco); 
             border-top: 1px solid rgba(11, 95, 165, 0.1); 
@@ -317,14 +333,14 @@
                     <div class="stat-label">Total de Matrículas</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">📊</div>
-                    <div class="stat-value" id="mediaDistorcao">-</div>
-                    <div class="stat-label">Média Distorção Idade-Série</div>
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value" id="mediaAlunosTurma">-</div>
+                    <div class="stat-label">Média de Alunos por Turma</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon">✅</div>
-                    <div class="stat-value" id="mediaAprovacao">-</div>
-                    <div class="stat-label">Taxa Média de Aprovação</div>
+                    <div class="stat-icon">🏫</div>
+                    <div class="stat-value" id="totalTurmas">-</div>
+                    <div class="stat-label">Total de Turmas</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">⚠️</div>
@@ -368,12 +384,12 @@
                 <div class="chart-card">
                     <h2>
                         <svg class="chart-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
                         </svg>
-                        Distorção Idade-Série por DRE
+                        Média de Alunos por Turma por DRE
                     </h2>
                     <div class="chart-container">
-                        <canvas id="chartDistorcao"></canvas>
+                        <canvas id="chartAlunosTurma"></canvas>
                     </div>
                 </div>
 
@@ -440,6 +456,14 @@
                         <canvas id="chartCenso"></canvas>
                     </div>
                 </div>
+            </div>
+
+            <!-- Fonte dos Dados -->
+            <div class="data-source-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                    <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/>
+                </svg>
+                <strong>Fonte dos dados:</strong> Dados tratados pela equipe FGV e extraídos de bases internas da SEED-SE. Último recorte: 12/12/2024.
             </div>
         </div>
     </main>
@@ -543,17 +567,18 @@
             const totalMat = dadosCompletos.Matriculas_DRE.reduce((sum, d) => sum + d.total_matriculas, 0);
             document.getElementById('totalMatriculas').textContent = totalMat.toLocaleString('pt-BR');
 
-            // Média de Distorção (usando Distorcao_DRE)
-            if (dadosCompletos.Distorcao_DRE && dadosCompletos.Distorcao_DRE.length > 0) {
-                const distorcoes = dadosCompletos.Distorcao_DRE.map(d => d.percentual_com_distorcao);
-                const mediaDistorcao = distorcoes.reduce((a, b) => a + b, 0) / distorcoes.length;
-                document.getElementById('mediaDistorcao').textContent = mediaDistorcao.toFixed(1) + '%';
+            // Média de Alunos por Turma e Total de Turmas
+            if (dadosCompletos.Alunos_Turma_DRE && dadosCompletos.Alunos_Turma_DRE.length > 0) {
+                const totalAlunos = totalMat;
+                const totalTurmas = dadosCompletos.Alunos_Turma_DRE.reduce((sum, d) => sum + d.total_turmas, 0);
+                const mediaGeral = totalAlunos / totalTurmas;
+                
+                document.getElementById('mediaAlunosTurma').textContent = mediaGeral.toFixed(1);
+                document.getElementById('totalTurmas').textContent = totalTurmas.toLocaleString('pt-BR');
             } else {
-                document.getElementById('mediaDistorcao').textContent = 'N/D';
+                document.getElementById('mediaAlunosTurma').textContent = 'N/D';
+                document.getElementById('totalTurmas').textContent = 'N/D';
             }
-
-            // Taxa de Aprovação (não disponível nos dados)
-            document.getElementById('mediaAprovacao').textContent = 'N/D';
 
             // Total de Abandono (usando Abandono_DRE)
             if (dadosCompletos.Abandono_DRE && dadosCompletos.Abandono_DRE.length > 0) {
@@ -573,10 +598,7 @@
             try {
                 criarGraficoMatriculasDRE();
                 criarGraficoMatriculasSerie();
-                criarGraficoDistorcao();
-                // Aprovação e Reprovação não disponíveis nos dados atuais
-                // criarGraficoAprovacao();
-                // criarGraficoReprovacao();
+                criarGraficoAlunosTurma();
                 criarGraficoAbandono();
                 criarGraficoModalidades();
                 criarGraficoCenso();
@@ -674,26 +696,20 @@
             });
         }
 
-        function criarGraficoDistorcao() {
-            const ctx = document.getElementById('chartDistorcao').getContext('2d');
+        function criarGraficoAlunosTurma() {
+            const ctx = document.getElementById('chartAlunosTurma').getContext('2d');
             
-            const dados = dadosCompletos.Distorcao_DRE.sort((a, b) => b.percentual_com_distorcao - a.percentual_com_distorcao);
+            const dados = dadosCompletos.Alunos_Turma_DRE.sort((a, b) => b.media_alunos_turma - a.media_alunos_turma);
 
-            charts.distorcao = new Chart(ctx, {
+            charts.alunosTurma = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: dados.map(d => d.nom_dre),
                     datasets: [{
-                        label: '% com Distorção',
-                        data: dados.map(d => d.percentual_com_distorcao),
-                        backgroundColor: '#ef5350',
-                        borderColor: '#ef5350',
-                        borderWidth: 1
-                    }, {
-                        label: '% sem Distorção',
-                        data: dados.map(d => d.percentual_sem_distorcao),
-                        backgroundColor: '#66bb6a',
-                        borderColor: '#66bb6a',
+                        label: 'Média de Alunos/Turma',
+                        data: dados.map(d => d.media_alunos_turma),
+                        backgroundColor: '#0b5fa5',
+                        borderColor: '#0b5fa5',
                         borderWidth: 1
                     }]
                 },
@@ -702,12 +718,18 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            position: 'bottom'
+                            display: false
                         },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                                    const dre = dados[context.dataIndex];
+                                    return [
+                                        `Média: ${context.parsed.y.toFixed(1)} alunos/turma`,
+                                        `Mínimo: ${dre.min_alunos_turma} alunos`,
+                                        `Máximo: ${dre.max_alunos_turma} alunos`,
+                                        `Total de turmas: ${dre.total_turmas}`
+                                    ];
                                 }
                             }
                         }
@@ -715,16 +737,11 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 100,
-                            stacked: true,
                             ticks: {
                                 callback: function(value) {
-                                    return value + '%';
+                                    return value.toFixed(0);
                                 }
                             }
-                        },
-                        x: {
-                            stacked: true
                         }
                     }
                 }
